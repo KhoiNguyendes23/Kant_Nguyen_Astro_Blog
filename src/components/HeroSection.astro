@@ -31,10 +31,10 @@
       <div class="text-center lg:text-left animate-slide-left">
         <div class="mb-6">
           <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span class="gradient-text" data-i18n="hero.greeting">Xin chào, tôi là Kant Nguyễn 👋</span>
+            <span class="gradient-text" data-i18n="greeting">Xin chào, tôi là Kant Nguyễn 👋</span>
           </h1>
           <div class="text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 mb-8">
-            <span class="typing-text inline-block" data-i18n="hero.title">
+            <span class="typing-text inline-block" data-i18n="title">
               Backend Developer | Java Networking Enthusiast
             </span>
           </div>
@@ -50,17 +50,17 @@
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
           <a href="/about" 
              class="px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
-             data-i18n="hero.aboutBtn">
+             data-i18n="aboutBtn">
             Giới thiệu
           </a>
           <a href="/projects" 
              class="px-8 py-3 bg-accent text-gray-900 rounded-lg font-semibold hover:bg-accent/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
-             data-i18n="hero.projectsBtn">
+             data-i18n="projectsBtn">
             Dự án
           </a>
           <a href="/blog" 
              class="px-8 py-3 border-2 border-primary text-primary dark:text-accent rounded-lg font-semibold hover:bg-primary hover:text-white dark:hover:bg-accent dark:hover:text-gray-900 transform hover:scale-105 transition-all duration-200"
-             data-i18n="hero.blogBtn">
+             data-i18n="blogBtn">
             Blog
           </a>
         </div>
@@ -100,13 +100,16 @@
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
         if (href && href !== '#' && !href.includes('mailto:') && !href.includes('http')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-          } else {
-            window.location.href = href;
+          // For same-page navigation, try to find a section with matching ID
+          if (href.startsWith('/#') || href === '/') {
+            e.preventDefault();
+            const targetId = href.replace('/', '').replace('#', '');
+            const target = targetId ? document.getElementById(targetId) : document.body;
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
           }
+          // For other paths, let the browser handle navigation normally
         }
       });
     });
