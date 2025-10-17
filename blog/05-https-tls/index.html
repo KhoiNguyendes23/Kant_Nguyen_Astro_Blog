@@ -1,0 +1,326 @@
+<!DOCTYPE html><html lang="vi" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="description" content="Kant Nguyễn - Backend Developer | Java Networking Enthusiast"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/Kant_Nguyen_Astro_Blog/favicon.svg"><meta name="generator" content="Astro v5.14.5"><title>HTTPS và TLS - Bảo mật kết nối mạng - Kant Nguyễn</title><link rel="stylesheet" href="/Kant_Nguyen_Astro_Blog/_astro/about.D3UAi4cs.css">
+<style>.prose[data-astro-cid-7jjqptxk]{color:#374151}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk]{color:#d1d5db}.prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#111827}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#f3f4f6;padding:.125rem .25rem;border-radius:.25rem;font-size:.875em}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#374151}.prose[data-astro-cid-7jjqptxk] pre[data-astro-cid-7jjqptxk]{background-color:#111827;color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] blockquote[data-astro-cid-7jjqptxk]{border-left-color:#6366f1;background-color:#6366f10d}
+</style></head> <body class="min-h-screen bg-bgLight dark:bg-bgDark text-gray-900 dark:text-gray-100 transition-colors duration-300"> <div id="app" class="min-h-screen flex flex-col">  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-bgDark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700" data-astro-cid-5blmo7yk> <div class="max-w-6xl mx-auto px-4" data-astro-cid-5blmo7yk> <div class="flex items-center justify-between h-16" data-astro-cid-5blmo7yk> <!-- Logo --> <a href="/Kant_Nguyen_Astro_Blog/" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform" data-astro-cid-5blmo7yk>
+Kant Nguyễn
+</a> <!-- Desktop Navigation --> <div class="hidden md:flex items-center space-x-8" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link" data-astro-cid-5blmo7yk>Liên hệ</a> </div> <!-- Controls --> <div class="flex items-center space-x-4" data-astro-cid-5blmo7yk> <!-- Dark Mode Toggle --> <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" data-astro-cid-5blmo7yk></path> </svg> <svg id="moonIcon" class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" data-astro-cid-5blmo7yk></path> </svg> </button> <!-- Mobile Menu Button --> <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-5blmo7yk></path> </svg> </button> </div> </div> <!-- Mobile Navigation --> <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700 py-4" data-astro-cid-5blmo7yk> <div class="flex flex-col space-y-2" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link-mobile" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link-mobile" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link-mobile" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link-mobile" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link-mobile" data-astro-cid-5blmo7yk>Liên hệ</a> </div> </div> </div> </nav>  <script type="module">document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("themeToggle");document.getElementById("sunIcon"),document.getElementById("moonIcon"),t&&t.addEventListener("click",e=>{e.preventDefault(),document.documentElement.classList.contains("dark")?(document.documentElement.classList.remove("dark"),localStorage.setItem("darkMode","false")):(document.documentElement.classList.add("dark"),localStorage.setItem("darkMode","true"))});const n=document.getElementById("mobileMenuBtn"),o=document.getElementById("mobileMenu");n&&o&&n.addEventListener("click",e=>{e.preventDefault(),o.classList.toggle("hidden")})});</script> <main class="min-h-screen bg-bgLight dark:bg-bgDark" data-astro-cid-7jjqptxk> <!-- Article Header --> <section class="py-16 bg-gradient-to-br from-primary/5 to-purple-600/5" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <div class="text-center mb-8" data-astro-cid-7jjqptxk> <span class="inline-block px-4 py-2 bg-accent text-gray-900 text-sm font-semibold rounded-full mb-4" data-astro-cid-7jjqptxk> Lập trình mạng với Java </span> <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-astro-cid-7jjqptxk> HTTPS và TLS - Bảo mật kết nối mạng </h1> <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6" data-astro-cid-7jjqptxk> Học cách thiết lập HTTPS, hiểu TLS handshake, và xử lý SSL certificates trong Java </p> <div class="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>27/10/2025</span> <span data-astro-cid-7jjqptxk>•</span> <span data-astro-cid-7jjqptxk>6 phút đọc</span> </div> <div class="flex flex-wrap justify-center gap-2 mt-6" data-astro-cid-7jjqptxk> <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Java </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> HTTPS </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> TLS </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> SSL </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Security </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Certificates </span> </div> </div> </div> </section> <!-- Article Content --> <section class="py-16" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <article class="prose prose-lg max-w-none dark:prose-invert" data-astro-cid-7jjqptxk> <h1 id="-giới-thiệu">🧠 Giới thiệu</h1>
+<p>Trong thời đại số, bảo mật thông tin là ưu tiên hàng đầu. HTTPS (HTTP Secure) sử dụng TLS (Transport Layer Security) để mã hóa dữ liệu truyền qua mạng, đảm bảo tính bảo mật và toàn vẹn dữ liệu.</p>
+<p>Bài này sẽ dạy bạn cách thiết lập HTTPS client/server, hiểu TLS handshake process, và xử lý SSL certificates trong Java.</p>
+<!-- IMAGE_PLACEHOLDER -->
+<h1 id="-code-minh-họa">💻 Code minh họa</h1>
+<p><strong>HttpsClientExample.java - HTTPS Client cơ bản:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.net.http.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.net.URI;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.time.Duration;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.IOException;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.SSLContext;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.TrustManager;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.X509TrustManager;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.security.cert.X509Certificate;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpsClientExample</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo SSLContext với custom TrustManager (chỉ dùng cho testing)</span></span>
+<span class="line"><span style="color:#E1E4E8">            SSLContext sslContext </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> SSLContext.</span><span style="color:#B392F0">getInstance</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"TLS"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            sslContext.</span><span style="color:#B392F0">init</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">new</span><span style="color:#F97583"> TrustManager</span><span style="color:#E1E4E8">[]{</span></span>
+<span class="line"><span style="color:#F97583">                new</span><span style="color:#B392F0"> X509TrustManager</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">                    public</span><span style="color:#F97583"> X509Certificate</span><span style="color:#E1E4E8">[] </span><span style="color:#B392F0">getAcceptedIssuers</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">; }</span></span>
+<span class="line"><span style="color:#F97583">                    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> checkClientTrusted</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">X509Certificate</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">certs</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">authType</span><span style="color:#E1E4E8">) {}</span></span>
+<span class="line"><span style="color:#F97583">                    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> checkServerTrusted</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">X509Certificate</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">certs</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">authType</span><span style="color:#E1E4E8">) {}</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }, </span><span style="color:#F97583">new</span><span style="color:#E1E4E8"> java.security.</span><span style="color:#B392F0">SecureRandom</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo HttpClient với custom SSLContext</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpClient client </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> HttpClient.</span><span style="color:#B392F0">newBuilder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">sslContext</span><span style="color:#E1E4E8">(sslContext)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">connectTimeout</span><span style="color:#E1E4E8">(Duration.</span><span style="color:#B392F0">ofSeconds</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo HTTPS request</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpRequest request </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> HttpRequest.</span><span style="color:#B392F0">newBuilder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">uri</span><span style="color:#E1E4E8">(URI.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://httpbin.org/get"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">timeout</span><span style="color:#E1E4E8">(Duration.</span><span style="color:#B392F0">ofSeconds</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">header</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"User-Agent"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"Java HTTPS Client"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">GET</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Gửi request</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpResponse&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> client.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(request, </span></span>
+<span class="line"><span style="color:#E1E4E8">                HttpResponse.BodyHandlers.</span><span style="color:#B392F0">ofString</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"🔒 HTTPS Request thành công!"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Status Code: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">statusCode</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Response Body: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">body</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi HTTPS request: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>CertificateValidationExample.java - Xử lý certificates:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.net.http.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.net.URI;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.time.Duration;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.IOException;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.SSLContext;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.TrustManagerFactory;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.security.KeyStore;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.FileInputStream;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> CertificateValidationExample</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // Load custom truststore (nếu có)</span></span>
+<span class="line"><span style="color:#E1E4E8">            KeyStore trustStore </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> KeyStore.</span><span style="color:#B392F0">getInstance</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"JKS"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            FileInputStream trustStoreFile </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> FileInputStream</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"truststore.jks"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            trustStore.</span><span style="color:#B392F0">load</span><span style="color:#E1E4E8">(trustStoreFile, </span><span style="color:#9ECBFF">"password"</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">toCharArray</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            trustStoreFile.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo TrustManagerFactory</span></span>
+<span class="line"><span style="color:#E1E4E8">            TrustManagerFactory tmf </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> TrustManagerFactory.</span><span style="color:#B392F0">getInstance</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"SunX509"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            tmf.</span><span style="color:#B392F0">init</span><span style="color:#E1E4E8">(trustStore);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo SSLContext với custom truststore</span></span>
+<span class="line"><span style="color:#E1E4E8">            SSLContext sslContext </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> SSLContext.</span><span style="color:#B392F0">getInstance</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"TLS"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            sslContext.</span><span style="color:#B392F0">init</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">, tmf.</span><span style="color:#B392F0">getTrustManagers</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo HttpClient</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpClient client </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> HttpClient.</span><span style="color:#B392F0">newBuilder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">sslContext</span><span style="color:#E1E4E8">(sslContext)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">connectTimeout</span><span style="color:#E1E4E8">(Duration.</span><span style="color:#B392F0">ofSeconds</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Test với self-signed certificate</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpRequest request </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> HttpRequest.</span><span style="color:#B392F0">newBuilder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">uri</span><span style="color:#E1E4E8">(URI.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://self-signed.badssl.com/"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">timeout</span><span style="color:#E1E4E8">(Duration.</span><span style="color:#B392F0">ofSeconds</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">GET</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpResponse&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> client.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(request, </span></span>
+<span class="line"><span style="color:#E1E4E8">                HttpResponse.BodyHandlers.</span><span style="color:#B392F0">ofString</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"✅ Certificate validation thành công!"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Status Code: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">statusCode</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Certificate validation failed: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>HttpsServerExample.java - HTTPS Server đơn giản:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> com.sun.net.httpserver.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.net.InetSocketAddress;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.SSLContext;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.KeyManagerFactory;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.security.KeyStore;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.FileInputStream;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpsServerExample</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // Load keystore với server certificate</span></span>
+<span class="line"><span style="color:#E1E4E8">            KeyStore keyStore </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> KeyStore.</span><span style="color:#B392F0">getInstance</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"JKS"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            FileInputStream keyStoreFile </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> FileInputStream</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"keystore.jks"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            keyStore.</span><span style="color:#B392F0">load</span><span style="color:#E1E4E8">(keyStoreFile, </span><span style="color:#9ECBFF">"password"</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">toCharArray</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            keyStoreFile.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo KeyManagerFactory</span></span>
+<span class="line"><span style="color:#E1E4E8">            KeyManagerFactory kmf </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> KeyManagerFactory.</span><span style="color:#B392F0">getInstance</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"SunX509"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            kmf.</span><span style="color:#B392F0">init</span><span style="color:#E1E4E8">(keyStore, </span><span style="color:#9ECBFF">"password"</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">toCharArray</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo SSLContext</span></span>
+<span class="line"><span style="color:#E1E4E8">            SSLContext sslContext </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> SSLContext.</span><span style="color:#B392F0">getInstance</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"TLS"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            sslContext.</span><span style="color:#B392F0">init</span><span style="color:#E1E4E8">(kmf.</span><span style="color:#B392F0">getKeyManagers</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo HTTPS server</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpsServer server </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> HttpsServer.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> InetSocketAddress</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">8443</span><span style="color:#E1E4E8">), </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            server.</span><span style="color:#B392F0">setHttpsConfigurator</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> HttpsConfigurator</span><span style="color:#E1E4E8">(sslContext));</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Tạo context và handler</span></span>
+<span class="line"><span style="color:#E1E4E8">            server.</span><span style="color:#B392F0">createContext</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/"</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">new</span><span style="color:#B392F0"> HttpsHandler</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Bắt đầu server</span></span>
+<span class="line"><span style="color:#E1E4E8">            server.</span><span style="color:#B392F0">start</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"🔒 HTTPS Server đang chạy trên port 8443"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Truy cập: https://localhost:8443/"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi HTTPS server: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    static</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> HttpsHandler</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> HttpHandler</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        @</span><span style="color:#F97583">Override</span></span>
+<span class="line"><span style="color:#F97583">        public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handle</span><span style="color:#E1E4E8">(HttpExchange </span><span style="color:#FFAB70">exchange</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> IOException {</span></span>
+<span class="line"><span style="color:#E1E4E8">            String response </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> """</span></span>
+<span class="line"><span style="color:#9ECBFF">                &#x3C;html></span></span>
+<span class="line"><span style="color:#9ECBFF">                &#x3C;head>&#x3C;title>HTTPS Server&#x3C;/title>&#x3C;/head></span></span>
+<span class="line"><span style="color:#9ECBFF">                &#x3C;body></span></span>
+<span class="line"><span style="color:#9ECBFF">                    &#x3C;h1>🔒 HTTPS Server hoạt động!&#x3C;/h1></span></span>
+<span class="line"><span style="color:#9ECBFF">                    &#x3C;p>Kết nối này đã được mã hóa bằng TLS.&#x3C;/p></span></span>
+<span class="line"><span style="color:#9ECBFF">                    &#x3C;p>Thời gian: """</span><span style="color:#F97583"> +</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> java.util.</span><span style="color:#B392F0">Date</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> """&#x3C;/p></span></span>
+<span class="line"><span style="color:#9ECBFF">                &#x3C;/body></span></span>
+<span class="line"><span style="color:#9ECBFF">                &#x3C;/html></span></span>
+<span class="line"><span style="color:#9ECBFF">                """</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            exchange.</span><span style="color:#B392F0">getResponseHeaders</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">set</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Content-Type"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"text/html"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            exchange.</span><span style="color:#B392F0">sendResponseHeaders</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">, response.</span><span style="color:#B392F0">getBytes</span><span style="color:#E1E4E8">().length);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            OutputStream os </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> exchange.</span><span style="color:#B392F0">getResponseBody</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            os.</span><span style="color:#B392F0">write</span><span style="color:#E1E4E8">(response.</span><span style="color:#B392F0">getBytes</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            os.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>TlsHandshakeDebug.java - Debug TLS handshake:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.net.http.</span><span style="color:#79B8FF">*</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.net.URI;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.time.Duration;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.io.IOException;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.SSLContext;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.SSLSession;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> javax.net.ssl.HttpsURLConnection;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.net.URL;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> TlsHandshakeDebug</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // Enable SSL debugging</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.</span><span style="color:#B392F0">setProperty</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"javax.net.debug"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"ssl:handshake"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpClient client </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> HttpClient.</span><span style="color:#B392F0">newBuilder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">connectTimeout</span><span style="color:#E1E4E8">(Duration.</span><span style="color:#B392F0">ofSeconds</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpRequest request </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> HttpRequest.</span><span style="color:#B392F0">newBuilder</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">uri</span><span style="color:#E1E4E8">(URI.</span><span style="color:#B392F0">create</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://www.google.com"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">timeout</span><span style="color:#E1E4E8">(Duration.</span><span style="color:#B392F0">ofSeconds</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">GET</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpResponse&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> response </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> client.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(request, </span></span>
+<span class="line"><span style="color:#E1E4E8">                HttpResponse.BodyHandlers.</span><span style="color:#B392F0">ofString</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"✅ TLS handshake thành công!"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Status Code: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">statusCode</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // In thông tin SSL session</span></span>
+<span class="line"><span style="color:#E1E4E8">            URL url </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> URL</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"https://www.google.com"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            HttpsURLConnection connection </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (HttpsURLConnection) url.</span><span style="color:#B392F0">openConnection</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            SSLSession session </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> connection.</span><span style="color:#B392F0">getSSLSession</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">🔍 SSL Session Info:"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Protocol: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getProtocol</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Cipher Suite: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getCipherSuite</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Peer Host: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getPeerHost</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Peer Port: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getPeerPort</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi TLS handshake: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h1 id="️-phân-tích--giải-thích">⚙️ Phân tích &#x26; Giải thích</h1>
+<p><strong>TLS Handshake Process:</strong></p>
+<ol>
+<li><strong>Client Hello</strong>: Client gửi supported cipher suites và TLS version</li>
+<li><strong>Server Hello</strong>: Server chọn cipher suite và gửi certificate</li>
+<li><strong>Certificate Verification</strong>: Client verify server certificate</li>
+<li><strong>Key Exchange</strong>: Client và server trao đổi keys</li>
+<li><strong>Finished</strong>: Cả hai bên confirm handshake thành công</li>
+</ol>
+<p><strong>SSLContext Configuration:</strong></p>
+<ul>
+<li><code>SSLContext.getInstance("TLS")</code>: Tạo SSL context với TLS protocol</li>
+<li><code>init(keyManagers, trustManagers, secureRandom)</code>: Initialize với managers</li>
+<li>KeyManager: Quản lý client certificates</li>
+<li>TrustManager: Quản lý server certificates để trust</li>
+</ul>
+<p><strong>Certificate Types:</strong></p>
+<ul>
+<li><strong>Self-signed</strong>: Certificate tự ký (không được CA verify)</li>
+<li><strong>CA-signed</strong>: Certificate được Certificate Authority verify</li>
+<li><strong>Wildcard</strong>: Certificate cho nhiều subdomains (*.example.com)</li>
+<li><strong>SAN</strong>: Subject Alternative Name certificate</li>
+</ul>
+<p><strong>Security Best Practices:</strong></p>
+<ul>
+<li>Sử dụng TLS 1.2 hoặc 1.3 (tránh SSL 3.0, TLS 1.0/1.1)</li>
+<li>Validate certificate chain properly</li>
+<li>Implement certificate pinning cho mobile apps</li>
+<li>Sử dụng strong cipher suites</li>
+<li>Regular certificate renewal</li>
+</ul>
+<h1 id="-ứng-dụng-thực-tế">🧭 Ứng dụng thực tế</h1>
+<p><strong>Các ứng dụng sử dụng HTTPS:</strong></p>
+<ul>
+<li><strong>E-commerce</strong>: Payment processing, customer data</li>
+<li><strong>Banking</strong>: Online banking, financial transactions</li>
+<li><strong>Healthcare</strong>: Patient data, medical records</li>
+<li><strong>Government</strong>: Citizen services, tax filing</li>
+<li><strong>Social Media</strong>: User authentication, private messages</li>
+<li><strong>Cloud Services</strong>: API authentication, data transfer</li>
+</ul>
+<p><strong>Certificate Management:</strong></p>
+<ul>
+<li><strong>Let’s Encrypt</strong>: Free SSL certificates</li>
+<li><strong>Commercial CAs</strong>: DigiCert, Comodo, Symantec</li>
+<li><strong>Internal CAs</strong>: Enterprise certificate authorities</li>
+<li><strong>Certificate Monitoring</strong>: Expiry alerts, renewal automation</li>
+</ul>
+<p><strong>Common Issues:</strong></p>
+<ul>
+<li><strong>Certificate Expiry</strong>: Certificates có thời hạn sử dụng</li>
+<li><strong>Chain Issues</strong>: Missing intermediate certificates</li>
+<li><strong>Hostname Mismatch</strong>: Certificate không match với domain</li>
+<li><strong>Weak Cipher Suites</strong>: Sử dụng cipher suites không an toàn</li>
+</ul>
+<h1 id="-giải-thích-theo-feynman">🎓 Giải thích theo Feynman</h1>
+<p>Hãy tưởng tượng HTTPS như một cuộc trò chuyện bí mật:</p>
+<p><strong>HTTP</strong> như nói chuyện bình thường:</p>
+<ul>
+<li>Mọi người xung quanh đều nghe được</li>
+<li>Không có mã hóa gì cả</li>
+<li>Như nói chuyện trong quán cà phê đông người</li>
+</ul>
+<p><strong>HTTPS</strong> như nói chuyện bằng mã Morse:</p>
+<ul>
+<li>Chỉ hai người biết cách giải mã</li>
+<li>Người khác nghe được nhưng không hiểu</li>
+<li>Cần có “chìa khóa” để giải mã</li>
+</ul>
+<p><strong>TLS Handshake</strong> như việc thỏa thuận mã Morse:</p>
+<ul>
+<li>Hai bên phải đồng ý về cách mã hóa</li>
+<li>Kiểm tra danh tính của nhau (certificate)</li>
+<li>Trao đổi “chìa khóa” để mã hóa/giải mã</li>
+<li>Xác nhận cả hai đều hiểu cách thức</li>
+</ul>
+<p><strong>Certificate</strong> như giấy tờ tùy thân:</p>
+<ul>
+<li>Chứng minh bạn là ai</li>
+<li>Được cơ quan có thẩm quyền cấp (CA)</li>
+<li>Có thể kiểm tra tính hợp lệ</li>
+<li>Có thời hạn sử dụng</li>
+</ul>
+<p><strong>Trust Store</strong> như danh sách cơ quan có thẩm quyền:</p>
+<ul>
+<li>Danh sách các CA đáng tin cậy</li>
+<li>Chỉ tin tưởng certificates từ các CA này</li>
+<li>Như danh sách các cơ quan cấp giấy tờ hợp lệ</li>
+</ul>
+<h1 id="-tổng-kết-ngắn">🧩 Tổng kết ngắn</h1>
+<ul>
+<li>✅ HTTPS sử dụng TLS để mã hóa dữ liệu truyền qua mạng</li>
+<li>✅ TLS handshake thiết lập kết nối bảo mật giữa client và server</li>
+<li>✅ Certificate validation đảm bảo danh tính của server</li>
+<li>✅ SSLContext quản lý SSL/TLS configuration</li>
+<li>✅ Cần xử lý certificate errors và security best practices</li>
+</ul>
+<p><strong>Xem bài tiếp theo →</strong> <a href="./06-websocket-java.md">WebSocket với Java</a></p> </article> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <a href="./04-httpclient-api.md" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-7jjqptxk></path> </svg> <span data-astro-cid-7jjqptxk>Bài trước</span> </a> <a href="./06-websocket-java.md" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>Bài tiếp theo</span> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-7jjqptxk></path> </svg> </a> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
+"Work hard in silence — let success make noise."
+</blockquote> <!-- Social Links --> <div class="flex justify-center space-x-6 mb-8"> <a href="https://github.com/KhoiNguyendes23" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> <a href="https://www.linkedin.com/in/nguyen-dang-khoi-6247a337b/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="mailto:khoind82@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> <!-- Copyright --> <div class="text-sm text-gray-500 dark:text-gray-400">
+© 2024 Kant Nguyễn. Tất cả quyền được bảo lưu.
+</div> </div> </div> </footer>  </div> <script type="module">typeof window<"u"&&(localStorage.getItem("darkMode")==="true"||!localStorage.getItem("darkMode")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.documentElement.classList.add("dark");</script> </body> </html> 

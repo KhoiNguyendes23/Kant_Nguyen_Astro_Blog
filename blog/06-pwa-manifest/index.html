@@ -1,0 +1,1068 @@
+<!DOCTYPE html><html lang="vi" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="description" content="Kant Nguyễn - Backend Developer | Java Networking Enthusiast"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/Kant_Nguyen_Astro_Blog/favicon.svg"><meta name="generator" content="Astro v5.14.5"><title>PWA Manifest - Biến web app thành native app - Kant Nguyễn</title><link rel="stylesheet" href="/Kant_Nguyen_Astro_Blog/_astro/about.D3UAi4cs.css">
+<style>.prose[data-astro-cid-7jjqptxk]{color:#374151}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk]{color:#d1d5db}.prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#111827}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#f3f4f6;padding:.125rem .25rem;border-radius:.25rem;font-size:.875em}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#374151}.prose[data-astro-cid-7jjqptxk] pre[data-astro-cid-7jjqptxk]{background-color:#111827;color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] blockquote[data-astro-cid-7jjqptxk]{border-left-color:#6366f1;background-color:#6366f10d}
+</style></head> <body class="min-h-screen bg-bgLight dark:bg-bgDark text-gray-900 dark:text-gray-100 transition-colors duration-300"> <div id="app" class="min-h-screen flex flex-col">  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-bgDark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700" data-astro-cid-5blmo7yk> <div class="max-w-6xl mx-auto px-4" data-astro-cid-5blmo7yk> <div class="flex items-center justify-between h-16" data-astro-cid-5blmo7yk> <!-- Logo --> <a href="/Kant_Nguyen_Astro_Blog/" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform" data-astro-cid-5blmo7yk>
+Kant Nguyễn
+</a> <!-- Desktop Navigation --> <div class="hidden md:flex items-center space-x-8" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link" data-astro-cid-5blmo7yk>Liên hệ</a> </div> <!-- Controls --> <div class="flex items-center space-x-4" data-astro-cid-5blmo7yk> <!-- Dark Mode Toggle --> <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" data-astro-cid-5blmo7yk></path> </svg> <svg id="moonIcon" class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" data-astro-cid-5blmo7yk></path> </svg> </button> <!-- Mobile Menu Button --> <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-5blmo7yk></path> </svg> </button> </div> </div> <!-- Mobile Navigation --> <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700 py-4" data-astro-cid-5blmo7yk> <div class="flex flex-col space-y-2" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link-mobile" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link-mobile" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link-mobile" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link-mobile" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link-mobile" data-astro-cid-5blmo7yk>Liên hệ</a> </div> </div> </div> </nav>  <script type="module">document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("themeToggle");document.getElementById("sunIcon"),document.getElementById("moonIcon"),t&&t.addEventListener("click",e=>{e.preventDefault(),document.documentElement.classList.contains("dark")?(document.documentElement.classList.remove("dark"),localStorage.setItem("darkMode","false")):(document.documentElement.classList.add("dark"),localStorage.setItem("darkMode","true"))});const n=document.getElementById("mobileMenuBtn"),o=document.getElementById("mobileMenu");n&&o&&n.addEventListener("click",e=>{e.preventDefault(),o.classList.toggle("hidden")})});</script> <main class="min-h-screen bg-bgLight dark:bg-bgDark" data-astro-cid-7jjqptxk> <!-- Article Header --> <section class="py-16 bg-gradient-to-br from-primary/5 to-purple-600/5" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <div class="text-center mb-8" data-astro-cid-7jjqptxk> <span class="inline-block px-4 py-2 bg-accent text-gray-900 text-sm font-semibold rounded-full mb-4" data-astro-cid-7jjqptxk> Lập trình mạng với JavaScript </span> <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-astro-cid-7jjqptxk> PWA Manifest - Biến web app thành native app </h1> <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6" data-astro-cid-7jjqptxk> Học cách tạo PWA Manifest để biến web app thành Progressive Web App với khả năng cài đặt và offline </p> <div class="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>27/10/2025</span> <span data-astro-cid-7jjqptxk>•</span> <span data-astro-cid-7jjqptxk>14 phút đọc</span> </div> <div class="flex flex-wrap justify-center gap-2 mt-6" data-astro-cid-7jjqptxk> <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> JavaScript </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> PWA </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Manifest </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Progressive Web App </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Installation </span> </div> </div> </div> </section> <!-- Article Content --> <section class="py-16" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <article class="prose prose-lg max-w-none dark:prose-invert" data-astro-cid-7jjqptxk> <h1 id="-giới-thiệu">🧠 Giới thiệu</h1>
+<p>Progressive Web App (PWA) Manifest là file JSON định nghĩa metadata của ứng dụng web, cho phép browser hiểu cách hiển thị và cài đặt ứng dụng như một native app. Với PWA Manifest, người dùng có thể cài đặt web app lên home screen và sử dụng như một ứng dụng thật.</p>
+<p>Bài này sẽ dạy bạn cách tạo PWA Manifest hoàn chỉnh, cấu hình icons, themes, và các tính năng nâng cao để tạo ra trải nghiệm app-like.</p>
+<!-- IMAGE_PLACEHOLDER -->
+<h1 id="-code-minh-họa">💻 Code minh họa</h1>
+<p><strong>manifest.json - PWA Manifest cơ bản:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"JavaScript Networking Demo"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "short_name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Networking Demo"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "description"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Demo ứng dụng networking với JavaScript, WebSocket, và PWA"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "start_url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "display"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"standalone"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "background_color"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"#ffffff"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "theme_color"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"#2196f3"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "orientation"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"portrait-primary"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "scope"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "lang"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"vi"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "dir"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"ltr"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "categories"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"productivity"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"utilities"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"education"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#79B8FF">  "icons"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-72.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"72x72"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-96.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"96x96"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-128.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"128x128"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-144.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"144x144"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-152.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"152x152"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-192.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"192x192"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-384.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"384x384"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-512.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"512x512"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"any"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-maskable-192.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"192x192"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"maskable"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/icon-maskable-512.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"512x512"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "purpose"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"maskable"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "screenshots"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/screenshot-mobile-1.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"390x844"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "form_factor"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"narrow"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/screenshot-mobile-2.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"390x844"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "form_factor"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"narrow"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/screenshot-desktop-1.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"1280x720"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "form_factor"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"wide"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/screenshot-desktop-2.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"1280x720"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "form_factor"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"wide"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "shortcuts"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Chat Room"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "short_name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Chat"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "description"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Mở chat room"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/chat"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "icons"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#79B8FF">          "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/shortcut-chat.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">          "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"96x96"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">          "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">      ]</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Settings"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "short_name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Settings"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "description"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Mở cài đặt"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/settings"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "icons"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#79B8FF">          "src"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/images/shortcut-settings.png"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">          "sizes"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"96x96"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">          "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"image/png"</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">      ]</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "related_applications"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "platform"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"play"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://play.google.com/store/apps/details?id=com.example.app"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "id"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"com.example.app"</span></span>
+<span class="line"><span style="color:#E1E4E8">    },</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "platform"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"itunes"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"https://apps.apple.com/app/example-app/id123456789"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "prefer_related_applications"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "edge_side_panel"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "preferred_width"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">400</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "launch_handler"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "client_mode"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"navigate-existing"</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "handle_links"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"preferred"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "protocol_handlers"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "protocol"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"web+networking"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/handle-protocol?protocol=%s"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "file_handlers"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "action"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/handle-file"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "accept"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">        "text/plain"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">".txt"</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#79B8FF">        "application/json"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">".json"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "share_target"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "action"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"/share"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "method"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"POST"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "enctype"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"multipart/form-data"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "params"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">      "title"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"title"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "text"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"text"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "url"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"url"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "files"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span></span>
+<span class="line"><span style="color:#79B8FF">          "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"file"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">          "accept"</span><span style="color:#E1E4E8">: [</span><span style="color:#9ECBFF">"image/*"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"text/plain"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">      ]</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>pwa-manager.js - PWA Manager class:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PWAManager</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.manifest </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.deferredPrompt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.isInstalled </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.isInstallable </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Initialize PWA Manager</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> init</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🚀 Initializing PWA Manager...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Load manifest</span></span>
+<span class="line"><span style="color:#F97583">            await</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">loadManifest</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Check installation status</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">checkInstallationStatus</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Listen for install prompt</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">listenForInstallPrompt</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Listen for app installed</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">listenForAppInstalled</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ PWA Manager initialized'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error initializing PWA Manager:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Load manifest</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> loadManifest</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/manifest.json'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.manifest </span><span style="color:#F97583">=</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📋 Manifest loaded:'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.manifest.name);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error loading manifest:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Check installation status</span></span>
+<span class="line"><span style="color:#B392F0">    checkInstallationStatus</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // Check if app is already installed</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (window.</span><span style="color:#B392F0">matchMedia</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'(display-mode: standalone)'</span><span style="color:#E1E4E8">).matches) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.isInstalled </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 App is already installed'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Check if app is installable</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'BeforeInstallPromptEvent'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> window) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.isInstallable </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 App is installable'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Listen for install prompt</span></span>
+<span class="line"><span style="color:#B392F0">    listenForInstallPrompt</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        window.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'beforeinstallprompt'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 Install prompt triggered'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Prevent default install prompt</span></span>
+<span class="line"><span style="color:#E1E4E8">            event.</span><span style="color:#B392F0">preventDefault</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Store the event</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.deferredPrompt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> event;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Show custom install button</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">showInstallButton</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Listen for app installed</span></span>
+<span class="line"><span style="color:#B392F0">    listenForAppInstalled</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        window.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'appinstalled'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🎉 App installed successfully'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.isInstalled </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">hideInstallButton</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Track installation</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">trackInstallation</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Show install button</span></span>
+<span class="line"><span style="color:#B392F0">    showInstallButton</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> installButton</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'install-button'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (installButton) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            installButton.style.display </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'block'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            installButton.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'click'</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">installApp</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Hide install button</span></span>
+<span class="line"><span style="color:#B392F0">    hideInstallButton</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> installButton</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'install-button'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (installButton) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            installButton.style.display </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'none'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Install app</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> installApp</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.deferredPrompt) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ No install prompt available'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 Installing app...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Show install prompt</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.deferredPrompt.</span><span style="color:#B392F0">prompt</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Wait for user response</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">outcome</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#F97583"> await</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.deferredPrompt.userChoice;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 Install outcome:'</span><span style="color:#E1E4E8">, outcome);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (outcome </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'accepted'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ User accepted install'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ User declined install'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Clear the deferred prompt</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.deferredPrompt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error installing app:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Track installation</span></span>
+<span class="line"><span style="color:#B392F0">    trackInstallation</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">        // Send analytics event</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">typeof</span><span style="color:#E1E4E8"> gtag </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> 'undefined'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">            gtag</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'event'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'pwa_install'</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">                event_category: </span><span style="color:#9ECBFF">'PWA'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                event_label: </span><span style="color:#9ECBFF">'App Installation'</span></span>
+<span class="line"><span style="color:#E1E4E8">            });</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Store in localStorage</span></span>
+<span class="line"><span style="color:#E1E4E8">        localStorage.</span><span style="color:#B392F0">setItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'pwa_installed'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'true'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        localStorage.</span><span style="color:#B392F0">setItem</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'pwa_install_date'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">new</span><span style="color:#B392F0"> Date</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">toISOString</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Check if app is installed</span></span>
+<span class="line"><span style="color:#B392F0">    isAppInstalled</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.isInstalled </span><span style="color:#F97583">||</span><span style="color:#E1E4E8"> window.</span><span style="color:#B392F0">matchMedia</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'(display-mode: standalone)'</span><span style="color:#E1E4E8">).matches;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Get manifest info</span></span>
+<span class="line"><span style="color:#B392F0">    getManifestInfo</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            name: </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.manifest?.name </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> 'Unknown'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            shortName: </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.manifest?.short_name </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> 'Unknown'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            description: </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.manifest?.description </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> 'No description'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            version: </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.manifest?.version </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> '1.0.0'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            themeColor: </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.manifest?.theme_color </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> '#000000'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            backgroundColor: </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.manifest?.background_color </span><span style="color:#F97583">||</span><span style="color:#9ECBFF"> '#ffffff'</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Update manifest theme</span></span>
+<span class="line"><span style="color:#B392F0">    updateTheme</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">themeColor</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">backgroundColor</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.manifest) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.manifest.theme_color </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> themeColor;</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.manifest.background_color </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> backgroundColor;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Update meta tags</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">updateMetaTags</span><span style="color:#E1E4E8">(themeColor, backgroundColor);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Update meta tags</span></span>
+<span class="line"><span style="color:#B392F0">    updateMetaTags</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">themeColor</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">backgroundColor</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Update theme-color meta tag</span></span>
+<span class="line"><span style="color:#F97583">        let</span><span style="color:#E1E4E8"> themeMeta </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">querySelector</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'meta[name="theme-color"]'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">themeMeta) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            themeMeta </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">createElement</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'meta'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            themeMeta.name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'theme-color'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            document.head.</span><span style="color:#B392F0">appendChild</span><span style="color:#E1E4E8">(themeMeta);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        themeMeta.content </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> themeColor;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Update background-color meta tag</span></span>
+<span class="line"><span style="color:#F97583">        let</span><span style="color:#E1E4E8"> bgMeta </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">querySelector</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'meta[name="background-color"]'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">bgMeta) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            bgMeta </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">createElement</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'meta'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            bgMeta.name </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'background-color'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            document.head.</span><span style="color:#B392F0">appendChild</span><span style="color:#E1E4E8">(bgMeta);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        bgMeta.content </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> backgroundColor;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Handle share target</span></span>
+<span class="line"><span style="color:#B392F0">    handleShareTarget</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (navigator.share) {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                canShare: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">                share</span><span style="color:#E1E4E8">: </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                    try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                        await</span><span style="color:#E1E4E8"> navigator.</span><span style="color:#B392F0">share</span><span style="color:#E1E4E8">(data);</span></span>
+<span class="line"><span style="color:#E1E4E8">                        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Share successful'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">                    } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                        console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Share error:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">                    }</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            };</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            canShare: </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            share: </span><span style="color:#79B8FF">null</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Handle file handlers</span></span>
+<span class="line"><span style="color:#B392F0">    handleFileHandlers</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'launchQueue'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> window) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            window.launchQueue.</span><span style="color:#B392F0">setConsumer</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">launchParams</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (launchParams.files </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> launchParams.files.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> ></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📁 Files received:'</span><span style="color:#E1E4E8">, launchParams.files);</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">processFiles</span><span style="color:#E1E4E8">(launchParams.files);</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            });</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Process files</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> processFiles</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">files</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">const</span><span style="color:#79B8FF"> file</span><span style="color:#F97583"> of</span><span style="color:#E1E4E8"> files) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                const</span><span style="color:#79B8FF"> content</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> file.</span><span style="color:#B392F0">getFile</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📁 Processing file:'</span><span style="color:#E1E4E8">, content.name);</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#6A737D">                // Process file based on type</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (content.type.</span><span style="color:#B392F0">startsWith</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'text/'</span><span style="color:#E1E4E8">)) {</span></span>
+<span class="line"><span style="color:#F97583">                    const</span><span style="color:#79B8FF"> text</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> content.</span><span style="color:#B392F0">text</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📄 Text content:'</span><span style="color:#E1E4E8">, text);</span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (content.type.</span><span style="color:#B392F0">startsWith</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'image/'</span><span style="color:#E1E4E8">)) {</span></span>
+<span class="line"><span style="color:#F97583">                    const</span><span style="color:#79B8FF"> arrayBuffer</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> content.</span><span style="color:#B392F0">arrayBuffer</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🖼️ Image content:'</span><span style="color:#E1E4E8">, arrayBuffer);</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error processing file:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// PWA Installation UI</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PWAInstallationUI</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">pwaManager</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.pwaManager </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pwaManager;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.installBanner </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Create install banner</span></span>
+<span class="line"><span style="color:#B392F0">    createInstallBanner</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.installBanner </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">createElement</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'div'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.installBanner.id </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'pwa-install-banner'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.installBanner.innerHTML </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> `</span></span>
+<span class="line"><span style="color:#9ECBFF">            &#x3C;div class="pwa-banner"></span></span>
+<span class="line"><span style="color:#9ECBFF">                &#x3C;div class="pwa-banner-content"></span></span>
+<span class="line"><span style="color:#9ECBFF">                    &#x3C;div class="pwa-banner-icon">📱&#x3C;/div></span></span>
+<span class="line"><span style="color:#9ECBFF">                    &#x3C;div class="pwa-banner-text"></span></span>
+<span class="line"><span style="color:#9ECBFF">                        &#x3C;h3>Cài đặt ứng dụng&#x3C;/h3></span></span>
+<span class="line"><span style="color:#9ECBFF">                        &#x3C;p>Cài đặt ứng dụng để truy cập nhanh hơn và sử dụng offline&#x3C;/p></span></span>
+<span class="line"><span style="color:#9ECBFF">                    &#x3C;/div></span></span>
+<span class="line"><span style="color:#9ECBFF">                    &#x3C;div class="pwa-banner-actions"></span></span>
+<span class="line"><span style="color:#9ECBFF">                        &#x3C;button id="pwa-install-btn" class="pwa-install-btn">Cài đặt&#x3C;/button></span></span>
+<span class="line"><span style="color:#9ECBFF">                        &#x3C;button id="pwa-dismiss-btn" class="pwa-dismiss-btn">Bỏ qua&#x3C;/button></span></span>
+<span class="line"><span style="color:#9ECBFF">                    &#x3C;/div></span></span>
+<span class="line"><span style="color:#9ECBFF">                &#x3C;/div></span></span>
+<span class="line"><span style="color:#9ECBFF">            &#x3C;/div></span></span>
+<span class="line"><span style="color:#9ECBFF">        `</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Add styles</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">addBannerStyles</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Add to page</span></span>
+<span class="line"><span style="color:#E1E4E8">        document.body.</span><span style="color:#B392F0">appendChild</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.installBanner);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Add event listeners</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">addBannerEventListeners</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Add banner styles</span></span>
+<span class="line"><span style="color:#B392F0">    addBannerStyles</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> styles</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> `</span></span>
+<span class="line"><span style="color:#9ECBFF">            &#x3C;style></span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-banner {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    position: fixed;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    bottom: 20px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    left: 20px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    right: 20px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    background: white;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    border-radius: 10px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    box-shadow: 0 4px 20px rgba(0,0,0,0.15);</span></span>
+<span class="line"><span style="color:#9ECBFF">                    z-index: 1000;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    max-width: 400px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    margin: 0 auto;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-banner-content {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    display: flex;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    align-items: center;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    padding: 15px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    gap: 15px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-banner-icon {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    font-size: 24px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-banner-text {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    flex: 1;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-banner-text h3 {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    margin: 0 0 5px 0;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    font-size: 16px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    color: #333;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-banner-text p {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    margin: 0;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    font-size: 14px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    color: #666;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-banner-actions {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    display: flex;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    gap: 10px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-install-btn {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    background: #2196f3;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    color: white;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    border: none;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    padding: 8px 16px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    border-radius: 5px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    font-size: 14px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    cursor: pointer;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-install-btn:hover {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    background: #1976d2;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-dismiss-btn {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    background: transparent;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    color: #666;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    border: 1px solid #ddd;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    padding: 8px 16px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    border-radius: 5px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    font-size: 14px;</span></span>
+<span class="line"><span style="color:#9ECBFF">                    cursor: pointer;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">                </span></span>
+<span class="line"><span style="color:#9ECBFF">                .pwa-dismiss-btn:hover {</span></span>
+<span class="line"><span style="color:#9ECBFF">                    background: #f5f5f5;</span></span>
+<span class="line"><span style="color:#9ECBFF">                }</span></span>
+<span class="line"><span style="color:#9ECBFF">            &#x3C;/style></span></span>
+<span class="line"><span style="color:#9ECBFF">        `</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        document.head.</span><span style="color:#B392F0">insertAdjacentHTML</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'beforeend'</span><span style="color:#E1E4E8">, styles);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Add banner event listeners</span></span>
+<span class="line"><span style="color:#B392F0">    addBannerEventListeners</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> installBtn</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'pwa-install-btn'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> dismissBtn</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'pwa-dismiss-btn'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        installBtn.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'click'</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.pwaManager.</span><span style="color:#B392F0">installApp</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">hideBanner</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        dismissBtn.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'click'</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">hideBanner</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Show banner</span></span>
+<span class="line"><span style="color:#B392F0">    showBanner</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.installBanner) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.installBanner.style.display </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'block'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Hide banner</span></span>
+<span class="line"><span style="color:#B392F0">    hideBanner</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.installBanner) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.installBanner.style.display </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'none'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Remove banner</span></span>
+<span class="line"><span style="color:#B392F0">    removeBanner</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.installBanner) {</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.installBanner.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.installBanner </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Initialize PWA</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> initializePWA</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🚀 Initializing PWA...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Create PWA Manager</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> pwaManager</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> PWAManager</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    await</span><span style="color:#E1E4E8"> pwaManager.</span><span style="color:#B392F0">init</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Create Installation UI</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> installUI</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> PWAInstallationUI</span><span style="color:#E1E4E8">(pwaManager);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Show install banner if app is installable</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (pwaManager.isInstallable </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">pwaManager.</span><span style="color:#B392F0">isAppInstalled</span><span style="color:#E1E4E8">()) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        installUI.</span><span style="color:#B392F0">createInstallBanner</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        installUI.</span><span style="color:#B392F0">showBanner</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Handle share target</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> shareHandler</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> pwaManager.</span><span style="color:#B392F0">handleShareTarget</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (shareHandler.canShare) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📤 Share API available'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Handle file handlers</span></span>
+<span class="line"><span style="color:#E1E4E8">    pwaManager.</span><span style="color:#B392F0">handleFileHandlers</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Make available globally</span></span>
+<span class="line"><span style="color:#E1E4E8">    window.pwaManager </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pwaManager;</span></span>
+<span class="line"><span style="color:#E1E4E8">    window.installUI </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> installUI;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ PWA initialized successfully'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Start PWA when DOM is loaded</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (document.readyState </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'loading'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    document.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'DOMContentLoaded'</span><span style="color:#E1E4E8">, initializePWA);</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    initializePWA</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>pwa-test.html - PWA Test Page:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#E1E4E8">&#x3C;!</span><span style="color:#85E89D">DOCTYPE</span><span style="color:#B392F0"> html</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">html</span><span style="color:#B392F0"> lang</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"vi"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> charset</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"UTF-8"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"viewport"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"width=device-width, initial-scale=1.0"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">>PWA Manifest Test&#x3C;/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    &#x3C;!-- PWA Manifest --></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"manifest"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"/manifest.json"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    &#x3C;!-- Meta tags --></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"theme-color"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"#2196f3"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"background-color"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"#ffffff"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"apple-mobile-web-app-capable"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"yes"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"apple-mobile-web-app-status-bar-style"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"default"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"apple-mobile-web-app-title"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"Networking Demo"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    &#x3C;!-- Apple touch icons --></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"apple-touch-icon"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"/images/icon-192.png"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"apple-touch-icon"</span><span style="color:#B392F0"> sizes</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"152x152"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"/images/icon-152.png"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"apple-touch-icon"</span><span style="color:#B392F0"> sizes</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"180x180"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"/images/icon-192.png"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"apple-touch-icon"</span><span style="color:#B392F0"> sizes</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"167x167"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"/images/icon-192.png"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    &#x3C;!-- Favicon --></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"icon"</span><span style="color:#B392F0"> type</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"image/png"</span><span style="color:#B392F0"> sizes</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"32x32"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"/images/icon-32.png"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">link</span><span style="color:#B392F0"> rel</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"icon"</span><span style="color:#B392F0"> type</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"image/png"</span><span style="color:#B392F0"> sizes</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"16x16"</span><span style="color:#B392F0"> href</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"/images/icon-16.png"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">style</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#85E89D">        body</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            font-family</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">Arial</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">sans-serif</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            background-color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#f5f5f5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .container</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            max-width</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">800</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#79B8FF"> auto</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">white</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">30</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border-radius</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            box-shadow</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#79B8FF"> 2</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 10</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> rgba</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0.1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .header</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            text-align</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-bottom</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">30</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .header</span><span style="color:#85E89D"> h1</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#2196f3</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-bottom</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .header</span><span style="color:#85E89D"> p</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#666</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">16</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .pwa-info</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#e3f2fd</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border-radius</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">8</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-bottom</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .pwa-info</span><span style="color:#85E89D"> h3</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-top</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#1976d2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .pwa-info</span><span style="color:#85E89D"> ul</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding-left</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .pwa-info</span><span style="color:#85E89D"> li</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-bottom</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .install-section</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            text-align</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">30</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .install-button</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#4caf50</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">white</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">none</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">15</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 30</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border-radius</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">8</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">16</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            cursor</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">pointer</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .install-button:hover</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#45a049</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .install-button:disabled</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#ccc</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            cursor</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">not-allowed</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .status</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">15</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border-radius</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">8</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            text-align</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .status.installed</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#c8e6c9</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#2e7d32</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .status.not-installed</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#ffcdd2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#c62828</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .features</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            display</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">grid</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            grid-template-columns</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">repeat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">auto-fit</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">minmax</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">250</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#F97583">fr</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#79B8FF">            gap</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">30</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .feature</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#f8f9fa</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border-radius</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">8</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            text-align</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .feature-icon</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">32</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-bottom</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .feature</span><span style="color:#85E89D"> h4</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#79B8FF"> 0</span><span style="color:#79B8FF"> 10</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#333</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        .feature</span><span style="color:#85E89D"> p</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#666</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">14</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">style</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"container"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"header"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">>📱 PWA Manifest Test&#x3C;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>Test Progressive Web App với Manifest và Service Worker&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"pwa-info"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">h3</span><span style="color:#E1E4E8">>🎯 PWA Features&#x3C;/</span><span style="color:#85E89D">h3</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>✅ Có thể cài đặt như native app&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>✅ Hoạt động offline với Service Worker&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>✅ Push notifications&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>✅ Background sync&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">>✅ App-like experience&#x3C;/</span><span style="color:#85E89D">li</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">ul</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"pwa-status"</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"status not-installed"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            ❌ App chưa được cài đặt</span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"install-section"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"install-button"</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"install-button"</span><span style="color:#B392F0"> style</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"display: none;"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                📱 Cài đặt App</span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"check-status"</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"install-button"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                🔍 Kiểm tra trạng thái</span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"features"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"feature"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"feature-icon"</span><span style="color:#E1E4E8">>🚀&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">h4</span><span style="color:#E1E4E8">>Fast Loading&#x3C;/</span><span style="color:#85E89D">h4</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>Cache resources để tải nhanh hơn&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"feature"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"feature-icon"</span><span style="color:#E1E4E8">>📱&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">h4</span><span style="color:#E1E4E8">>App-like&#x3C;/</span><span style="color:#85E89D">h4</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>Trải nghiệm như native app&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"feature"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"feature-icon"</span><span style="color:#E1E4E8">>🔔&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">h4</span><span style="color:#E1E4E8">>Notifications&#x3C;/</span><span style="color:#85E89D">h4</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>Push notifications&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"feature"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"feature-icon"</span><span style="color:#E1E4E8">>🔄&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">h4</span><span style="color:#E1E4E8">>Background Sync&#x3C;/</span><span style="color:#85E89D">h4</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">                &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">>Đồng bộ dữ liệu ngầm&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D">        // PWA Status Checker</span></span>
+<span class="line"><span style="color:#F97583">        class</span><span style="color:#B392F0"> PWAStatusChecker</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">                this</span><span style="color:#E1E4E8">.statusElement </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'pwa-status'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#79B8FF">                this</span><span style="color:#E1E4E8">.installButton </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'install-button'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#79B8FF">                this</span><span style="color:#E1E4E8">.checkButton </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'check-status'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#B392F0">            init</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">                this</span><span style="color:#E1E4E8">.checkButton.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'click'</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">checkStatus</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                });</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#6A737D">                // Check status on load</span></span>
+<span class="line"><span style="color:#79B8FF">                this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">checkStatus</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#B392F0">            checkStatus</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">                const</span><span style="color:#79B8FF"> isInstalled</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">isAppInstalled</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">                const</span><span style="color:#79B8FF"> isInstallable</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">isAppInstallable</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (isInstalled) {</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.statusElement.textContent </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '✅ App đã được cài đặt'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.statusElement.className </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'status installed'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.installButton.style.display </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'none'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (isInstallable) {</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.statusElement.textContent </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '📱 App có thể cài đặt'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.statusElement.className </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'status not-installed'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.installButton.style.display </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'inline-block'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.statusElement.textContent </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '❌ App không thể cài đặt'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.statusElement.className </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'status not-installed'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.installButton.style.display </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'none'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'PWA Status:'</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    installed: isInstalled,</span></span>
+<span class="line"><span style="color:#E1E4E8">                    installable: isInstallable,</span></span>
+<span class="line"><span style="color:#E1E4E8">                    displayMode: </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">getDisplayMode</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">                });</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#B392F0">            isAppInstalled</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8"> window.</span><span style="color:#B392F0">matchMedia</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'(display-mode: standalone)'</span><span style="color:#E1E4E8">).matches </span><span style="color:#F97583">||</span></span>
+<span class="line"><span style="color:#E1E4E8">                       window.navigator.standalone </span><span style="color:#F97583">===</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#B392F0">            isAppInstallable</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#9ECBFF"> 'BeforeInstallPromptEvent'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> window;</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#B392F0">            getDisplayMode</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (window.</span><span style="color:#B392F0">matchMedia</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'(display-mode: standalone)'</span><span style="color:#E1E4E8">).matches) {</span></span>
+<span class="line"><span style="color:#F97583">                    return</span><span style="color:#9ECBFF"> 'standalone'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (window.</span><span style="color:#B392F0">matchMedia</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'(display-mode: minimal-ui)'</span><span style="color:#E1E4E8">).matches) {</span></span>
+<span class="line"><span style="color:#F97583">                    return</span><span style="color:#9ECBFF"> 'minimal-ui'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (window.</span><span style="color:#B392F0">matchMedia</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'(display-mode: fullscreen)'</span><span style="color:#E1E4E8">).matches) {</span></span>
+<span class="line"><span style="color:#F97583">                    return</span><span style="color:#9ECBFF"> 'fullscreen'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                    return</span><span style="color:#9ECBFF"> 'browser'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Initialize PWA Status Checker</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> statusChecker</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> PWAStatusChecker</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        statusChecker.</span><span style="color:#B392F0">init</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Initialize PWA Manager</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (window.pwaManager) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            window.pwaManager.</span><span style="color:#B392F0">init</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">html</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h1 id="️-phân-tích--giải-thích">⚙️ Phân tích &#x26; Giải thích</h1>
+<p><strong>PWA Manifest Properties:</strong></p>
+<ol>
+<li>
+<p><strong>Basic Properties</strong>:</p>
+<ul>
+<li><code>name</code>: Tên đầy đủ của app</li>
+<li><code>short_name</code>: Tên ngắn cho home screen</li>
+<li><code>description</code>: Mô tả app</li>
+<li><code>start_url</code>: URL khởi động</li>
+<li><code>display</code>: Chế độ hiển thị (standalone, minimal-ui, fullscreen, browser)</li>
+</ul>
+</li>
+<li>
+<p><strong>Visual Properties</strong>:</p>
+<ul>
+<li><code>theme_color</code>: Màu chủ đạo</li>
+<li><code>background_color</code>: Màu nền</li>
+<li><code>orientation</code>: Hướng màn hình</li>
+<li><code>icons</code>: Danh sách icons với các kích thước</li>
+</ul>
+</li>
+<li>
+<p><strong>Advanced Properties</strong>:</p>
+<ul>
+<li><code>shortcuts</code>: Shortcuts trên home screen</li>
+<li><code>screenshots</code>: Screenshots cho app store</li>
+<li><code>share_target</code>: Xử lý share content</li>
+<li><code>file_handlers</code>: Xử lý file types</li>
+<li><code>protocol_handlers</code>: Xử lý custom protocols</li>
+</ul>
+</li>
+</ol>
+<p><strong>Display Modes:</strong></p>
+<ul>
+<li><strong>standalone</strong>: App hiển thị như native app</li>
+<li><strong>minimal-ui</strong>: App với minimal browser UI</li>
+<li><strong>fullscreen</strong>: App toàn màn hình</li>
+<li><strong>browser</strong>: App trong browser tab</li>
+</ul>
+<p><strong>Icon Requirements:</strong></p>
+<ul>
+<li><strong>Standard Icons</strong>: 72x72, 96x96, 128x128, 144x144, 152x152, 192x192, 384x384, 512x512</li>
+<li><strong>Maskable Icons</strong>: 192x192, 512x512 với safe area</li>
+<li><strong>Apple Touch Icons</strong>: 152x152, 180x180, 167x167</li>
+</ul>
+<p><strong>Installation Criteria:</strong></p>
+<ul>
+<li>Có Service Worker</li>
+<li>Có HTTPS</li>
+<li>Có Manifest với required fields</li>
+<li>Có icon ít nhất 192x192</li>
+<li>User engagement (heuristic)</li>
+</ul>
+<h1 id="-ứng-dụng-thực-tế">🧭 Ứng dụng thực tế</h1>
+<p><strong>Các ứng dụng sử dụng PWA:</strong></p>
+<ul>
+<li><strong>E-commerce</strong>: Amazon, Flipkart</li>
+<li><strong>Social Media</strong>: Twitter, Instagram</li>
+<li><strong>News</strong>: BBC, CNN</li>
+<li><strong>Productivity</strong>: Google Docs, Notion</li>
+<li><strong>Entertainment</strong>: Spotify, YouTube</li>
+</ul>
+<p><strong>PWA Benefits:</strong></p>
+<ul>
+<li><strong>Installation</strong>: Cài đặt từ browser</li>
+<li><strong>Offline Support</strong>: Hoạt động khi offline</li>
+<li><strong>Push Notifications</strong>: Engage users</li>
+<li><strong>App-like Experience</strong>: Native app feel</li>
+<li><strong>Cross-platform</strong>: Hoạt động trên mọi platform</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Provide meaningful icons</li>
+<li>Use appropriate display mode</li>
+<li>Implement proper shortcuts</li>
+<li>Handle share targets</li>
+<li>Test on different devices</li>
+</ul>
+<h1 id="-giải-thích-theo-feynman">🎓 Giải thích theo Feynman</h1>
+<p>Hãy tưởng tượng PWA Manifest như một tấm danh thiếp cho ứng dụng web:</p>
+<p><strong>PWA Manifest</strong> như tấm danh thiếp của ứng dụng:</p>
+<ul>
+<li>Có tên, mô tả, và thông tin liên hệ</li>
+<li>Có logo và màu sắc thương hiệu</li>
+<li>Như danh thiếp giới thiệu về công ty</li>
+</ul>
+<p><strong>Installation</strong> như việc lưu danh thiếp:</p>
+<ul>
+<li>Người dùng có thể “lưu” ứng dụng vào home screen</li>
+<li>Như lưu danh thiếp vào sổ địa chỉ</li>
+<li>Có thể truy cập nhanh khi cần</li>
+</ul>
+<p><strong>Display Modes</strong> như cách hiển thị danh thiếp:</p>
+<ul>
+<li><strong>Standalone</strong>: Như treo danh thiếp trên tường</li>
+<li><strong>Minimal-ui</strong>: Như để danh thiếp trên bàn</li>
+<li><strong>Fullscreen</strong>: Như phóng to danh thiếp</li>
+<li><strong>Browser</strong>: Như xem danh thiếp trong sổ</li>
+</ul>
+<p><strong>Icons</strong> như logo trên danh thiếp:</p>
+<ul>
+<li>Cần có nhiều kích thước khác nhau</li>
+<li>Như logo công ty có nhiều phiên bản</li>
+<li>Cần rõ ràng và dễ nhận biết</li>
+</ul>
+<p><strong>Shortcuts</strong> như các dịch vụ trên danh thiếp:</p>
+<ul>
+<li>Liệt kê các tính năng chính</li>
+<li>Như danh thiếp có số điện thoại, email</li>
+<li>Giúp người dùng truy cập nhanh</li>
+</ul>
+<p><strong>Share Target</strong> như thông tin liên hệ:</p>
+<ul>
+<li>Cho phép người khác chia sẻ đến app</li>
+<li>Như danh thiếp có địa chỉ để gửi thư</li>
+<li>Tạo kết nối giữa các ứng dụng</li>
+</ul>
+<p><strong>File Handlers</strong> như dịch vụ đặc biệt:</p>
+<ul>
+<li>App có thể xử lý các loại file cụ thể</li>
+<li>Như công ty chuyên về một lĩnh vực</li>
+<li>Tạo trải nghiệm tích hợp</li>
+</ul>
+<h1 id="-tổng-kết-ngắn">🧩 Tổng kết ngắn</h1>
+<ul>
+<li>✅ PWA Manifest biến web app thành Progressive Web App</li>
+<li>✅ Cho phép cài đặt như native app với icons và shortcuts</li>
+<li>✅ Cần Service Worker và HTTPS để hoạt động</li>
+<li>✅ Hỗ trợ share targets, file handlers, và protocol handlers</li>
+<li>✅ Tạo trải nghiệm app-like với offline support</li>
+</ul>
+<p><strong>Xem bài tiếp theo →</strong> <a href="./07-devtools-network.md">DevTools Network</a></p> </article> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <a href="./05-service-worker.md" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-7jjqptxk></path> </svg> <span data-astro-cid-7jjqptxk>Bài trước</span> </a> <a href="./07-devtools-network.md" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>Bài tiếp theo</span> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-7jjqptxk></path> </svg> </a> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
+"Work hard in silence — let success make noise."
+</blockquote> <!-- Social Links --> <div class="flex justify-center space-x-6 mb-8"> <a href="https://github.com/KhoiNguyendes23" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> <a href="https://www.linkedin.com/in/nguyen-dang-khoi-6247a337b/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="mailto:khoind82@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> <!-- Copyright --> <div class="text-sm text-gray-500 dark:text-gray-400">
+© 2024 Kant Nguyễn. Tất cả quyền được bảo lưu.
+</div> </div> </div> </footer>  </div> <script type="module">typeof window<"u"&&(localStorage.getItem("darkMode")==="true"||!localStorage.getItem("darkMode")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.documentElement.classList.add("dark");</script> </body> </html> 

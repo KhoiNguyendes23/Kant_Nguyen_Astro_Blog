@@ -1,0 +1,498 @@
+<!DOCTYPE html><html lang="vi" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="description" content="Kant Nguyễn - Backend Developer | Java Networking Enthusiast"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/Kant_Nguyen_Astro_Blog/favicon.svg"><meta name="generator" content="Astro v5.14.5"><title>Tổng kết Feynman - Ôn lại toàn bộ series - Kant Nguyễn</title><link rel="stylesheet" href="/Kant_Nguyen_Astro_Blog/_astro/about.D3UAi4cs.css">
+<style>.prose[data-astro-cid-7jjqptxk]{color:#374151}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk]{color:#d1d5db}.prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#111827}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#f3f4f6;padding:.125rem .25rem;border-radius:.25rem;font-size:.875em}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#374151}.prose[data-astro-cid-7jjqptxk] pre[data-astro-cid-7jjqptxk]{background-color:#111827;color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] blockquote[data-astro-cid-7jjqptxk]{border-left-color:#6366f1;background-color:#6366f10d}
+</style></head> <body class="min-h-screen bg-bgLight dark:bg-bgDark text-gray-900 dark:text-gray-100 transition-colors duration-300"> <div id="app" class="min-h-screen flex flex-col">  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-bgDark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700" data-astro-cid-5blmo7yk> <div class="max-w-6xl mx-auto px-4" data-astro-cid-5blmo7yk> <div class="flex items-center justify-between h-16" data-astro-cid-5blmo7yk> <!-- Logo --> <a href="/Kant_Nguyen_Astro_Blog/" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform" data-astro-cid-5blmo7yk>
+Kant Nguyễn
+</a> <!-- Desktop Navigation --> <div class="hidden md:flex items-center space-x-8" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link" data-astro-cid-5blmo7yk>Liên hệ</a> </div> <!-- Controls --> <div class="flex items-center space-x-4" data-astro-cid-5blmo7yk> <!-- Dark Mode Toggle --> <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" data-astro-cid-5blmo7yk></path> </svg> <svg id="moonIcon" class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" data-astro-cid-5blmo7yk></path> </svg> </button> <!-- Mobile Menu Button --> <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-5blmo7yk></path> </svg> </button> </div> </div> <!-- Mobile Navigation --> <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700 py-4" data-astro-cid-5blmo7yk> <div class="flex flex-col space-y-2" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link-mobile" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link-mobile" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link-mobile" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link-mobile" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link-mobile" data-astro-cid-5blmo7yk>Liên hệ</a> </div> </div> </div> </nav>  <script type="module">document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("themeToggle");document.getElementById("sunIcon"),document.getElementById("moonIcon"),t&&t.addEventListener("click",e=>{e.preventDefault(),document.documentElement.classList.contains("dark")?(document.documentElement.classList.remove("dark"),localStorage.setItem("darkMode","false")):(document.documentElement.classList.add("dark"),localStorage.setItem("darkMode","true"))});const n=document.getElementById("mobileMenuBtn"),o=document.getElementById("mobileMenu");n&&o&&n.addEventListener("click",e=>{e.preventDefault(),o.classList.toggle("hidden")})});</script> <main class="min-h-screen bg-bgLight dark:bg-bgDark" data-astro-cid-7jjqptxk> <!-- Article Header --> <section class="py-16 bg-gradient-to-br from-primary/5 to-purple-600/5" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <div class="text-center mb-8" data-astro-cid-7jjqptxk> <span class="inline-block px-4 py-2 bg-accent text-gray-900 text-sm font-semibold rounded-full mb-4" data-astro-cid-7jjqptxk> Lập trình mạng với JavaScript </span> <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-astro-cid-7jjqptxk> Tổng kết Feynman - Ôn lại toàn bộ series </h1> <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6" data-astro-cid-7jjqptxk> Tổng kết toàn bộ kiến thức đã học qua phương pháp Feynman, với diagram tổng hợp và liên kết thực tế </p> <div class="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>27/10/2025</span> <span data-astro-cid-7jjqptxk>•</span> <span data-astro-cid-7jjqptxk>11 phút đọc</span> </div> <div class="flex flex-wrap justify-center gap-2 mt-6" data-astro-cid-7jjqptxk> <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> JavaScript </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Summary </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Feynman </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Networking </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Review </span> </div> </div> </div> </section> <!-- Article Content --> <section class="py-16" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <article class="prose prose-lg max-w-none dark:prose-invert" data-astro-cid-7jjqptxk> <h1 id="-giới-thiệu">🧠 Giới thiệu</h1>
+<p>Chúc mừng bạn đã hoàn thành series <strong>“Lập trình mạng với JavaScript”</strong>! Trong bài cuối cùng này, chúng ta sẽ ôn lại toàn bộ kiến thức đã học qua phương pháp Feynman - giải thích bằng ngôn ngữ đời thường và tạo ra những liên kết thực tế.</p>
+<p>Chúng ta đã đi từ những khái niệm cơ bản nhất về Fetch API đến những công nghệ hiện đại như Service Worker và PWA. Hãy cùng nhìn lại hành trình này!</p>
+<!-- IMAGE_PLACEHOLDER -->
+<h1 id="-code-minh-họa">💻 Code minh họa</h1>
+<p><strong>JavaScriptNetworkingSummary.js - Tổng hợp tất cả concepts:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// JavaScript Networking Summary - Tổng hợp tất cả concepts</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> JavaScriptNetworkingSummary</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.concepts </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            fetch: </span><span style="color:#9ECBFF">'Người đưa thư thông minh'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            websocket: </span><span style="color:#9ECBFF">'Cuộc gọi điện thoại liên tục'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            sse: </span><span style="color:#9ECBFF">'Radio chỉ nghe'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            serviceWorker: </span><span style="color:#9ECBFF">'Người trợ lý cá nhân'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            pwa: </span><span style="color:#9ECBFF">'Ứng dụng di động thông minh'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            devtools: </span><span style="color:#9ECBFF">'Camera giám sát giao thông'</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.features </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            offline: </span><span style="color:#9ECBFF">'Hoạt động khi mất điện'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            realtime: </span><span style="color:#9ECBFF">'Giao tiếp tức thì'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            notifications: </span><span style="color:#9ECBFF">'Chuông cửa thông minh'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            caching: </span><span style="color:#9ECBFF">'Tủ lưu trữ thông minh'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">            performance: </span><span style="color:#9ECBFF">'Tối ưu tốc độ'</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // 1. Fetch API - Người đưa thư thông minh</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> demonstrateFetch</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📬 Fetch API - Người đưa thư thông minh'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'====================================='</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">            // GET request - Gửi thư hỏi thông tin</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📤 Gửi thư hỏi thông tin (GET)...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> getResponse</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'https://httpbin.org/get'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> getData</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> getResponse.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Nhận được thư phản hồi:'</span><span style="color:#E1E4E8">, getData.url);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // POST request - Gửi thư với nội dung</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📤 Gửi thư với nội dung (POST)...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> postResponse</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'https://httpbin.org/post'</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">                method: </span><span style="color:#9ECBFF">'POST'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                headers: { </span><span style="color:#9ECBFF">'Content-Type'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'application/json'</span><span style="color:#E1E4E8"> },</span></span>
+<span class="line"><span style="color:#E1E4E8">                body: </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">({ message: </span><span style="color:#9ECBFF">'Xin chào từ Fetch API!'</span><span style="color:#E1E4E8"> })</span></span>
+<span class="line"><span style="color:#E1E4E8">            });</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> postData</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> postResponse.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Thư đã được gửi:'</span><span style="color:#E1E4E8">, postData.json.message);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // AbortController - Công tắc điện</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔌 Sử dụng AbortController (công tắc điện)...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> controller</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> AbortController</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">            setTimeout</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> controller.</span><span style="color:#B392F0">abort</span><span style="color:#E1E4E8">(), </span><span style="color:#79B8FF">1000</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'https://httpbin.org/delay/2'</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    signal: controller.signal</span></span>
+<span class="line"><span style="color:#E1E4E8">                });</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'⚡ Công tắc đã tắt:'</span><span style="color:#E1E4E8">, error.name);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Lỗi Fetch API:'</span><span style="color:#E1E4E8">, error.message);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // 2. WebSocket - Cuộc gọi điện thoại liên tục</span></span>
+<span class="line"><span style="color:#B392F0">    demonstrateWebSocket</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">📞 WebSocket - Cuộc gọi điện thoại liên tục'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'=========================================='</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔗 Kết nối WebSocket như nhấc máy điện thoại...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'💬 Có thể nói chuyện liên tục, không cần gọi lại'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔄 Cả hai bên có thể nói bất kỳ lúc nào'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 Phù hợp cho chat, gaming, collaboration'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Simulate WebSocket connection</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> ws</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> WebSocket</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'wss://echo.websocket.org/'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        ws.</span><span style="color:#B392F0">onopen</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Đã nhấc máy điện thoại (WebSocket connected)'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            ws.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Xin chào từ WebSocket!'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        ws.</span><span style="color:#B392F0">onmessage</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📨 Nhận được tin nhắn:'</span><span style="color:#E1E4E8">, event.data);</span></span>
+<span class="line"><span style="color:#E1E4E8">            ws.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        ws.</span><span style="color:#B392F0">onclose</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'👋 Đã cúp máy điện thoại (WebSocket closed)'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // 3. SSE - Radio chỉ nghe</span></span>
+<span class="line"><span style="color:#B392F0">    demonstrateSSE</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">📻 SSE - Radio chỉ nghe'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'========================'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📻 SSE như radio, chỉ có thể nghe'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔊 Server phát sóng, client nghe'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔄 Tự động kết nối lại khi mất tín hiệu'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📢 Phù hợp cho notifications, live updates'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Simulate SSE</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> eventSource</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> EventSource</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'http://localhost:3000/events'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        eventSource.</span><span style="color:#B392F0">onopen</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Đã bật radio (SSE connected)'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        eventSource.</span><span style="color:#B392F0">onmessage</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📻 Nhận được tin tức:'</span><span style="color:#E1E4E8">, event.data);</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        eventSource.</span><span style="color:#B392F0">onerror</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Mất tín hiệu radio (SSE error)'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            eventSource.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // 4. Service Worker - Người trợ lý cá nhân</span></span>
+<span class="line"><span style="color:#B392F0">    demonstrateServiceWorker</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">👷 Service Worker - Người trợ lý cá nhân'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'======================================='</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'👷 Service Worker như người trợ lý cá nhân'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔄 Làm việc ngầm trong background'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'💾 Có thể lưu trữ thông tin quan trọng'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔔 Có thể thông báo khi có tin mới'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 Hoạt động khi offline'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">'serviceWorker'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> navigator) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            navigator.serviceWorker.</span><span style="color:#B392F0">register</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/sw.js'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">registration</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Đã thuê trợ lý cá nhân (Service Worker registered)'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📋 Scope:'</span><span style="color:#E1E4E8">, registration.scope);</span></span>
+<span class="line"><span style="color:#E1E4E8">                })</span></span>
+<span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">catch</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">error</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Không thể thuê trợ lý:'</span><span style="color:#E1E4E8">, error.message);</span></span>
+<span class="line"><span style="color:#E1E4E8">                });</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Không hỗ trợ Service Worker'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // 5. PWA - Ứng dụng di động thông minh</span></span>
+<span class="line"><span style="color:#B392F0">    demonstratePWA</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">📱 PWA - Ứng dụng di động thông minh'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'==================================='</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 PWA như ứng dụng di động thông minh'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'💾 Có thể cài đặt như app thật'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔄 Hoạt động offline khi cần'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔔 Có thể gửi thông báo'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🚀 Tải nhanh với caching'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Check PWA installation</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (window.</span><span style="color:#B392F0">matchMedia</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'(display-mode: standalone)'</span><span style="color:#E1E4E8">).matches) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ App đã được cài đặt (PWA installed)'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 App có thể cài đặt (PWA installable)'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Check manifest</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> manifestLink</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> document.</span><span style="color:#B392F0">querySelector</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'link[rel="manifest"]'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (manifestLink) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📋 Có manifest file:'</span><span style="color:#E1E4E8">, manifestLink.href);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // 6. DevTools Network - Camera giám sát giao thông</span></span>
+<span class="line"><span style="color:#B392F0">    demonstrateDevTools</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">📹 DevTools Network - Camera giám sát giao thông'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'=============================================='</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📹 DevTools Network như camera giám sát giao thông'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'👀 Quan sát tất cả phương tiện đi qua'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📊 Ghi lại thông tin chi tiết'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'⏱️ Phân tích thời gian di chuyển'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔍 Tìm nguyên nhân tắc đường'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Simulate network monitoring</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> startTime</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> performance.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#B392F0">        fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'https://httpbin.org/get'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">response</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">())</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">data</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                const</span><span style="color:#79B8FF"> endTime</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> performance.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">                const</span><span style="color:#79B8FF"> duration</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> endTime </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> startTime;</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📊 Request timing:'</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    url: data.url,</span></span>
+<span class="line"><span style="color:#E1E4E8">                    duration: </span><span style="color:#9ECBFF">`${</span><span style="color:#E1E4E8">duration</span><span style="color:#9ECBFF">.</span><span style="color:#B392F0">toFixed</span><span style="color:#9ECBFF">(</span><span style="color:#79B8FF">2</span><span style="color:#9ECBFF">)</span><span style="color:#9ECBFF">}ms`</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                    status: </span><span style="color:#9ECBFF">'200 OK'</span></span>
+<span class="line"><span style="color:#E1E4E8">                });</span></span>
+<span class="line"><span style="color:#E1E4E8">            });</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Tổng kết toàn bộ series</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> summarizeSeries</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🎓 TỔNG KẾT SERIES: LẬP TRÌNH MẠNG VỚI JAVASCRIPT'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'='</span><span style="color:#E1E4E8"> .</span><span style="color:#B392F0">repeat</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">60</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">📚 Các bài học đã hoàn thành:'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'1. Giới thiệu Series - Chuẩn bị công cụ'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'2. Fetch API Cơ bản - Người đưa thư thông minh'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'3. Fetch với AbortController - Công tắc điện'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'4. WebSocket Giới thiệu - Cuộc gọi điện thoại liên tục'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'5. SSE vs WebSocket - Radio vs Điện thoại'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'6. Service Worker - Người trợ lý cá nhân'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'7. PWA Manifest - Ứng dụng di động thông minh'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'8. DevTools Network - Camera giám sát giao thông'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'9. Tổng kết Feynman - Ôn lại toàn bộ series'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">🚀 Bắt đầu demo các concepts...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        await</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">demonstrateFetch</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">demonstrateWebSocket</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">demonstrateSSE</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">demonstrateServiceWorker</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">demonstratePWA</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">demonstrateDevTools</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">🎉 HOÀN THÀNH SERIES!'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Bạn đã học được cách xây dựng ứng dụng mạng với JavaScript!'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">showNextSteps</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Hướng dẫn bước tiếp theo</span></span>
+<span class="line"><span style="color:#B392F0">    showNextSteps</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">🚀 BƯỚC TIẾP THEO:'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'================'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'1. Thực hành với các dự án thực tế'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'2. Học thêm về React, Vue, Angular'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'3. Khám phá Node.js và Express'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'4. Học về GraphQL và REST APIs'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'5. Xây dựng portfolio với các dự án networking'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'6. Tham gia các dự án open source'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'7. Học về testing và deployment'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'8. Khám phá các framework mới'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Tạo diagram tổng hợp</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> NetworkingDiagram</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.diagram </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> `</span></span>
+<span class="line"><span style="color:#9ECBFF">        🌐 JAVASCRIPT NETWORKING ECOSYSTEM</span></span>
+<span class="line"><span style="color:#9ECBFF">        ===================================</span></span>
+<span class="line"><span style="color:#9ECBFF">        </span></span>
+<span class="line"><span style="color:#9ECBFF">        📱 CLIENT SIDE                    🔧 SERVER SIDE</span></span>
+<span class="line"><span style="color:#9ECBFF">        ┌─────────────────┐              ┌─────────────────┐</span></span>
+<span class="line"><span style="color:#9ECBFF">        │   Browser       │              │   Node.js       │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │                 │              │                 │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  📬 Fetch API   │◄─────────────┤  🌐 HTTP Server │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  🔌 WebSocket   │◄─────────────┤  🔌 WebSocket   │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  📻 SSE         │◄─────────────┤  📻 SSE Server  │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  👷 ServiceWorker│              │  📊 Database    │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  📱 PWA         │              │  🔐 Auth        │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  📹 DevTools    │              │  📈 Monitoring  │</span></span>
+<span class="line"><span style="color:#9ECBFF">        └─────────────────┘              └─────────────────┘</span></span>
+<span class="line"><span style="color:#9ECBFF">        </span></span>
+<span class="line"><span style="color:#9ECBFF">        🔄 REAL-TIME COMMUNICATION</span></span>
+<span class="line"><span style="color:#9ECBFF">        ┌─────────────────────────────────────────────────┐</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  WebSocket: Bidirectional, Persistent          │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  SSE: Server → Client, Auto-reconnect          │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  Fetch: Request/Response, Modern API           │</span></span>
+<span class="line"><span style="color:#9ECBFF">        └─────────────────────────────────────────────────┘</span></span>
+<span class="line"><span style="color:#9ECBFF">        </span></span>
+<span class="line"><span style="color:#9ECBFF">        📱 PROGRESSIVE WEB APP</span></span>
+<span class="line"><span style="color:#9ECBFF">        ┌─────────────────────────────────────────────────┐</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  Service Worker: Background processing         │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  Manifest: App metadata                        │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  Offline: Cached resources                     │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  Notifications: Push messages                  │</span></span>
+<span class="line"><span style="color:#9ECBFF">        └─────────────────────────────────────────────────┘</span></span>
+<span class="line"><span style="color:#9ECBFF">        </span></span>
+<span class="line"><span style="color:#9ECBFF">        🔍 DEBUGGING &#x26; MONITORING</span></span>
+<span class="line"><span style="color:#9ECBFF">        ┌─────────────────────────────────────────────────┐</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  DevTools: Network analysis                    │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  Performance: Timing breakdown                 │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  Console: Error tracking                       │</span></span>
+<span class="line"><span style="color:#9ECBFF">        │  Analytics: User behavior                      │</span></span>
+<span class="line"><span style="color:#9ECBFF">        └─────────────────────────────────────────────────┘</span></span>
+<span class="line"><span style="color:#9ECBFF">        `</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#B392F0">    display</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.diagram);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Chạy tổng kết</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> runSummary</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> summary</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> JavaScriptNetworkingSummary</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> diagram</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> NetworkingDiagram</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🎓 Bắt đầu tổng kết series...</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Hiển thị diagram</span></span>
+<span class="line"><span style="color:#E1E4E8">    diagram.</span><span style="color:#B392F0">display</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Chạy tổng kết</span></span>
+<span class="line"><span style="color:#F97583">    await</span><span style="color:#E1E4E8"> summary.</span><span style="color:#B392F0">summarizeSeries</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Chạy khi trang load</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">typeof</span><span style="color:#E1E4E8"> window </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> 'undefined'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">    // Browser environment</span></span>
+<span class="line"><span style="color:#E1E4E8">    window.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'load'</span><span style="color:#E1E4E8">, runSummary);</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">    // Node.js environment</span></span>
+<span class="line"><span style="color:#B392F0">    runSummary</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h1 id="️-phân-tích--giải-thích">⚙️ Phân tích &#x26; Giải thích</h1>
+<p><strong>Hành trình học tập của chúng ta:</strong></p>
+<ol>
+<li><strong>Bài 0</strong>: Thiết lập môi trường - Chuẩn bị công cụ</li>
+<li><strong>Bài 1</strong>: Fetch API cơ bản - Người đưa thư thông minh</li>
+<li><strong>Bài 2</strong>: Fetch với AbortController - Công tắc điện</li>
+<li><strong>Bài 3</strong>: WebSocket giới thiệu - Cuộc gọi điện thoại liên tục</li>
+<li><strong>Bài 4</strong>: SSE vs WebSocket - Radio vs Điện thoại</li>
+<li><strong>Bài 5</strong>: Service Worker - Người trợ lý cá nhân</li>
+<li><strong>Bài 6</strong>: PWA Manifest - Ứng dụng di động thông minh</li>
+<li><strong>Bài 7</strong>: DevTools Network - Camera giám sát giao thông</li>
+<li><strong>Bài 8</strong>: Tổng kết Feynman - Ôn lại toàn bộ series</li>
+</ol>
+<p><strong>Kiến thức cốt lõi đã học:</strong></p>
+<ul>
+<li><strong>Modern JavaScript APIs</strong>: Fetch, WebSocket, SSE, Service Worker</li>
+<li><strong>Progressive Web Apps</strong>: Manifest, offline support, push notifications</li>
+<li><strong>Real-time Communication</strong>: WebSocket, SSE, real-time updates</li>
+<li><strong>Performance Optimization</strong>: Caching, lazy loading, code splitting</li>
+<li><strong>Debugging &#x26; Monitoring</strong>: DevTools, network analysis, error tracking</li>
+</ul>
+<p><strong>Kỹ năng thực tế:</strong></p>
+<ul>
+<li>Debugging network issues</li>
+<li>Performance optimization</li>
+<li>Error handling và exception management</li>
+<li>Code organization và best practices</li>
+<li>Testing và deployment considerations</li>
+</ul>
+<h1 id="-ứng-dụng-thực-tế">🧭 Ứng dụng thực tế</h1>
+<p><strong>Các lĩnh vực ứng dụng kiến thức:</strong></p>
+<ol>
+<li>
+<p><strong>Frontend Development</strong>:</p>
+<ul>
+<li>Single Page Applications (SPA)</li>
+<li>Progressive Web Apps (PWA)</li>
+<li>Real-time dashboards</li>
+<li>Interactive web applications</li>
+</ul>
+</li>
+<li>
+<p><strong>Backend Development</strong>:</p>
+<ul>
+<li>REST API development</li>
+<li>WebSocket servers</li>
+<li>Real-time data processing</li>
+<li>Microservices architecture</li>
+</ul>
+</li>
+<li>
+<p><strong>Full-stack Development</strong>:</p>
+<ul>
+<li>End-to-end applications</li>
+<li>Real-time collaboration tools</li>
+<li>E-commerce platforms</li>
+<li>Social media applications</li>
+</ul>
+</li>
+<li>
+<p><strong>Mobile Development</strong>:</p>
+<ul>
+<li>React Native</li>
+<li>Ionic</li>
+<li>Cordova/PhoneGap</li>
+<li>Hybrid mobile apps</li>
+</ul>
+</li>
+</ol>
+<p><strong>Career Paths:</strong></p>
+<ul>
+<li><strong>Frontend Developer</strong></li>
+<li><strong>Full-stack Developer</strong></li>
+<li><strong>Mobile Developer</strong></li>
+<li><strong>DevOps Engineer</strong></li>
+<li><strong>Technical Lead</strong></li>
+</ul>
+<h1 id="-giải-thích-theo-feynman">🎓 Giải thích theo Feynman</h1>
+<p>Hãy tưởng tượng toàn bộ series như việc xây dựng một thành phố thông minh:</p>
+<p><strong>Bài 0 - Thiết lập môi trường</strong> như chuẩn bị vật liệu xây dựng:</p>
+<ul>
+<li>Cần có công cụ phù hợp (Node.js, VS Code)</li>
+<li>Cần có kế hoạch rõ ràng</li>
+<li>Như chuẩn bị xi măng, gạch, cát để xây nhà</li>
+</ul>
+<p><strong>Bài 1 - Fetch API</strong> như hệ thống bưu điện:</p>
+<ul>
+<li>Có quy trình rõ ràng</li>
+<li>Có thể gửi nhiều loại thư khác nhau</li>
+<li>Có thể gửi đến nhiều nơi</li>
+<li>Như bưu điện có nhiều dịch vụ</li>
+</ul>
+<p><strong>Bài 2 - AbortController</strong> như công tắc điện:</p>
+<ul>
+<li>Có thể bật/tắt bất kỳ lúc nào</li>
+<li>Khi tắt, tất cả thiết bị đều dừng hoạt động</li>
+<li>Như công tắc tổng trong nhà</li>
+</ul>
+<p><strong>Bài 3 - WebSocket</strong> như đường dây nóng:</p>
+<ul>
+<li>Kết nối trực tiếp, liên tục</li>
+<li>Có thể nói chuyện bất kỳ lúc nào</li>
+<li>Không cần thiết lập kết nối mỗi lần</li>
+<li>Như đường dây nóng của tổng thống</li>
+</ul>
+<p><strong>Bài 4 - SSE vs WebSocket</strong> như so sánh radio và điện thoại:</p>
+<ul>
+<li><strong>SSE</strong>: Như radio, chỉ nghe được</li>
+<li><strong>WebSocket</strong>: Như điện thoại, có thể nói và nghe</li>
+<li>Mỗi cái có ưu điểm riêng</li>
+</ul>
+<p><strong>Bài 5 - Service Worker</strong> như người trợ lý cá nhân:</p>
+<ul>
+<li>Làm việc ngầm trong background</li>
+<li>Có thể lưu trữ thông tin quan trọng</li>
+<li>Có thể thông báo khi có tin mới</li>
+<li>Như trợ lý cá nhân luôn sẵn sàng</li>
+</ul>
+<p><strong>Bài 6 - PWA Manifest</strong> như tấm danh thiếp:</p>
+<ul>
+<li>Có tên, mô tả, và thông tin liên hệ</li>
+<li>Có logo và màu sắc thương hiệu</li>
+<li>Như danh thiếp giới thiệu về công ty</li>
+</ul>
+<p><strong>Bài 7 - DevTools Network</strong> như camera giám sát giao thông:</p>
+<ul>
+<li>Quan sát tất cả phương tiện đi qua</li>
+<li>Ghi lại thông tin chi tiết</li>
+<li>Như camera giao thông trên đường</li>
+</ul>
+<p><strong>Tổng kết</strong> như một thành phố thông minh hoàn chỉnh:</p>
+<ul>
+<li>Có hệ thống bưu điện (Fetch API)</li>
+<li>Có đường dây nóng (WebSocket)</li>
+<li>Có radio (SSE)</li>
+<li>Có người trợ lý cá nhân (Service Worker)</li>
+<li>Có ứng dụng di động thông minh (PWA)</li>
+<li>Có hệ thống giám sát (DevTools)</li>
+<li>Tất cả hoạt động nhịp nhàng với nhau</li>
+</ul>
+<h1 id="-tổng-kết-ngắn">🧩 Tổng kết ngắn</h1>
+<ul>
+<li>✅ Đã học được tất cả kiến thức cơ bản về networking với JavaScript</li>
+<li>✅ Hiểu được sự khác biệt giữa Fetch, WebSocket, SSE</li>
+<li>✅ Biết cách sử dụng Service Worker để tạo PWA</li>
+<li>✅ Có thể debug và optimize network performance</li>
+<li>✅ Nắm được các best practices và modern JavaScript features</li>
+</ul>
+<p><strong>🎉 Chúc mừng bạn đã hoàn thành series!</strong></p>
+<hr>
+<h2 id="-danh-sách-bài-học-hoàn-chỉnh">📚 Danh sách bài học hoàn chỉnh</h2>
+<ol>
+<li><a href="./00-intro-environment.md">Giới thiệu Series</a></li>
+<li><a href="./01-fetch-basic.md">Fetch API Cơ bản</a></li>
+<li><a href="./02-fetch-abortcontroller.md">Fetch với AbortController</a></li>
+<li><a href="./03-websocket-intro.md">WebSocket Giới thiệu</a></li>
+<li><a href="./04-sse-vs-websocket.md">SSE vs WebSocket</a></li>
+<li><a href="./05-service-worker.md">Service Worker</a></li>
+<li><a href="./06-pwa-manifest.md">PWA Manifest</a></li>
+<li><a href="./07-devtools-network.md">DevTools Network</a></li>
+<li><a href="./08-summary-feynman.md">Tổng kết Feynman</a> ← Bạn đang ở đây</li>
+</ol>
+<p><strong>🚀 Bước tiếp theo:</strong></p>
+<ul>
+<li>Thực hành với các dự án thực tế</li>
+<li>Học thêm về React, Vue, Angular</li>
+<li>Khám phá Node.js và Express</li>
+<li>Học về GraphQL và REST APIs</li>
+<li>Xây dựng portfolio với các dự án networking</li>
+<li>Tham gia các dự án open source</li>
+<li>Học về testing và deployment</li>
+<li>Khám phá các framework mới</li>
+</ul> </article> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <a href="./07-devtools-network.md" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-7jjqptxk></path> </svg> <span data-astro-cid-7jjqptxk>Bài trước</span> </a> <div data-astro-cid-7jjqptxk></div> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
+"Work hard in silence — let success make noise."
+</blockquote> <!-- Social Links --> <div class="flex justify-center space-x-6 mb-8"> <a href="https://github.com/KhoiNguyendes23" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> <a href="https://www.linkedin.com/in/nguyen-dang-khoi-6247a337b/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="mailto:khoind82@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> <!-- Copyright --> <div class="text-sm text-gray-500 dark:text-gray-400">
+© 2024 Kant Nguyễn. Tất cả quyền được bảo lưu.
+</div> </div> </div> </footer>  </div> <script type="module">typeof window<"u"&&(localStorage.getItem("darkMode")==="true"||!localStorage.getItem("darkMode")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.documentElement.classList.add("dark");</script> </body> </html> 

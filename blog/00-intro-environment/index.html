@@ -1,0 +1,284 @@
+<!DOCTYPE html><html lang="vi" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="description" content="Kant Nguyễn - Backend Developer | Java Networking Enthusiast"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/Kant_Nguyen_Astro_Blog/favicon.svg"><meta name="generator" content="Astro v5.14.5"><title>Giới thiệu Series: Lập trình mạng với JavaScript - Kant Nguyễn</title><link rel="stylesheet" href="/Kant_Nguyen_Astro_Blog/_astro/about.D3UAi4cs.css">
+<style>.prose[data-astro-cid-7jjqptxk]{color:#374151}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk]{color:#d1d5db}.prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#111827}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#f3f4f6;padding:.125rem .25rem;border-radius:.25rem;font-size:.875em}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#374151}.prose[data-astro-cid-7jjqptxk] pre[data-astro-cid-7jjqptxk]{background-color:#111827;color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] blockquote[data-astro-cid-7jjqptxk]{border-left-color:#6366f1;background-color:#6366f10d}
+</style></head> <body class="min-h-screen bg-bgLight dark:bg-bgDark text-gray-900 dark:text-gray-100 transition-colors duration-300"> <div id="app" class="min-h-screen flex flex-col">  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-bgDark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700" data-astro-cid-5blmo7yk> <div class="max-w-6xl mx-auto px-4" data-astro-cid-5blmo7yk> <div class="flex items-center justify-between h-16" data-astro-cid-5blmo7yk> <!-- Logo --> <a href="/Kant_Nguyen_Astro_Blog/" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform" data-astro-cid-5blmo7yk>
+Kant Nguyễn
+</a> <!-- Desktop Navigation --> <div class="hidden md:flex items-center space-x-8" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link" data-astro-cid-5blmo7yk>Liên hệ</a> </div> <!-- Controls --> <div class="flex items-center space-x-4" data-astro-cid-5blmo7yk> <!-- Dark Mode Toggle --> <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" data-astro-cid-5blmo7yk></path> </svg> <svg id="moonIcon" class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" data-astro-cid-5blmo7yk></path> </svg> </button> <!-- Mobile Menu Button --> <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-5blmo7yk></path> </svg> </button> </div> </div> <!-- Mobile Navigation --> <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700 py-4" data-astro-cid-5blmo7yk> <div class="flex flex-col space-y-2" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link-mobile" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link-mobile" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link-mobile" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link-mobile" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link-mobile" data-astro-cid-5blmo7yk>Liên hệ</a> </div> </div> </div> </nav>  <script type="module">document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("themeToggle");document.getElementById("sunIcon"),document.getElementById("moonIcon"),t&&t.addEventListener("click",e=>{e.preventDefault(),document.documentElement.classList.contains("dark")?(document.documentElement.classList.remove("dark"),localStorage.setItem("darkMode","false")):(document.documentElement.classList.add("dark"),localStorage.setItem("darkMode","true"))});const n=document.getElementById("mobileMenuBtn"),o=document.getElementById("mobileMenu");n&&o&&n.addEventListener("click",e=>{e.preventDefault(),o.classList.toggle("hidden")})});</script> <main class="min-h-screen bg-bgLight dark:bg-bgDark" data-astro-cid-7jjqptxk> <!-- Article Header --> <section class="py-16 bg-gradient-to-br from-primary/5 to-purple-600/5" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <div class="text-center mb-8" data-astro-cid-7jjqptxk> <span class="inline-block px-4 py-2 bg-accent text-gray-900 text-sm font-semibold rounded-full mb-4" data-astro-cid-7jjqptxk> Lập trình mạng với JavaScript </span> <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-astro-cid-7jjqptxk> Giới thiệu Series: Lập trình mạng với JavaScript </h1> <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6" data-astro-cid-7jjqptxk> Khám phá thế giới lập trình mạng với JavaScript - từ Fetch API đến WebSocket, Service Worker và PWA </p> <div class="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>27/10/2025</span> <span data-astro-cid-7jjqptxk>•</span> <span data-astro-cid-7jjqptxk>6 phút đọc</span> </div> <div class="flex flex-wrap justify-center gap-2 mt-6" data-astro-cid-7jjqptxk> <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> JavaScript </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Networking </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Environment Setup </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Node.js </span> </div> </div> </div> </section> <!-- Article Content --> <section class="py-16" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <article class="prose prose-lg max-w-none dark:prose-invert" data-astro-cid-7jjqptxk> <h1 id="-giới-thiệu">🧠 Giới thiệu</h1>
+<p>Chào mừng bạn đến với series <strong>“Lập trình mạng với JavaScript”</strong>! Trong series này, chúng ta sẽ khám phá cách JavaScript xử lý các kết nối mạng, từ những API cơ bản như Fetch đến những công nghệ hiện đại như WebSocket, Service Worker và PWA.</p>
+<p>JavaScript đã phát triển từ một ngôn ngữ chỉ chạy trên browser thành một ngôn ngữ full-stack mạnh mẽ với Node.js. Bạn sẽ học được cách:</p>
+<ul>
+<li>Sử dụng Fetch API để giao tiếp với REST APIs</li>
+<li>Xây dựng ứng dụng realtime với WebSocket</li>
+<li>Tạo Progressive Web Apps (PWA) với Service Worker</li>
+<li>Debug và optimize network performance</li>
+<li>Phát triển ứng dụng offline-first</li>
+</ul>
+<!-- IMAGE_PLACEHOLDER -->
+<h1 id="-code-minh-họa">💻 Code minh họa</h1>
+<p>Trước khi bắt đầu, hãy đảm bảo bạn đã cài đặt đúng môi trường phát triển:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Kiểm tra phiên bản Node.js</span></span>
+<span class="line"><span style="color:#B392F0">node</span><span style="color:#79B8FF"> --version</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Kiểm tra npm</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#79B8FF"> --version</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Tạo project mới</span></span>
+<span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#9ECBFF"> javascript-networking</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> javascript-networking</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> init</span><span style="color:#79B8FF"> -y</span></span></code></pre>
+<p><strong>package.json - Dependencies cơ bản:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "name"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"javascript-networking"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "version"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"1.0.0"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "description"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"JavaScript Networking Series"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "main"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"index.js"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "scripts"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "start"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"node index.js"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "dev"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"nodemon index.js"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "test"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"jest"</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "dependencies"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "express"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"^4.18.2"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "ws"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"^8.14.2"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "axios"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"^1.6.0"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "cors"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"^2.8.5"</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#79B8FF">  "devDependencies"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "nodemon"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"^3.0.1"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "jest"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"^29.7.0"</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>test-environment.js - Test môi trường:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Test Fetch API trong Node.js</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> fetch</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'node-fetch'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> testFetch</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🧪 Testing Fetch API...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'https://httpbin.org/get'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> data</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Fetch API hoạt động!'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📊 Response status:'</span><span style="color:#E1E4E8">, response.status);</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📊 Response data:'</span><span style="color:#E1E4E8">, data);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Lỗi Fetch API:'</span><span style="color:#E1E4E8">, error.message);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Test WebSocket trong Node.js</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> WebSocket</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> require</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'ws'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> testWebSocket</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🧪 Testing WebSocket...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> ws</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> WebSocket</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'wss://echo.websocket.org/'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    ws.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'open'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">function</span><span style="color:#B392F0"> open</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ WebSocket kết nối thành công!'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        ws.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Hello WebSocket!'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    ws.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'message'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">function</span><span style="color:#B392F0"> message</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">data</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📨 Nhận được:'</span><span style="color:#E1E4E8">, data.</span><span style="color:#B392F0">toString</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">        ws.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    ws.</span><span style="color:#B392F0">on</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'error'</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">function</span><span style="color:#B392F0"> error</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">err</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Lỗi WebSocket:'</span><span style="color:#E1E4E8">, err.message);</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Chạy tests</span></span>
+<span class="line"><span style="color:#B392F0">testFetch</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">testWebSocket</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<p><strong>browser-test.html - Test trong browser:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#E1E4E8">&#x3C;!</span><span style="color:#85E89D">DOCTYPE</span><span style="color:#B392F0"> html</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">html</span><span style="color:#B392F0"> lang</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"vi"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> charset</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"UTF-8"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"viewport"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"width=device-width, initial-scale=1.0"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">>JavaScript Networking Test&#x3C;/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">>🧪 Test JavaScript Networking&#x3C;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> id</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"results"</span><span style="color:#E1E4E8">>&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D">        // Test Fetch API trong browser</span></span>
+<span class="line"><span style="color:#F97583">        async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> testBrowserFetch</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🧪 Testing Fetch API in browser...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#F97583">                const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'https://httpbin.org/get'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">                const</span><span style="color:#79B8FF"> data</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#E1E4E8">                document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'results'</span><span style="color:#E1E4E8">).innerHTML </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#9ECBFF">                    '&#x3C;p>✅ Fetch API hoạt động! Status: '</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> response.status </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> '&#x3C;/p>'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'results'</span><span style="color:#E1E4E8">).innerHTML </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#9ECBFF">                    '&#x3C;p>❌ Lỗi Fetch API: '</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> error.message </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> '&#x3C;/p>'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Test WebSocket trong browser</span></span>
+<span class="line"><span style="color:#F97583">        function</span><span style="color:#B392F0"> testBrowserWebSocket</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🧪 Testing WebSocket in browser...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> ws</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> WebSocket</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'wss://echo.websocket.org/'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            ws.</span><span style="color:#B392F0">onopen</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ WebSocket kết nối thành công!'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">                ws.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Hello from browser!'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            };</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            ws.</span><span style="color:#B392F0">onmessage</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📨 Nhận được:'</span><span style="color:#E1E4E8">, event.data);</span></span>
+<span class="line"><span style="color:#E1E4E8">                document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'results'</span><span style="color:#E1E4E8">).innerHTML </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#9ECBFF">                    '&#x3C;p>✅ WebSocket hoạt động! Nhận được: '</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> event.data </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> '&#x3C;/p>'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                ws.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            };</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            ws.</span><span style="color:#B392F0">onerror</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">error</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Lỗi WebSocket:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">                document.</span><span style="color:#B392F0">getElementById</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'results'</span><span style="color:#E1E4E8">).innerHTML </span><span style="color:#F97583">+=</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#9ECBFF">                    '&#x3C;p>❌ Lỗi WebSocket: '</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> error </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> '&#x3C;/p>'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            };</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Chạy tests khi trang load</span></span>
+<span class="line"><span style="color:#E1E4E8">        window.</span><span style="color:#B392F0">onload</span><span style="color:#F97583"> =</span><span style="color:#F97583"> function</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#B392F0">            testBrowserFetch</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">            testBrowserWebSocket</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        };</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">html</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h1 id="️-phân-tích--giải-thích">⚙️ Phân tích &#x26; Giải thích</h1>
+<p><strong>Môi trường phát triển:</strong></p>
+<ol>
+<li>
+<p><strong>Node.js</strong>: Runtime để chạy JavaScript trên server</p>
+<ul>
+<li>Download từ <a href="https://nodejs.org/">nodejs.org</a></li>
+<li>Phiên bản LTS (Long Term Support) được khuyến nghị</li>
+<li>Bao gồm npm (Node Package Manager)</li>
+</ul>
+</li>
+<li>
+<p><strong>VS Code</strong>: Editor với JavaScript support mạnh mẽ</p>
+<ul>
+<li>Extension: JavaScript (ES6) code snippets</li>
+<li>Extension: Node.js Extension Pack</li>
+<li>Extension: Live Server (cho browser testing)</li>
+<li>Extension: REST Client (cho API testing)</li>
+</ul>
+</li>
+<li>
+<p><strong>Browser DevTools</strong>: Công cụ debug mạnh mẽ</p>
+<ul>
+<li>Network tab để monitor requests</li>
+<li>Console để debug JavaScript</li>
+<li>Application tab để quản lý storage</li>
+<li>Performance tab để optimize</li>
+</ul>
+</li>
+</ol>
+<p><strong>JavaScript Networking APIs:</strong></p>
+<ul>
+<li><strong>Fetch API</strong>: Modern replacement cho XMLHttpRequest</li>
+<li><strong>WebSocket</strong>: Real-time bidirectional communication</li>
+<li><strong>Service Worker</strong>: Background processing và caching</li>
+<li><strong>WebRTC</strong>: Peer-to-peer communication</li>
+<li><strong>Web Push</strong>: Push notifications</li>
+</ul>
+<p><strong>Node.js vs Browser:</strong></p>
+<ul>
+<li><strong>Node.js</strong>: Server-side JavaScript, access to file system, network</li>
+<li><strong>Browser</strong>: Client-side JavaScript, DOM manipulation, limited APIs</li>
+<li><strong>Shared</strong>: Common JavaScript features, async/await, Promises</li>
+</ul>
+<h1 id="-ứng-dụng-thực-tế">🧭 Ứng dụng thực tế</h1>
+<p>Kiến thức trong series này sẽ giúp bạn:</p>
+<ul>
+<li><strong>Frontend Development</strong>: SPA, PWA, real-time UIs</li>
+<li><strong>Backend Development</strong>: REST APIs, WebSocket servers</li>
+<li><strong>Full-stack Development</strong>: End-to-end applications</li>
+<li><strong>Mobile Development</strong>: React Native, Ionic</li>
+<li><strong>Desktop Development</strong>: Electron applications</li>
+<li><strong>IoT Development</strong>: Device communication</li>
+<li><strong>Game Development</strong>: Multiplayer games</li>
+</ul>
+<p><strong>Modern JavaScript Features:</strong></p>
+<ul>
+<li><strong>ES6+</strong>: Arrow functions, destructuring, modules</li>
+<li><strong>Async/Await</strong>: Better than callbacks và Promises</li>
+<li><strong>Fetch API</strong>: Modern HTTP client</li>
+<li><strong>WebSocket</strong>: Real-time communication</li>
+<li><strong>Service Worker</strong>: Offline-first applications</li>
+</ul>
+<h1 id="-giải-thích-theo-feynman">🎓 Giải thích theo Feynman</h1>
+<p>Hãy tưởng tượng JavaScript như một ngôn ngữ đa năng:</p>
+<p><strong>JavaScript</strong> như một ngôn ngữ có thể nói được ở nhiều nơi:</p>
+<ul>
+<li>Trên browser như người dẫn chương trình TV</li>
+<li>Trên server như người phục vụ nhà hàng</li>
+<li>Trên mobile như người hướng dẫn du lịch</li>
+<li>Trên desktop như người quản lý văn phòng</li>
+</ul>
+<p><strong>Fetch API</strong> như người đưa thư thông minh:</p>
+<ul>
+<li>Biết cách gửi thư đến đúng địa chỉ</li>
+<li>Có thể gửi nhiều loại thư khác nhau</li>
+<li>Biết cách đóng gói thư đúng cách</li>
+<li>Có thể gửi thư đồng thời đến nhiều nơi</li>
+</ul>
+<p><strong>WebSocket</strong> như đường dây nóng:</p>
+<ul>
+<li>Kết nối trực tiếp, liên tục</li>
+<li>Có thể nói chuyện bất kỳ lúc nào</li>
+<li>Không cần thiết lập kết nối mỗi lần</li>
+<li>Như đường dây nóng của tổng thống</li>
+</ul>
+<p><strong>Service Worker</strong> như người trợ lý cá nhân:</p>
+<ul>
+<li>Làm việc ngầm trong background</li>
+<li>Có thể lưu trữ thông tin quan trọng</li>
+<li>Có thể thông báo khi có tin mới</li>
+<li>Như trợ lý cá nhân luôn sẵn sàng</li>
+</ul>
+<p><strong>PWA</strong> như ứng dụng di động thông minh:</p>
+<ul>
+<li>Có thể cài đặt như app thật</li>
+<li>Hoạt động offline khi cần</li>
+<li>Có thể gửi thông báo</li>
+<li>Như app di động nhưng chạy trên web</li>
+</ul>
+<h1 id="-tổng-kết-ngắn">🧩 Tổng kết ngắn</h1>
+<ul>
+<li>✅ JavaScript đã phát triển thành ngôn ngữ full-stack mạnh mẽ</li>
+<li>✅ Node.js cho phép chạy JavaScript trên server</li>
+<li>✅ Browser APIs cung cấp nhiều tính năng networking</li>
+<li>✅ Modern JavaScript có async/await và Fetch API</li>
+<li>✅ PWA và Service Worker mở ra nhiều khả năng mới</li>
+</ul>
+<p><strong>Xem bài tiếp theo →</strong> <a href="./01-fetch-basic.md">Fetch API Cơ bản</a></p>
+<hr>
+<h2 id="-danh-sách-bài-học">📚 Danh sách bài học</h2>
+<ol>
+<li><a href="./00-intro-environment.md">Giới thiệu Series</a> ← Bạn đang ở đây</li>
+<li><a href="./01-fetch-basic.md">Fetch API Cơ bản</a></li>
+<li><a href="./02-fetch-abortcontroller.md">Fetch với AbortController</a></li>
+<li><a href="./03-websocket-intro.md">WebSocket Giới thiệu</a></li>
+<li><a href="./04-sse-vs-websocket.md">SSE vs WebSocket</a></li>
+<li><a href="./05-service-worker.md">Service Worker</a></li>
+<li><a href="./06-pwa-manifest.md">PWA Manifest</a></li>
+<li><a href="./07-devtools-network.md">DevTools Network</a></li>
+<li><a href="./08-summary-feynman.md">Tổng kết Feynman</a></li>
+</ol> </article> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <div data-astro-cid-7jjqptxk></div> <a href="./01-fetch-basic.md" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>Bài tiếp theo</span> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-7jjqptxk></path> </svg> </a> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
+"Work hard in silence — let success make noise."
+</blockquote> <!-- Social Links --> <div class="flex justify-center space-x-6 mb-8"> <a href="https://github.com/KhoiNguyendes23" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> <a href="https://www.linkedin.com/in/nguyen-dang-khoi-6247a337b/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="mailto:khoind82@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> <!-- Copyright --> <div class="text-sm text-gray-500 dark:text-gray-400">
+© 2024 Kant Nguyễn. Tất cả quyền được bảo lưu.
+</div> </div> </div> </footer>  </div> <script type="module">typeof window<"u"&&(localStorage.getItem("darkMode")==="true"||!localStorage.getItem("darkMode")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.documentElement.classList.add("dark");</script> </body> </html> 

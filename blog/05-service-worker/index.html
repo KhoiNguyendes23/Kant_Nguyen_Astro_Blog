@@ -1,0 +1,746 @@
+<!DOCTYPE html><html lang="vi" class="scroll-smooth"> <head><meta charset="UTF-8"><meta name="description" content="Kant Nguyễn - Backend Developer | Java Networking Enthusiast"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/Kant_Nguyen_Astro_Blog/favicon.svg"><meta name="generator" content="Astro v5.14.5"><title>Service Worker - Background processing và caching - Kant Nguyễn</title><link rel="stylesheet" href="/Kant_Nguyen_Astro_Blog/_astro/about.D3UAi4cs.css">
+<style>.prose[data-astro-cid-7jjqptxk]{color:#374151}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk]{color:#d1d5db}.prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#111827}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h1[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h2[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h3[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h4[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h5[data-astro-cid-7jjqptxk],.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] h6[data-astro-cid-7jjqptxk]{color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#f3f4f6;padding:.125rem .25rem;border-radius:.25rem;font-size:.875em}.dark[data-astro-cid-7jjqptxk] .prose[data-astro-cid-7jjqptxk] code[data-astro-cid-7jjqptxk]{background-color:#374151}.prose[data-astro-cid-7jjqptxk] pre[data-astro-cid-7jjqptxk]{background-color:#111827;color:#f3f4f6}.prose[data-astro-cid-7jjqptxk] blockquote[data-astro-cid-7jjqptxk]{border-left-color:#6366f1;background-color:#6366f10d}
+</style></head> <body class="min-h-screen bg-bgLight dark:bg-bgDark text-gray-900 dark:text-gray-100 transition-colors duration-300"> <div id="app" class="min-h-screen flex flex-col">  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-bgDark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700" data-astro-cid-5blmo7yk> <div class="max-w-6xl mx-auto px-4" data-astro-cid-5blmo7yk> <div class="flex items-center justify-between h-16" data-astro-cid-5blmo7yk> <!-- Logo --> <a href="/Kant_Nguyen_Astro_Blog/" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform" data-astro-cid-5blmo7yk>
+Kant Nguyễn
+</a> <!-- Desktop Navigation --> <div class="hidden md:flex items-center space-x-8" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link" data-astro-cid-5blmo7yk>Liên hệ</a> </div> <!-- Controls --> <div class="flex items-center space-x-4" data-astro-cid-5blmo7yk> <!-- Dark Mode Toggle --> <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" data-astro-cid-5blmo7yk></path> </svg> <svg id="moonIcon" class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-5blmo7yk> <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" data-astro-cid-5blmo7yk></path> </svg> </button> <!-- Mobile Menu Button --> <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" data-astro-cid-5blmo7yk> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-5blmo7yk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" data-astro-cid-5blmo7yk></path> </svg> </button> </div> </div> <!-- Mobile Navigation --> <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700 py-4" data-astro-cid-5blmo7yk> <div class="flex flex-col space-y-2" data-astro-cid-5blmo7yk> <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link-mobile" data-astro-cid-5blmo7yk>Trang chủ</a> <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link-mobile" data-astro-cid-5blmo7yk>Giới thiệu</a> <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link-mobile" data-astro-cid-5blmo7yk>Dự án</a> <a href="/Kant_Nguyen_Astro_Blog/blog" class="nav-link-mobile" data-astro-cid-5blmo7yk>Blog</a> <a href="/Kant_Nguyen_Astro_Blog/contact" class="nav-link-mobile" data-astro-cid-5blmo7yk>Liên hệ</a> </div> </div> </div> </nav>  <script type="module">document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("themeToggle");document.getElementById("sunIcon"),document.getElementById("moonIcon"),t&&t.addEventListener("click",e=>{e.preventDefault(),document.documentElement.classList.contains("dark")?(document.documentElement.classList.remove("dark"),localStorage.setItem("darkMode","false")):(document.documentElement.classList.add("dark"),localStorage.setItem("darkMode","true"))});const n=document.getElementById("mobileMenuBtn"),o=document.getElementById("mobileMenu");n&&o&&n.addEventListener("click",e=>{e.preventDefault(),o.classList.toggle("hidden")})});</script> <main class="min-h-screen bg-bgLight dark:bg-bgDark" data-astro-cid-7jjqptxk> <!-- Article Header --> <section class="py-16 bg-gradient-to-br from-primary/5 to-purple-600/5" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <div class="text-center mb-8" data-astro-cid-7jjqptxk> <span class="inline-block px-4 py-2 bg-accent text-gray-900 text-sm font-semibold rounded-full mb-4" data-astro-cid-7jjqptxk> Lập trình mạng với JavaScript </span> <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-astro-cid-7jjqptxk> Service Worker - Background processing và caching </h1> <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-6" data-astro-cid-7jjqptxk> Học cách sử dụng Service Worker để cache resources, intercept requests và tạo ứng dụng offline-first </p> <div class="flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>27/10/2025</span> <span data-astro-cid-7jjqptxk>•</span> <span data-astro-cid-7jjqptxk>12 phút đọc</span> </div> <div class="flex flex-wrap justify-center gap-2 mt-6" data-astro-cid-7jjqptxk> <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> JavaScript </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Service Worker </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> PWA </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Caching </span><span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md" data-astro-cid-7jjqptxk> Offline </span> </div> </div> </div> </section> <!-- Article Content --> <section class="py-16" data-astro-cid-7jjqptxk> <div class="max-w-4xl mx-auto px-4" data-astro-cid-7jjqptxk> <article class="prose prose-lg max-w-none dark:prose-invert" data-astro-cid-7jjqptxk> <h1 id="-giới-thiệu">🧠 Giới thiệu</h1>
+<p>Service Worker là một script chạy trong background của browser, hoạt động như một proxy giữa ứng dụng và network. Nó cho phép bạn cache resources, intercept requests, và tạo ứng dụng offline-first.</p>
+<p>Service Worker là nền tảng của Progressive Web Apps (PWA), cho phép ứng dụng web hoạt động như native apps với khả năng offline, push notifications, và background sync.</p>
+<!-- IMAGE_PLACEHOLDER -->
+<h1 id="-code-minh-họa">💻 Code minh họa</h1>
+<p><strong>sw.js - Service Worker cơ bản:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// Service Worker - sw.js</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> CACHE_NAME</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> 'my-app-cache-v1'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> STATIC_CACHE_URLS</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#9ECBFF">    '/'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    '/index.html'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    '/styles.css'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    '/script.js'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    '/manifest.json'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    '/images/icon-192.png'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#9ECBFF">    '/images/icon-512.png'</span></span>
+<span class="line"><span style="color:#E1E4E8">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Install event - Cache static resources</span></span>
+<span class="line"><span style="color:#E1E4E8">self.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'install'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔧 Service Worker installing...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    event.</span><span style="color:#B392F0">waitUntil</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        caches.</span><span style="color:#B392F0">open</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">CACHE_NAME</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">cache</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📦 Caching static resources...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">addAll</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">STATIC_CACHE_URLS</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            })</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Static resources cached successfully'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">                // Skip waiting để activate ngay</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8"> self.</span><span style="color:#B392F0">skipWaiting</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            })</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">catch</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">error</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error caching static resources:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">            })</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Activate event - Clean up old caches</span></span>
+<span class="line"><span style="color:#E1E4E8">self.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'activate'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🚀 Service Worker activating...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    event.</span><span style="color:#B392F0">waitUntil</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        caches.</span><span style="color:#B392F0">keys</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">cacheNames</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#79B8FF"> Promise</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">all</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                    cacheNames.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">cacheName</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                        if</span><span style="color:#E1E4E8"> (cacheName </span><span style="color:#F97583">!==</span><span style="color:#79B8FF"> CACHE_NAME</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🗑️ Deleting old cache:'</span><span style="color:#E1E4E8">, cacheName);</span></span>
+<span class="line"><span style="color:#F97583">                            return</span><span style="color:#E1E4E8"> caches.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(cacheName);</span></span>
+<span class="line"><span style="color:#E1E4E8">                        }</span></span>
+<span class="line"><span style="color:#E1E4E8">                    })</span></span>
+<span class="line"><span style="color:#E1E4E8">                );</span></span>
+<span class="line"><span style="color:#E1E4E8">            })</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Service Worker activated'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">                // Claim all clients</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#E1E4E8"> self.clients.</span><span style="color:#B392F0">claim</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            })</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Fetch event - Intercept requests</span></span>
+<span class="line"><span style="color:#E1E4E8">self.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'fetch'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🌐 Fetch event:'</span><span style="color:#E1E4E8">, event.request.url);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Skip non-GET requests</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (event.request.method </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> 'GET'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Skip chrome-extension and other non-http requests</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">event.request.url.</span><span style="color:#B392F0">startsWith</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'http'</span><span style="color:#E1E4E8">)) {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    event.</span><span style="color:#B392F0">respondWith</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        caches.</span><span style="color:#B392F0">match</span><span style="color:#E1E4E8">(event.request)</span></span>
+<span class="line"><span style="color:#E1E4E8">            .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">cachedResponse</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                // Return cached version if available</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (cachedResponse) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📦 Serving from cache:'</span><span style="color:#E1E4E8">, event.request.url);</span></span>
+<span class="line"><span style="color:#F97583">                    return</span><span style="color:#E1E4E8"> cachedResponse;</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"><span style="color:#6A737D">                // Otherwise fetch from network</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🌐 Fetching from network:'</span><span style="color:#E1E4E8">, event.request.url);</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(event.request)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">response</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                        // Check if response is valid</span></span>
+<span class="line"><span style="color:#F97583">                        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">response </span><span style="color:#F97583">||</span><span style="color:#E1E4E8"> response.status </span><span style="color:#F97583">!==</span><span style="color:#79B8FF"> 200</span><span style="color:#F97583"> ||</span><span style="color:#E1E4E8"> response.type </span><span style="color:#F97583">!==</span><span style="color:#9ECBFF"> 'basic'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">                            return</span><span style="color:#E1E4E8"> response;</span></span>
+<span class="line"><span style="color:#E1E4E8">                        }</span></span>
+<span class="line"><span style="color:#E1E4E8">                        </span></span>
+<span class="line"><span style="color:#6A737D">                        // Clone response for caching</span></span>
+<span class="line"><span style="color:#F97583">                        const</span><span style="color:#79B8FF"> responseToCache</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">clone</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                        </span></span>
+<span class="line"><span style="color:#6A737D">                        // Cache the response</span></span>
+<span class="line"><span style="color:#E1E4E8">                        caches.</span><span style="color:#B392F0">open</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">CACHE_NAME</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">                            .</span><span style="color:#B392F0">then</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">cache</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                                cache.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(event.request, responseToCache);</span></span>
+<span class="line"><span style="color:#E1E4E8">                                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'💾 Cached response:'</span><span style="color:#E1E4E8">, event.request.url);</span></span>
+<span class="line"><span style="color:#E1E4E8">                            });</span></span>
+<span class="line"><span style="color:#E1E4E8">                        </span></span>
+<span class="line"><span style="color:#F97583">                        return</span><span style="color:#E1E4E8"> response;</span></span>
+<span class="line"><span style="color:#E1E4E8">                    })</span></span>
+<span class="line"><span style="color:#E1E4E8">                    .</span><span style="color:#B392F0">catch</span><span style="color:#E1E4E8">((</span><span style="color:#FFAB70">error</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                        console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Fetch error:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">                        </span></span>
+<span class="line"><span style="color:#6A737D">                        // Return offline page for navigation requests</span></span>
+<span class="line"><span style="color:#F97583">                        if</span><span style="color:#E1E4E8"> (event.request.destination </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'document'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">                            return</span><span style="color:#E1E4E8"> caches.</span><span style="color:#B392F0">match</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/offline.html'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">                        }</span></span>
+<span class="line"><span style="color:#E1E4E8">                        </span></span>
+<span class="line"><span style="color:#6A737D">                        // Return cached version if available</span></span>
+<span class="line"><span style="color:#F97583">                        return</span><span style="color:#E1E4E8"> caches.</span><span style="color:#B392F0">match</span><span style="color:#E1E4E8">(event.request);</span></span>
+<span class="line"><span style="color:#E1E4E8">                    });</span></span>
+<span class="line"><span style="color:#E1E4E8">            })</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Background sync event</span></span>
+<span class="line"><span style="color:#E1E4E8">self.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'sync'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔄 Background sync event:'</span><span style="color:#E1E4E8">, event.tag);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (event.tag </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'background-sync'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        event.</span><span style="color:#B392F0">waitUntil</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">doBackgroundSync</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Push event - Handle push notifications</span></span>
+<span class="line"><span style="color:#E1E4E8">self.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'push'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📱 Push event received'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> options</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        body: event.data </span><span style="color:#F97583">?</span><span style="color:#E1E4E8"> event.data.</span><span style="color:#B392F0">text</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> 'New notification'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        icon: </span><span style="color:#9ECBFF">'/images/icon-192.png'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        badge: </span><span style="color:#9ECBFF">'/images/badge-72.png'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        vibrate: [</span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">],</span></span>
+<span class="line"><span style="color:#E1E4E8">        data: {</span></span>
+<span class="line"><span style="color:#E1E4E8">            dateOfArrival: Date.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">(),</span></span>
+<span class="line"><span style="color:#E1E4E8">            primaryKey: </span><span style="color:#79B8FF">1</span></span>
+<span class="line"><span style="color:#E1E4E8">        },</span></span>
+<span class="line"><span style="color:#E1E4E8">        actions: [</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#E1E4E8">                action: </span><span style="color:#9ECBFF">'explore'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                title: </span><span style="color:#9ECBFF">'Xem chi tiết'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                icon: </span><span style="color:#9ECBFF">'/images/checkmark.png'</span></span>
+<span class="line"><span style="color:#E1E4E8">            },</span></span>
+<span class="line"><span style="color:#E1E4E8">            {</span></span>
+<span class="line"><span style="color:#E1E4E8">                action: </span><span style="color:#9ECBFF">'close'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                title: </span><span style="color:#9ECBFF">'Đóng'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                icon: </span><span style="color:#9ECBFF">'/images/xmark.png'</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        ]</span></span>
+<span class="line"><span style="color:#E1E4E8">    };</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    event.</span><span style="color:#B392F0">waitUntil</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">        self.registration.</span><span style="color:#B392F0">showNotification</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Service Worker Demo'</span><span style="color:#E1E4E8">, options)</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Notification click event</span></span>
+<span class="line"><span style="color:#E1E4E8">self.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'notificationclick'</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">event</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔔 Notification clicked:'</span><span style="color:#E1E4E8">, event.action);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    event.notification.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (event.action </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'explore'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Open app</span></span>
+<span class="line"><span style="color:#E1E4E8">        event.</span><span style="color:#B392F0">waitUntil</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            clients.</span><span style="color:#B392F0">openWindow</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        );</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (event.action </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'close'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">        // Just close notification</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Notification closed'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">        // Default action - open app</span></span>
+<span class="line"><span style="color:#E1E4E8">        event.</span><span style="color:#B392F0">waitUntil</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">            clients.</span><span style="color:#B392F0">openWindow</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        );</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Background sync function</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> doBackgroundSync</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔄 Performing background sync...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Get pending data from IndexedDB</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> pendingData</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> getPendingData</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (pendingData.</span><span style="color:#79B8FF">length</span><span style="color:#F97583"> ></span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">            // Send pending data to server</span></span>
+<span class="line"><span style="color:#F97583">            for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">const</span><span style="color:#79B8FF"> data</span><span style="color:#F97583"> of</span><span style="color:#E1E4E8"> pendingData) {</span></span>
+<span class="line"><span style="color:#F97583">                try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                    await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/api/sync'</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">                        method: </span><span style="color:#9ECBFF">'POST'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                        headers: {</span></span>
+<span class="line"><span style="color:#9ECBFF">                            'Content-Type'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">'application/json'</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                        },</span></span>
+<span class="line"><span style="color:#E1E4E8">                        body: </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">(data)</span></span>
+<span class="line"><span style="color:#E1E4E8">                    });</span></span>
+<span class="line"><span style="color:#E1E4E8">                    </span></span>
+<span class="line"><span style="color:#6A737D">                    // Remove from pending data</span></span>
+<span class="line"><span style="color:#F97583">                    await</span><span style="color:#B392F0"> removePendingData</span><span style="color:#E1E4E8">(data.id);</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Synced data:'</span><span style="color:#E1E4E8">, data.id);</span></span>
+<span class="line"><span style="color:#E1E4E8">                    </span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Sync error:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Background sync error:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Helper functions for IndexedDB</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> getPendingData</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // Implementation depends on your IndexedDB setup</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> [];</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> removePendingData</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">id</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">    // Implementation depends on your IndexedDB setup</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🗑️ Removing pending data:'</span><span style="color:#E1E4E8">, id);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>app.js - Register Service Worker:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// app.js - Register Service Worker</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> ServiceWorkerManager</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.registration </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.isSupported </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'serviceWorker'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> navigator;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Register Service Worker</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> register</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.isSupported) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Service Worker không được hỗ trợ'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔧 Đang đăng ký Service Worker...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.registration </span><span style="color:#F97583">=</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> navigator.serviceWorker.</span><span style="color:#B392F0">register</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'/sw.js'</span><span style="color:#E1E4E8">, {</span></span>
+<span class="line"><span style="color:#E1E4E8">                scope: </span><span style="color:#9ECBFF">'/'</span></span>
+<span class="line"><span style="color:#E1E4E8">            });</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Service Worker đã đăng ký:'</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.registration.scope);</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#6A737D">            // Listen for updates</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.registration.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'updatefound'</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔄 Service Worker update found'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#79B8FF">                this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">handleUpdate</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            });</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Lỗi đăng ký Service Worker:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Handle Service Worker updates</span></span>
+<span class="line"><span style="color:#B392F0">    handleUpdate</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> newWorker</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.registration.installing;</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#E1E4E8">        newWorker.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'statechange'</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (newWorker.state </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'installed'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (navigator.serviceWorker.controller) {</span></span>
+<span class="line"><span style="color:#6A737D">                    // New content available</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🆕 New content available'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#79B8FF">                    this</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">showUpdateNotification</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">                    // Content cached for first time</span></span>
+<span class="line"><span style="color:#E1E4E8">                    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'📦 Content cached for offline use'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">                }</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Show update notification</span></span>
+<span class="line"><span style="color:#B392F0">    showUpdateNotification</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#B392F0">confirm</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Có phiên bản mới! Bạn có muốn cập nhật không?'</span><span style="color:#E1E4E8">)) {</span></span>
+<span class="line"><span style="color:#6A737D">            // Reload page to use new Service Worker</span></span>
+<span class="line"><span style="color:#E1E4E8">            window.location.</span><span style="color:#B392F0">reload</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Unregister Service Worker</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> unregister</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.registration) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                await</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.registration.</span><span style="color:#B392F0">unregister</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Service Worker đã hủy đăng ký'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Lỗi hủy đăng ký Service Worker:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Check for updates</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> checkForUpdates</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.registration) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                await</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.registration.</span><span style="color:#B392F0">update</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔄 Đã kiểm tra cập nhật'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Lỗi kiểm tra cập nhật:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Get Service Worker status</span></span>
+<span class="line"><span style="color:#B392F0">    getStatus</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.isSupported) {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#9ECBFF"> 'not-supported'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.registration) {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#9ECBFF"> 'not-registered'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (navigator.serviceWorker.controller) {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#9ECBFF"> 'active'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#9ECBFF"> 'installing'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Cache Manager</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> CacheManager</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.cacheName </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'my-app-cache-v1'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Add to cache</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> addToCache</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">url</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> cache</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> caches.</span><span style="color:#B392F0">open</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.cacheName);</span></span>
+<span class="line"><span style="color:#F97583">            await</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(url);</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Added to cache:'</span><span style="color:#E1E4E8">, url);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error adding to cache:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Get from cache</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> getFromCache</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">url</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> cache</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> caches.</span><span style="color:#B392F0">open</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.cacheName);</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">match</span><span style="color:#E1E4E8">(url);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> response;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error getting from cache:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Delete from cache</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> deleteFromCache</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">url</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> cache</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> caches.</span><span style="color:#B392F0">open</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.cacheName);</span></span>
+<span class="line"><span style="color:#F97583">            await</span><span style="color:#E1E4E8"> cache.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(url);</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Deleted from cache:'</span><span style="color:#E1E4E8">, url);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error deleting from cache:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Clear all caches</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> clearAllCaches</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> cacheNames</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> caches.</span><span style="color:#B392F0">keys</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">            await</span><span style="color:#79B8FF"> Promise</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">all</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">                cacheNames.</span><span style="color:#B392F0">map</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">cacheName</span><span style="color:#F97583"> =></span><span style="color:#E1E4E8"> caches.</span><span style="color:#B392F0">delete</span><span style="color:#E1E4E8">(cacheName))</span></span>
+<span class="line"><span style="color:#E1E4E8">            );</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ All caches cleared'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error clearing caches:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Background Sync Manager</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> BackgroundSyncManager</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.isSupported </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'serviceWorker'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> navigator </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#9ECBFF"> 'sync'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> window.ServiceWorkerRegistration.</span><span style="color:#79B8FF">prototype</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Register background sync</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> registerSync</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">tag</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.isSupported) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Background Sync không được hỗ trợ'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> registration</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> navigator.serviceWorker.ready;</span></span>
+<span class="line"><span style="color:#F97583">            await</span><span style="color:#E1E4E8"> registration.sync.</span><span style="color:#B392F0">register</span><span style="color:#E1E4E8">(tag);</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Background sync registered:'</span><span style="color:#E1E4E8">, tag);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error registering background sync:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Push Notification Manager</span></span>
+<span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> PushNotificationManager</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    constructor</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.isSupported </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> 'serviceWorker'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> navigator </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#9ECBFF"> 'PushManager'</span><span style="color:#F97583"> in</span><span style="color:#E1E4E8"> window;</span></span>
+<span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.subscription </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Request permission</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> requestPermission</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.isSupported) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Push notifications không được hỗ trợ'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> permission</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> Notification.</span><span style="color:#B392F0">requestPermission</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🔔 Notification permission:'</span><span style="color:#E1E4E8">, permission);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#E1E4E8"> permission </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'granted'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error requesting permission:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Subscribe to push notifications</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> subscribe</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.isSupported) {</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">            const</span><span style="color:#79B8FF"> registration</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> navigator.serviceWorker.ready;</span></span>
+<span class="line"><span style="color:#79B8FF">            this</span><span style="color:#E1E4E8">.subscription </span><span style="color:#F97583">=</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> registration.pushManager.</span><span style="color:#B392F0">subscribe</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">                userVisibleOnly: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">                applicationServerKey: </span><span style="color:#9ECBFF">'YOUR_VAPID_PUBLIC_KEY'</span></span>
+<span class="line"><span style="color:#E1E4E8">            });</span></span>
+<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Push subscription created'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.subscription;</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error subscribing to push:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">            return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Unsubscribe from push notifications</span></span>
+<span class="line"><span style="color:#F97583">    async</span><span style="color:#B392F0"> unsubscribe</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.subscription) {</span></span>
+<span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">                await</span><span style="color:#79B8FF"> this</span><span style="color:#E1E4E8">.subscription.</span><span style="color:#B392F0">unsubscribe</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#79B8FF">                this</span><span style="color:#E1E4E8">.subscription </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Push subscription removed'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                console.</span><span style="color:#B392F0">error</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'❌ Error unsubscribing from push:'</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#F97583">                return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Initialize app</span></span>
+<span class="line"><span style="color:#F97583">async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> initializeApp</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🚀 Initializing app...'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Initialize managers</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> swManager</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ServiceWorkerManager</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> cacheManager</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> CacheManager</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> syncManager</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BackgroundSyncManager</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> pushManager</span><span style="color:#F97583"> =</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> PushNotificationManager</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Register Service Worker</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> swRegistered</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> swManager.</span><span style="color:#B392F0">register</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (swRegistered) {</span></span>
+<span class="line"><span style="color:#E1E4E8">        console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'✅ Service Worker registered successfully'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Request push notification permission</span></span>
+<span class="line"><span style="color:#F97583">        const</span><span style="color:#79B8FF"> permissionGranted</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> pushManager.</span><span style="color:#B392F0">requestPermission</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (permissionGranted) {</span></span>
+<span class="line"><span style="color:#F97583">            await</span><span style="color:#E1E4E8"> pushManager.</span><span style="color:#B392F0">subscribe</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Register background sync</span></span>
+<span class="line"><span style="color:#F97583">        await</span><span style="color:#E1E4E8"> syncManager.</span><span style="color:#B392F0">registerSync</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'background-sync'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#6A737D">    // Make managers available globally</span></span>
+<span class="line"><span style="color:#E1E4E8">    window.swManager </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> swManager;</span></span>
+<span class="line"><span style="color:#E1E4E8">    window.cacheManager </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> cacheManager;</span></span>
+<span class="line"><span style="color:#E1E4E8">    window.syncManager </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> syncManager;</span></span>
+<span class="line"><span style="color:#E1E4E8">    window.pushManager </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> pushManager;</span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🎉 App initialized successfully'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Start app when DOM is loaded</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (document.readyState </span><span style="color:#F97583">===</span><span style="color:#9ECBFF"> 'loading'</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    document.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'DOMContentLoaded'</span><span style="color:#E1E4E8">, initializeApp);</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    initializeApp</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p><strong>offline.html - Offline page:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="html"><code><span class="line"><span style="color:#E1E4E8">&#x3C;!</span><span style="color:#85E89D">DOCTYPE</span><span style="color:#B392F0"> html</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">html</span><span style="color:#B392F0"> lang</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"vi"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> charset</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"UTF-8"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">meta</span><span style="color:#B392F0"> name</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"viewport"</span><span style="color:#B392F0"> content</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"width=device-width, initial-scale=1.0"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">>Offline - Service Worker Demo&#x3C;/</span><span style="color:#85E89D">title</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">style</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#85E89D">        body</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            font-family</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">Arial</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">sans-serif</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            text-align</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">center</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">50</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            background-color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#f5f5f5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        .offline-container</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            max-width</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">500</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#79B8FF"> auto</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            background</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">white</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">40</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border-radius</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            box-shadow</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#79B8FF"> 2</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 10</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> rgba</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">0.1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        .offline-icon</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">64</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-bottom</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        .offline-title</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">24</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-bottom</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">20</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#333</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        .offline-message</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">16</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#666</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-bottom</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">30</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            line-height</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1.5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        .retry-button</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background-color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#2196f3</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">white</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">none</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">12</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 24</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border-radius</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">16</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            cursor</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">pointer</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            margin-right</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">10</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        .retry-button:hover</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background-color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#1976d2</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        .home-button</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background-color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#4caf50</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">white</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">none</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            padding</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">12</span><span style="color:#F97583">px</span><span style="color:#79B8FF"> 24</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            border-radius</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">5</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            font-size</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">16</span><span style="color:#F97583">px</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#79B8FF">            cursor</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">pointer</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#B392F0">        .home-button:hover</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            background-color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">#45a049</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">style</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">head</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"offline-container"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"offline-icon"</span><span style="color:#E1E4E8">>📡&#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">h1</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"offline-title"</span><span style="color:#E1E4E8">>Bạn đang offline&#x3C;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"offline-message"</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            Không có kết nối internet. Một số tính năng có thể không khả dụng.</span></span>
+<span class="line"><span style="color:#E1E4E8">            Khi có kết nối trở lại, ứng dụng sẽ tự động đồng bộ dữ liệu.</span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"retry-button"</span><span style="color:#B392F0"> onclick</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"</span><span style="color:#B392F0">retryConnection</span><span style="color:#9ECBFF">()"</span><span style="color:#E1E4E8">>Thử lại&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">button</span><span style="color:#B392F0"> class</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"home-button"</span><span style="color:#B392F0"> onclick</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"</span><span style="color:#B392F0">goHome</span><span style="color:#9ECBFF">()"</span><span style="color:#E1E4E8">>Về trang chủ&#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#F97583">        function</span><span style="color:#B392F0"> retryConnection</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> (navigator.onLine) {</span></span>
+<span class="line"><span style="color:#E1E4E8">                window.location.</span><span style="color:#B392F0">reload</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">            } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">                alert</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'Vẫn chưa có kết nối internet'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            }</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#F97583">        function</span><span style="color:#B392F0"> goHome</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#E1E4E8">            window.location.href </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> '/'</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"><span style="color:#6A737D">        // Listen for online event</span></span>
+<span class="line"><span style="color:#E1E4E8">        window.</span><span style="color:#B392F0">addEventListener</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'online'</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">            console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'🌐 Connection restored'</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">            window.location.</span><span style="color:#B392F0">reload</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">        });</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">script</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">body</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">html</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h1 id="️-phân-tích--giải-thích">⚙️ Phân tích &#x26; Giải thích</h1>
+<p><strong>Service Worker Lifecycle:</strong></p>
+<ol>
+<li><strong>Install</strong>: Cache static resources</li>
+<li><strong>Activate</strong>: Clean up old caches, claim clients</li>
+<li><strong>Fetch</strong>: Intercept requests, serve from cache or network</li>
+<li><strong>Sync</strong>: Background synchronization</li>
+<li><strong>Push</strong>: Handle push notifications</li>
+</ol>
+<p><strong>Cache Strategies:</strong></p>
+<ul>
+<li><strong>Cache First</strong>: Serve from cache, fallback to network</li>
+<li><strong>Network First</strong>: Try network first, fallback to cache</li>
+<li><strong>Stale While Revalidate</strong>: Serve cache immediately, update in background</li>
+<li><strong>Network Only</strong>: Always fetch from network</li>
+<li><strong>Cache Only</strong>: Always serve from cache</li>
+</ul>
+<p><strong>Service Worker Events:</strong></p>
+<ul>
+<li><strong>install</strong>: Khi Service Worker được install</li>
+<li><strong>activate</strong>: Khi Service Worker được activate</li>
+<li><strong>fetch</strong>: Khi có request được gửi</li>
+<li><strong>sync</strong>: Khi background sync được trigger</li>
+<li><strong>push</strong>: Khi có push notification</li>
+<li><strong>notificationclick</strong>: Khi user click notification</li>
+</ul>
+<p><strong>Background Sync:</strong></p>
+<ul>
+<li>Cho phép sync data khi có kết nối trở lại</li>
+<li>Sử dụng IndexedDB để lưu pending data</li>
+<li>Tự động trigger khi có kết nối</li>
+</ul>
+<p><strong>Push Notifications:</strong></p>
+<ul>
+<li>Cần VAPID keys để authenticate</li>
+<li>Cần user permission</li>
+<li>Có thể customize notification appearance</li>
+</ul>
+<h1 id="-ứng-dụng-thực-tế">🧭 Ứng dụng thực tế</h1>
+<p><strong>Các ứng dụng sử dụng Service Worker:</strong></p>
+<ul>
+<li><strong>Progressive Web Apps</strong>: Offline-first applications</li>
+<li><strong>E-commerce</strong>: Offline shopping cart</li>
+<li><strong>News Apps</strong>: Offline article reading</li>
+<li><strong>Social Media</strong>: Offline post creation</li>
+<li><strong>Productivity Apps</strong>: Offline task management</li>
+</ul>
+<p><strong>Service Worker Benefits:</strong></p>
+<ul>
+<li><strong>Offline Support</strong>: App hoạt động khi offline</li>
+<li><strong>Performance</strong>: Faster loading với caching</li>
+<li><strong>Push Notifications</strong>: Engage users</li>
+<li><strong>Background Sync</strong>: Sync data khi có kết nối</li>
+<li><strong>App-like Experience</strong>: Native app feel</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Cache critical resources</li>
+<li>Implement proper cache strategies</li>
+<li>Handle offline scenarios gracefully</li>
+<li>Use background sync cho data</li>
+<li>Implement push notifications</li>
+</ul>
+<h1 id="-giải-thích-theo-feynman">🎓 Giải thích theo Feynman</h1>
+<p>Hãy tưởng tượng Service Worker như một người trợ lý cá nhân:</p>
+<p><strong>Service Worker</strong> như người trợ lý cá nhân:</p>
+<ul>
+<li>Làm việc ngầm trong background</li>
+<li>Có thể lưu trữ thông tin quan trọng</li>
+<li>Có thể thông báo khi có tin mới</li>
+<li>Như trợ lý cá nhân luôn sẵn sàng</li>
+</ul>
+<p><strong>Caching</strong> như tủ lưu trữ:</p>
+<ul>
+<li>Lưu trữ những thứ quan trọng</li>
+<li>Có thể lấy ra khi cần</li>
+<li>Như tủ lưu trữ trong nhà</li>
+</ul>
+<p><strong>Offline Support</strong> như làm việc khi mất điện:</p>
+<ul>
+<li>Vẫn có thể làm việc với những gì đã lưu</li>
+<li>Khi có điện trở lại, đồng bộ dữ liệu</li>
+<li>Như làm việc với máy tính xách tay</li>
+</ul>
+<p><strong>Background Sync</strong> như gửi thư khi có bưu điện:</p>
+<ul>
+<li>Viết thư khi không có bưu điện</li>
+<li>Gửi thư khi bưu điện hoạt động trở lại</li>
+<li>Như hệ thống gửi thư tự động</li>
+</ul>
+<p><strong>Push Notifications</strong> như chuông cửa:</p>
+<ul>
+<li>Báo khi có khách đến</li>
+<li>Có thể tùy chỉnh âm thanh</li>
+<li>Như chuông cửa thông minh</li>
+</ul>
+<p><strong>Cache Strategies</strong> như cách quản lý tủ lưu trữ:</p>
+<ul>
+<li><strong>Cache First</strong>: Lấy từ tủ trước, mua mới sau</li>
+<li><strong>Network First</strong>: Mua mới trước, lấy từ tủ sau</li>
+<li><strong>Stale While Revalidate</strong>: Dùng cũ ngay, cập nhật sau</li>
+<li><strong>Network Only</strong>: Luôn mua mới</li>
+<li><strong>Cache Only</strong>: Luôn dùng từ tủ</li>
+</ul>
+<h1 id="-tổng-kết-ngắn">🧩 Tổng kết ngắn</h1>
+<ul>
+<li>✅ Service Worker cho phép cache resources và intercept requests</li>
+<li>✅ Có thể tạo ứng dụng offline-first với background sync</li>
+<li>✅ Hỗ trợ push notifications và background processing</li>
+<li>✅ Là nền tảng của Progressive Web Apps (PWA)</li>
+<li>✅ Cần implement proper cache strategies và error handling</li>
+</ul>
+<p><strong>Xem bài tiếp theo →</strong> <a href="./06-pwa-manifest.md">PWA Manifest</a></p> </article> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <a href="./04-sse-vs-websocket.md" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-7jjqptxk></path> </svg> <span data-astro-cid-7jjqptxk>Bài trước</span> </a> <a href="./06-pwa-manifest.md" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>Bài tiếp theo</span> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-7jjqptxk></path> </svg> </a> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
+"Work hard in silence — let success make noise."
+</blockquote> <!-- Social Links --> <div class="flex justify-center space-x-6 mb-8"> <a href="https://github.com/KhoiNguyendes23" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> <a href="https://www.linkedin.com/in/nguyen-dang-khoi-6247a337b/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="mailto:khoind82@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> <!-- Copyright --> <div class="text-sm text-gray-500 dark:text-gray-400">
+© 2024 Kant Nguyễn. Tất cả quyền được bảo lưu.
+</div> </div> </div> </footer>  </div> <script type="module">typeof window<"u"&&(localStorage.getItem("darkMode")==="true"||!localStorage.getItem("darkMode")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.documentElement.classList.add("dark");</script> </body> </html> 
