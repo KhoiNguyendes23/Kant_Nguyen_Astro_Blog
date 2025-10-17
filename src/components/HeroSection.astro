@@ -11,7 +11,7 @@
           <div class="w-80 h-80 rounded-full bg-gradient-to-br from-primary to-purple-600 p-1 shadow-2xl">
             <div class="w-full h-full rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden">
               <img 
-                src="/avatar-new.png" 
+                src="/Kant_Nguyen_Astro_Blog/avatar-new.png" 
                 alt="Kant Nguyễn" 
                 class="w-full h-full object-cover rounded-full"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -48,15 +48,15 @@
 
         <!-- Action Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-          <a href="/about" 
+          <a href="/Kant_Nguyen_Astro_Blog/about" 
              class="px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
             Giới thiệu
           </a>
-          <a href="/projects" 
+          <a href="/Kant_Nguyen_Astro_Blog/projects" 
              class="px-8 py-3 bg-accent text-gray-900 rounded-lg font-semibold hover:bg-accent/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
             Dự án
           </a>
-          <a href="/blog" 
+          <a href="/Kant_Nguyen_Astro_Blog/blog" 
              class="px-8 py-3 border-2 border-primary text-primary dark:text-accent rounded-lg font-semibold hover:bg-primary hover:text-white dark:hover:bg-accent dark:hover:text-gray-900 transform hover:scale-105 transition-all duration-200">
             Blog
           </a>
@@ -98,9 +98,9 @@
         const href = link.getAttribute('href');
         if (href && href !== '#' && !href.includes('mailto:') && !href.includes('http')) {
           // For same-page navigation, try to find a section with matching ID
-          if (href.startsWith('/#') || href === '/') {
+          if (href.startsWith('/#') || href === '/Kant_Nguyen_Astro_Blog/') {
             e.preventDefault();
-            const targetId = href.replace('/', '').replace('#', '');
+            const targetId = href.replace('/Kant_Nguyen_Astro_Blog/', '').replace('#', '');
             const target = targetId ? document.getElementById(targetId) : document.body;
             if (target) {
               target.scrollIntoView({ behavior: 'smooth' });

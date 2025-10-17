@@ -1,29 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
-import BlogCard from '../components/BlogCard.astro';
-import SearchBar from '../components/SearchBar.astro';
 import Footer from '../components/Footer.astro';
-
-// Blog posts data
-const blogPosts = [
-  {
-    title: "Lập trình mạng với Java",
-    description: "Hướng dẫn chi tiết về lập trình mạng sử dụng Java, từ cơ bản đến nâng cao. Tìm hiểu về Socket programming, HTTP clients, và các kỹ thuật tối ưu hóa hiệu suất mạng.",
-    slug: "lap-trinh-mang-voi-java",
-    date: "2024-01-15",
-    tags: ["Java", "Networking", "Backend", "Programming"],
-    readTime: "8 min read"
-  },
-  {
-    title: "Lập trình mạng với JavaScript",
-    description: "Khám phá các kỹ thuật lập trình mạng hiện đại với JavaScript và Node.js. Từ WebSocket đến HTTP/2, từ REST API đến GraphQL - tất cả những gì bạn cần biết.",
-    slug: "lap-trinh-mang-voi-javascript",
-    date: "2024-01-10",
-    tags: ["JavaScript", "Node.js", "Networking", "Web Development"],
-    readTime: "6 min read"
-  }
-];
 ---
 
 <BaseLayout title="Blog - Kant Nguyễn">
@@ -34,69 +12,109 @@ const blogPosts = [
     <section class="py-20 bg-gradient-to-br from-primary/5 to-purple-600/5">
       <div class="max-w-4xl mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-          Blog
+          Blog của tôi
         </h1>
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Chia sẻ kiến thức và kinh nghiệm về lập trình, công nghệ và phát triển phần mềm
+          Chia sẻ kiến thức về Java, Backend Development và Networking
         </p>
-      </div>
-    </section>
-
-    <!-- Search Section -->
-    <section class="py-8">
-      <div class="max-w-4xl mx-auto px-4">
-        <SearchBar />
       </div>
     </section>
 
     <!-- Blog Posts -->
     <section class="py-16">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blogPostsContainer">
-          {blogPosts.map(post => (
-            <BlogCard 
-              title={post.title}
-              description={post.description}
-              date={post.date}
-              slug={post.slug}
-              tags={post.tags}
-              readTime={post.readTime}
-            />
+      <div class="max-w-4xl mx-auto px-4">
+        <div class="space-y-8">
+          {[
+            {
+              title: "Spring Boot vs Spring Framework: Sự khác biệt và khi nào nên sử dụng",
+              excerpt: "Tìm hiểu sự khác biệt giữa Spring Boot và Spring Framework, cũng như các trường hợp sử dụng phù hợp cho từng framework.",
+              date: "15/12/2024",
+              readTime: "8 phút đọc",
+              tags: ["Java", "Spring Boot", "Spring Framework"],
+              featured: true
+            },
+            {
+              title: "Xây dựng RESTful API với Java Spring Boot",
+              excerpt: "Hướng dẫn chi tiết cách xây dựng RESTful API từ cơ bản đến nâng cao với Spring Boot.",
+              date: "10/12/2024",
+              readTime: "12 phút đọc",
+              tags: ["Java", "Spring Boot", "REST API"],
+              featured: false
+            },
+            {
+              title: "Docker cho Java Developer: Container hóa ứng dụng",
+              excerpt: "Tìm hiểu cách sử dụng Docker để container hóa ứng dụng Java và tối ưu hóa quy trình phát triển.",
+              date: "05/12/2024",
+              readTime: "10 phút đọc",
+              tags: ["Docker", "Java", "DevOps"],
+              featured: false
+            },
+            {
+              title: "WebSocket trong Spring Boot: Chat real-time",
+              excerpt: "Hướng dẫn xây dựng ứng dụng chat real-time sử dụng WebSocket và Spring Boot.",
+              date: "01/12/2024",
+              readTime: "15 phút đọc",
+              tags: ["WebSocket", "Spring Boot", "Real-time"],
+              featured: false
+            },
+            {
+              title: "Networking cơ bản cho Developer",
+              excerpt: "Những kiến thức cơ bản về mạng máy tính mà mọi developer nên biết.",
+              date: "25/11/2024",
+              readTime: "6 phút đọc",
+              tags: ["Networking", "TCP/IP", "HTTP"],
+              featured: false
+            },
+            {
+              title: "JWT Authentication với Spring Security",
+              excerpt: "Cách implement JWT authentication trong ứng dụng Spring Boot một cách an toàn và hiệu quả.",
+              date: "20/11/2024",
+              readTime: "14 phút đọc",
+              tags: ["JWT", "Spring Security", "Authentication"],
+              featured: false
+            }
+          ].map(post => (
+            <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow p-6">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex-1">
+                  <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-primary transition-colors cursor-pointer">
+                    {post.title}
+                  </h2>
+                  <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                </div>
+                {post.featured && (
+                  <span class="ml-4 px-3 py-1 bg-accent text-gray-900 text-sm font-semibold rounded-full">
+                    Nổi bật
+                  </span>
+                )}
+              </div>
+              
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                  <span>{post.date}</span>
+                  <span>•</span>
+                  <span>{post.readTime}</span>
+                </div>
+                
+                <div class="flex flex-wrap gap-2">
+                  {post.tags.map(tag => (
+                    <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
           ))}
         </div>
         
-        <!-- No posts message (hidden by default) -->
-        <div id="noPostsMessage" class="text-center py-12 hidden">
-          <div class="text-6xl mb-4">📝</div>
-          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Chưa có bài viết nào</h3>
-          <p class="text-gray-600 dark:text-gray-300">Hãy quay lại sau để xem các bài viết mới!</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-900">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-          Theo dõi blog của tôi
-        </h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-          Nhận thông báo về các bài viết mới và cập nhật công nghệ mới nhất
-        </p>
-        <div class="max-w-md mx-auto">
-          <div class="flex gap-2">
-            <input 
-              type="email" 
-              placeholder="Nhập email của bạn..."
-              class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-            />
-            <button class="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-              Đăng ký
-            </button>
-          </div>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-            Không spam, chỉ gửi nội dung hữu ích!
-          </p>
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+          <button class="px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
+            Xem thêm bài viết
+          </button>
         </div>
       </div>
     </section>
@@ -104,55 +122,3 @@ const blogPosts = [
 
   <Footer />
 </BaseLayout>
-
-<script>
-  // Blog search functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const searchInput = document.getElementById('searchInput') as HTMLInputElement;
-    const blogPostsContainer = document.getElementById('blogPostsContainer');
-    const noPostsMessage = document.getElementById('noPostsMessage');
-    
-    if (searchInput && blogPostsContainer && noPostsMessage) {
-      searchInput.addEventListener('input', (e) => {
-        const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
-        
-        if (query === '') {
-          // Show all posts
-          blogPostsContainer.classList.remove('hidden');
-          noPostsMessage.classList.add('hidden');
-          return;
-        }
-        
-        // Filter posts based on search query
-        const posts = blogPostsContainer.querySelectorAll('article');
-        let visibleCount = 0;
-        
-        posts.forEach(post => {
-          const title = post.querySelector('h3')?.textContent?.toLowerCase() || '';
-          const description = post.querySelector('p')?.textContent?.toLowerCase() || '';
-          const tags = Array.from(post.querySelectorAll('.px-2')).map(tag => tag.textContent?.toLowerCase() || '');
-          
-          const matches = title.includes(query) || 
-                        description.includes(query) || 
-                        tags.some(tag => tag.includes(query));
-          
-          if (matches) {
-            post.classList.remove('hidden');
-            visibleCount++;
-          } else {
-            post.classList.add('hidden');
-          }
-        });
-        
-        // Show/hide no posts message
-        if (visibleCount === 0) {
-          blogPostsContainer.classList.add('hidden');
-          noPostsMessage.classList.remove('hidden');
-        } else {
-          blogPostsContainer.classList.remove('hidden');
-          noPostsMessage.classList.add('hidden');
-        }
-      });
-    }
-  });
-</script>
