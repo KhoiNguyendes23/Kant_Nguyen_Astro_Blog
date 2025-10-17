@@ -4,6 +4,11 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
+// Get base URL for proper linking
+const baseUrl = Astro.site || 'https://khoinguyendes23.github.io/Kant_Nguyen_Astro_Blog';
+const currentPath = Astro.url.pathname;
+const basePath = currentPath.replace('/blog', '').replace(/\/$/, '');
+
 // Get all posts from collections
 const allPosts = await Promise.all([
   getCollection('posts'),
@@ -132,7 +137,7 @@ function calculateReadTime(content: string) {
                 <div class="flex items-start justify-between mb-4">
                   <div class="flex-1">
                     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-primary transition-colors cursor-pointer">
-                      <a href={`/Kant_Nguyen_Astro_Blog/blog/${post.slug}`}>{post.data.title}</a>
+                      <a href={`${basePath}/blog/${post.slug}`}>{post.data.title}</a>
                     </h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                       {post.data.description}
@@ -180,7 +185,7 @@ function calculateReadTime(content: string) {
                 <div class="flex items-start justify-between mb-4">
                   <div class="flex-1">
                     <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-primary transition-colors cursor-pointer">
-                      <a href={`/Kant_Nguyen_Astro_Blog/blog/${post.slug}`}>{post.data.title}</a>
+                      <a href={`${basePath}/blog/${post.slug}`}>{post.data.title}</a>
                     </h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                       {post.data.description}
@@ -229,7 +234,7 @@ function calculateReadTime(content: string) {
                   <div class="flex items-start justify-between mb-4">
                     <div class="flex-1">
                       <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-primary transition-colors cursor-pointer">
-                        <a href={`/Kant_Nguyen_Astro_Blog/blog/${post.slug}`}>{post.data.title}</a>
+                        <a href={`${basePath}/blog/${post.slug}`}>{post.data.title}</a>
                       </h2>
                       <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                         {post.data.description}
