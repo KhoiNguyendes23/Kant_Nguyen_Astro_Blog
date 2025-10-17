@@ -1,12 +1,30 @@
 ---
 title: "WebSocket Giới thiệu - Kết nối realtime"
 description: "Học cách tạo WebSocket server với Node.js và client với JavaScript, xây dựng ứng dụng chat realtime"
-date: 2025-10-27
+date: 2025-09-22
 tags: ["JavaScript", "WebSocket", "Realtime", "Chat", "Node.js"]
 series: "Lập trình mạng với JavaScript"
 prev: "./02-fetch-abortcontroller.md"
 next: "./04-sse-vs-websocket.md"
 ---
+
+## 📚 Series Overview
+
+<div class="series-table">
+
+| # | Bài viết | Liên kết |
+|:-:|:---------------------------|:------------------------------|
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
+| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
+| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
+| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+
+</div>
 
 # 🧠 Giới thiệu
 

@@ -21,8 +21,8 @@ const javaNetworkSeries = defineCollection({
     date: z.date(),
     tags: z.array(z.string()),
     series: z.string(),
-    prev: z.string().optional(),
-    next: z.string().optional(),
+    prev: z.string().nullable().optional(),
+    next: z.string().nullable().optional(),
   }),
 });
 
@@ -34,8 +34,8 @@ const javascriptNetworkSeries = defineCollection({
     date: z.date(),
     tags: z.array(z.string()),
     series: z.string(),
-    prev: z.string().optional(),
-    next: z.string().optional(),
+    prev: z.string().nullable().optional(),
+    next: z.string().nullable().optional(),
   }),
 });
 

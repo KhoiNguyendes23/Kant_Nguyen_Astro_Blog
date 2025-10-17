@@ -1,12 +1,30 @@
 ---
 title: "PWA Manifest - Biến web app thành native app"
 description: "Học cách tạo PWA Manifest để biến web app thành Progressive Web App với khả năng cài đặt và offline"
-date: 2025-10-27
+date: 2025-09-25
 tags: ["JavaScript", "PWA", "Manifest", "Progressive Web App", "Installation"]
 series: "Lập trình mạng với JavaScript"
 prev: "./05-service-worker.md"
 next: "./07-devtools-network.md"
 ---
+
+## 📚 Series Overview
+
+<div class="series-table">
+
+| # | Bài viết | Liên kết |
+|:-:|:---------------------------|:------------------------------|
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
+| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
+| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
+| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+
+</div>
 
 # 🧠 Giới thiệu
 

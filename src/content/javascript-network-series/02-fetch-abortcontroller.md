@@ -1,12 +1,30 @@
 ---
 title: "Fetch với AbortController - Timeout và hủy request"
 description: "Học cách sử dụng AbortController để hủy requests, implement timeout và xử lý race conditions"
-date: 2025-10-27
+date: 2025-09-21
 tags: ["JavaScript", "AbortController", "Timeout", "Race Conditions", "Error Handling"]
 series: "Lập trình mạng với JavaScript"
 prev: "./01-fetch-basic.md"
 next: "./03-websocket-intro.md"
 ---
+
+## 📚 Series Overview
+
+<div class="series-table">
+
+| # | Bài viết | Liên kết |
+|:-:|:---------------------------|:------------------------------|
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
+| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
+| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
+| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+
+</div>
 
 # 🧠 Giới thiệu
 

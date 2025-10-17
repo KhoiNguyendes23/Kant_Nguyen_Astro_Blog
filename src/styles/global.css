@@ -93,3 +93,99 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* === SERIES OVERVIEW TABLE (HUTECH-Tech Style + Animation) === */
+.series-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.8s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.series-table tr {
+  animation: rowFadeUp 0.5s ease forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.series-table tr:nth-child(n) {
+  animation-delay: calc(0.05s * var(--i));
+}
+
+@keyframes rowFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.series-table th {
+  background: #005bac;
+  color: #fff;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.series-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e0e6ed;
+}
+
+.series-table tr:hover {
+  background: #eaf3fa;
+  transition: background 0.25s ease-in-out;
+}
+
+.series-table td:first-child {
+  text-align: center;
+  font-weight: bold;
+  color: #005bac;
+}
+
+.series-table a {
+  color: #005bac;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.series-table a:hover {
+  color: #ffc700;
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  .series-table table {
+    background: linear-gradient(180deg, #1b1f24 0%, #222a34 100%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .series-table th {
+    background: #0073e6;
+  }
+  .series-table tr:hover {
+    background: rgba(0, 91, 172, 0.15);
+  }
+}

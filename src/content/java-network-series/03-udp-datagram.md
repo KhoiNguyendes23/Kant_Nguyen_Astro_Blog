@@ -1,12 +1,30 @@
 ---
 title: "UDP Datagram - Giao thức không kết nối"
 description: "Khám phá UDP - giao thức nhanh nhưng không đảm bảo độ tin cậy, phù hợp cho streaming và gaming"
-date: 2025-10-27
+date: 2025-09-13
 tags: ["Java", "UDP", "Datagram", "Networking"]
 series: "Lập trình mạng với Java"
 prev: "./02-tcp-multithreaded-server.md"
 next: "./04-httpclient-api.md"
 ---
+
+## 📚 Series Overview
+
+<div class="series-table">
+
+| # | Bài viết | Liên kết |
+|:-:|:---------------------------|:------------------------------|
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
+| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](./01-tcp-socket-basic.md) |
+| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](./02-tcp-multithreaded-server.md) |
+| 03 | Lập trình mạng với UDP | [03-udp-datagram](./03-udp-datagram.md) |
+| 04 | Java 11 HttpClient | [04-httpclient-api](./04-httpclient-api.md) |
+| 05 | HTTPS và TLS | [05-https-tls](./05-https-tls.md) |
+| 06 | WebSocket trong Java | [06-websocket-java](./06-websocket-java.md) |
+| 07 | Ứng dụng chat mini | [07-chat-mini-project](./07-chat-mini-project.md) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+
+</div>
 
 # 🧠 Giới thiệu
 

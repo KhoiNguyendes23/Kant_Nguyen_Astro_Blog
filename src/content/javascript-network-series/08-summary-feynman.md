@@ -1,12 +1,30 @@
 ---
 title: "Tổng kết Feynman - Ôn lại toàn bộ series"
 description: "Tổng kết toàn bộ kiến thức đã học qua phương pháp Feynman, với diagram tổng hợp và liên kết thực tế"
-date: 2025-10-27
+date: 2025-09-27
 tags: ["JavaScript", "Summary", "Feynman", "Networking", "Review"]
 series: "Lập trình mạng với JavaScript"
 prev: "./07-devtools-network.md"
-next: ""
+next: null
 ---
+
+## 📚 Series Overview
+
+<div class="series-table">
+
+| # | Bài viết | Liên kết |
+|:-:|:---------------------------|:------------------------------|
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
+| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
+| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
+| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+
+</div>
 
 # 🧠 Giới thiệu
 
@@ -467,6 +485,24 @@ Hãy tưởng tượng toàn bộ series như việc xây dựng một thành ph
 **🎉 Chúc mừng bạn đã hoàn thành series!**
 
 ---
+
+## 📚 Series Overview
+
+<div class="series-table">
+
+| # | Bài viết | Liên kết |
+|:-:|:---------------------------|:------------------------------|
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
+| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
+| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
+| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+
+</div>
 
 ## 📚 Danh sách bài học hoàn chỉnh
 

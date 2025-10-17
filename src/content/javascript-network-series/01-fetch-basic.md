@@ -1,12 +1,30 @@
 ---
 title: "Fetch API Cơ bản - Giao tiếp với REST APIs"
 description: "Học cách sử dụng Fetch API để gửi HTTP requests, xử lý JSON và làm việc với REST APIs"
-date: 2025-10-27
+date: 2025-09-20
 tags: ["JavaScript", "Fetch API", "HTTP", "REST API", "JSON"]
 series: "Lập trình mạng với JavaScript"
 prev: "./00-intro-environment.md"
 next: "./02-fetch-abortcontroller.md"
 ---
+
+## 📚 Series Overview
+
+<div class="series-table">
+
+| # | Bài viết | Liên kết |
+|:-:|:---------------------------|:------------------------------|
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
+| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
+| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
+| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+
+</div>
 
 # 🧠 Giới thiệu
 
