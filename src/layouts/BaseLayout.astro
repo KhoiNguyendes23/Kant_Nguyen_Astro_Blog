@@ -4,14 +4,13 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   description?: string;
-  lang?: string;
 }
 
-const { title, description = "Kant Nguyễn - Backend Developer | Java Networking Enthusiast", lang = "vi" } = Astro.props;
+const { title, description = "Kant Nguyễn - Backend Developer | Java Networking Enthusiast" } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang={lang} class="scroll-smooth">
+<html lang="vi" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -34,9 +33,6 @@ const { title, description = "Kant Nguyễn - Backend Developer | Java Networkin
           document.documentElement.classList.add('dark');
         }
         
-        // Language persistence
-        const savedLang = localStorage.getItem('language') || 'vi';
-        document.documentElement.lang = savedLang;
       }
     </script>
   </body>

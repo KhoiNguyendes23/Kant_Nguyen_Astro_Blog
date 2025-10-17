@@ -12,20 +12,15 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="/" class="nav-link" data-i18n="home">Trang chủ</a>
-        <a href="/about" class="nav-link" data-i18n="about">Giới thiệu</a>
-        <a href="/projects" class="nav-link" data-i18n="projects">Dự án</a>
-        <a href="/blog" class="nav-link" data-i18n="blog">Blog</a>
-        <a href="/contact" class="nav-link" data-i18n="contact">Liên hệ</a>
+        <a href="/" class="nav-link">Trang chủ</a>
+        <a href="/about" class="nav-link">Giới thiệu</a>
+        <a href="/projects" class="nav-link">Dự án</a>
+        <a href="/blog" class="nav-link">Blog</a>
+        <a href="/contact" class="nav-link">Liên hệ</a>
       </div>
 
       <!-- Controls -->
       <div class="flex items-center space-x-4">
-        <!-- Language Toggle -->
-        <button id="langToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-          <span class="text-sm font-medium">VI</span>
-        </button>
-
         <!-- Dark Mode Toggle -->
         <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
           <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
@@ -48,11 +43,11 @@
     <!-- Mobile Navigation -->
     <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700 py-4">
       <div class="flex flex-col space-y-2">
-        <a href="/" class="nav-link-mobile" data-i18n="home">Trang chủ</a>
-        <a href="/about" class="nav-link-mobile" data-i18n="about">Giới thiệu</a>
-        <a href="/projects" class="nav-link-mobile" data-i18n="projects">Dự án</a>
-        <a href="/blog" class="nav-link-mobile" data-i18n="blog">Blog</a>
-        <a href="/contact" class="nav-link-mobile" data-i18n="contact">Liên hệ</a>
+        <a href="/" class="nav-link-mobile">Trang chủ</a>
+        <a href="/about" class="nav-link-mobile">Giới thiệu</a>
+        <a href="/projects" class="nav-link-mobile">Dự án</a>
+        <a href="/blog" class="nav-link-mobile">Blog</a>
+        <a href="/contact" class="nav-link-mobile">Liên hệ</a>
       </div>
     </div>
   </div>
@@ -86,43 +81,6 @@
     }
   });
 
-  // Language toggle functionality
-  const langToggle = document.getElementById('langToggle');
-  let currentLang = localStorage.getItem('language') || 'vi';
-  
-  const updateLanguage = (lang: string) => {
-    currentLang = lang;
-    localStorage.setItem('language', lang);
-    document.documentElement.lang = lang;
-    
-    // Update language toggle button
-    if (langToggle) {
-      langToggle.textContent = lang.toUpperCase();
-    }
-    
-    // Load and apply translations
-    fetch(`/i18n/${lang}.json?t=${Date.now()}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(translations => {
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-          const key = element.getAttribute('data-i18n');
-          if (key && translations[key]) {
-            element.textContent = translations[key];
-          }
-        });
-      })
-      .catch(error => console.error('Error loading translations:', error));
-  };
-  
-  langToggle?.addEventListener('click', () => {
-    const newLang = currentLang === 'vi' ? 'en' : 'vi';
-    updateLanguage(newLang);
-  });
 
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -132,6 +90,4 @@
     mobileMenu?.classList.toggle('hidden');
   });
 
-  // Initialize language on page load
-  updateLanguage(currentLang);
 </script>
