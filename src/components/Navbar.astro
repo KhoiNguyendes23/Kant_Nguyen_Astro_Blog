@@ -55,39 +55,50 @@
 
 <style>
   .nav-link {
-    @apply text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-accent transition-colors duration-200 font-medium;
+    @apply text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-accent transition-colors duration-200 font-medium cursor-pointer;
   }
   
   .nav-link-mobile {
-    @apply block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 font-medium rounded-lg;
+    @apply block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 font-medium rounded-lg cursor-pointer;
+  }
+  
+  #themeToggle, #mobileMenuBtn {
+    @apply cursor-pointer;
   }
 </style>
 
 <script>
-  // Theme toggle functionality
-  const themeToggle = document.getElementById('themeToggle');
-  const sunIcon = document.getElementById('sunIcon');
-  const moonIcon = document.getElementById('moonIcon');
-  
-  themeToggle?.addEventListener('click', () => {
-    const isDark = document.documentElement.classList.contains('dark');
+  // Wait for DOM to be ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = document.getElementById('sunIcon');
+    const moonIcon = document.getElementById('moonIcon');
     
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('darkMode', 'false');
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('darkMode', 'true');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isDark = document.documentElement.classList.contains('dark');
+        
+        if (isDark) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('darkMode', 'false');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('darkMode', 'true');
+        }
+      });
+    }
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        mobileMenu.classList.toggle('hidden');
+      });
     }
   });
-
-
-  // Mobile menu toggle
-  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  
-  mobileMenuBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-
 </script>
