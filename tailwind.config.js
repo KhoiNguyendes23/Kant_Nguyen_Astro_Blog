@@ -17,7 +17,8 @@ module.exports = {
       animation: {
         "fade-up": "fadeUp 0.6s ease-out",
         "slide-left": "slideLeft 0.6s ease-out",
-        typing: "typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite",
+        typing:
+          "typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite",
       },
       keyframes: {
         fadeUp: {
@@ -41,4 +42,3 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/typography")],
 };
-

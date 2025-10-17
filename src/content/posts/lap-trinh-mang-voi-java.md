@@ -42,7 +42,7 @@ HttpRequest request = HttpRequest.newBuilder()
     .uri(URI.create("https://api.example.com/data"))
     .build();
 
-HttpResponse<String> response = client.send(request, 
+HttpResponse<String> response = client.send(request,
     HttpResponse.BodyHandlers.ofString());
 ```
 
@@ -63,7 +63,7 @@ public class WebSocketServer {
     public void onOpen(Session session) {
         // Xử lý kết nối mới
     }
-    
+
     @OnMessage
     public void onMessage(String message, Session session) {
         // Xử lý tin nhắn
@@ -77,4 +77,4 @@ Lập trình mạng với Java mở ra nhiều cơ hội để xây dựng các 
 
 ---
 
-*Bài viết này là một phần trong series về lập trình mạng. Hãy theo dõi để không bỏ lỡ các bài viết tiếp theo!*
+_Bài viết này là một phần trong series về lập trình mạng. Hãy theo dõi để không bỏ lỡ các bài viết tiếp theo!_

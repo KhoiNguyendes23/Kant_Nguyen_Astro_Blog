@@ -17,15 +17,15 @@ Node.js đã cách mạng hóa việc sử dụng JavaScript cho backend develop
 ## HTTP Server cơ bản
 
 ```javascript
-const http = require('http');
+const http = require("http");
 
 const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello World!');
+  res.writeHead(200, { "Content-Type": "text/plain" });
+  res.end("Hello World!");
 });
 
 server.listen(3000, () => {
-  console.log('Server running on port 3000');
+  console.log("Server running on port 3000");
 });
 ```
 
@@ -34,15 +34,15 @@ server.listen(3000, () => {
 Express.js là framework phổ biến nhất cho Node.js:
 
 ```javascript
-const express = require('express');
+const express = require("express");
 const app = express();
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Hello World!' });
+app.get("/", (req, res) => {
+  res.json({ message: "Hello World!" });
 });
 
 app.listen(3000, () => {
-  console.log('Server running on port 3000');
+  console.log("Server running on port 3000");
 });
 ```
 
@@ -51,17 +51,17 @@ app.listen(3000, () => {
 Cho các ứng dụng real-time:
 
 ```javascript
-const io = require('socket.io')(server);
+const io = require("socket.io")(server);
 
-io.on('connection', (socket) => {
-  console.log('User connected');
-  
-  socket.on('message', (data) => {
-    io.emit('message', data);
+io.on("connection", (socket) => {
+  console.log("User connected");
+
+  socket.on("message", (data) => {
+    io.emit("message", data);
   });
-  
-  socket.on('disconnect', () => {
-    console.log('User disconnected');
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
   });
 });
 ```
@@ -71,19 +71,19 @@ io.on('connection', (socket) => {
 Xây dựng API RESTful với Express:
 
 ```javascript
-app.get('/api/users', (req, res) => {
+app.get("/api/users", (req, res) => {
   // Lấy danh sách users
 });
 
-app.post('/api/users', (req, res) => {
+app.post("/api/users", (req, res) => {
   // Tạo user mới
 });
 
-app.put('/api/users/:id', (req, res) => {
+app.put("/api/users/:id", (req, res) => {
   // Cập nhật user
 });
 
-app.delete('/api/users/:id', (req, res) => {
+app.delete("/api/users/:id", (req, res) => {
   // Xóa user
 });
 ```
@@ -104,4 +104,4 @@ JavaScript và Node.js cung cấp một ecosystem phong phú cho việc phát tr
 
 ---
 
-*Hãy thử nghiệm và khám phá thêm về khả năng của JavaScript trong lập trình mạng!*
+_Hãy thử nghiệm và khám phá thêm về khả năng của JavaScript trong lập trình mạng!_
