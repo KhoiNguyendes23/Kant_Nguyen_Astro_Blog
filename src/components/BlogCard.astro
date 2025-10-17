@@ -1,0 +1,103 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  date: string;
+  slug: string;
+  tags?: string[];
+  imageUrl?: string;
+  readTime?: string;
+}
+
+const { title, description, date, slug, tags = [], imageUrl, readTime = "5 min read" } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString('vi-VN', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<article class="group bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700">
+  <!-- Blog Image -->
+  <div class="aspect-video bg-gradient-to-br from-primary/20 to-purple-600/20 relative overflow-hidden">
+    {imageUrl ? (
+      <img 
+        src={imageUrl} 
+        alt={title}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center">
+        <div class="text-6xl font-bold text-primary/50">
+          {title.charAt(0)}
+        </div>
+      </div>
+    )}
+    
+    <!-- Read time badge -->
+    <div class="absolute top-4 right-4 px-3 py-1 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full text-sm font-medium text-gray-700 dark:text-gray-300">
+      {readTime}
+    </div>
+  </div>
+
+  <!-- Blog Content -->
+  <div class="p-6">
+    <!-- Date and Tags -->
+    <div class="flex items-center justify-between mb-3">
+      <time class="text-sm text-gray-500 dark:text-gray-400" datetime={date}>
+        {formattedDate}
+      </time>
+      {tags.length > 0 && (
+        <div class="flex gap-1">
+          {tags.slice(0, 2).map(tag => (
+            <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">
+              {tag}
+            </span>
+          ))}
+          {tags.length > 2 && (
+            <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-full">
+              +{tags.length - 2}
+            </span>
+          )}
+        </div>
+      )}
+    </div>
+    
+    <!-- Title -->
+    <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
+      {title}
+    </h3>
+    
+    <!-- Description -->
+    <p class="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+      {description}
+    </p>
+    
+    <!-- Read More Link -->
+    <a 
+      href={`/blog/${slug}`}
+      class="inline-flex items-center text-primary hover:text-accent font-semibold transition-colors group-hover:translate-x-1 transform duration-200"
+    >
+      <span data-i18n="blog.readMore">Đọc thêm</span>
+      <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</article>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

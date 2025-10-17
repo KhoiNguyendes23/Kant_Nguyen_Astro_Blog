@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm Kant Nguyễn 👋",
+    "title": "Backend Developer | Java Networking Enthusiast",
+    "aboutBtn": "About Me",
+    "projectsBtn": "Projects",
+    "blogBtn": "Blog"
+  },
+  "about": {
+    "title": "About Me",
+    "name": "Nguyễn Đăng Khôi – Kant Nguyễn",
+    "quote": "Work hard in silence — let success make noise.",
+    "email": "khoind82@gmail.com",
+    "location": "Ho Chi Minh City, Vietnam",
+    "skills": "Skills",
+    "activities": "Awards & Activities",
+    "linkedin": "LinkedIn",
+    "github": "GitHub"
+  },
+  "projects": {
+    "title": "My Projects",
+    "viewGithub": "View on GitHub",
+    "techStack": "Tech Stack"
+  },
+  "blog": {
+    "title": "Blog",
+    "searchPlaceholder": "Search posts...",
+    "readMore": "Read More",
+    "publishedOn": "Published on"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's connect!",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send Message"
+    }
+  },
+  "footer": {
+    "quote": "Work hard in silence — let success make noise.",
+    "rights": "© 2024 Kant Nguyễn. All rights reserved."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "backToTop": "Back to top"
+  }
+}

@@ -1,0 +1,43 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+}
+
+const { title, description = "Kant Nguyễn - Backend Developer | Java Networking Enthusiast", lang = "vi" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-bgLight dark:bg-bgDark text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div id="app" class="min-h-screen flex flex-col">
+      <slot />
+    </div>
+    <script>
+      // Dark mode persistence
+      if (typeof window !== 'undefined') {
+        const isDark = localStorage.getItem('darkMode') === 'true' || 
+          (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        }
+        
+        // Language persistence
+        const savedLang = localStorage.getItem('language') || 'vi';
+        document.documentElement.lang = savedLang;
+      }
+    </script>
+  </body>
+</html>

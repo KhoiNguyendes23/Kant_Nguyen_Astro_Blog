@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import BlogCard from '../components/BlogCard.astro';
+import SearchBar from '../components/SearchBar.astro';
+import Footer from '../components/Footer.astro';
+
+// Blog posts data
+const blogPosts = [
+  {
+    title: "Lập trình mạng với Java",
+    description: "Hướng dẫn chi tiết về lập trình mạng sử dụng Java, từ cơ bản đến nâng cao. Tìm hiểu về Socket programming, HTTP clients, và các kỹ thuật tối ưu hóa hiệu suất mạng.",
+    slug: "lap-trinh-mang-voi-java",
+    date: "2024-01-15",
+    tags: ["Java", "Networking", "Backend", "Programming"],
+    readTime: "8 min read"
+  },
+  {
+    title: "Lập trình mạng với JavaScript",
+    description: "Khám phá các kỹ thuật lập trình mạng hiện đại với JavaScript và Node.js. Từ WebSocket đến HTTP/2, từ REST API đến GraphQL - tất cả những gì bạn cần biết.",
+    slug: "lap-trinh-mang-voi-javascript",
+    date: "2024-01-10",
+    tags: ["JavaScript", "Node.js", "Networking", "Web Development"],
+    readTime: "6 min read"
+  }
+];
+---
+
+<BaseLayout title="Blog - Kant Nguyễn" lang="vi">
+  <Navbar />
+  
+  <main class="min-h-screen bg-bgLight dark:bg-bgDark">
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-primary/5 to-purple-600/5">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text" data-i18n="blog.title">
+          Blog
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          Chia sẻ kiến thức và kinh nghiệm về lập trình, công nghệ và phát triển phần mềm
+        </p>
+      </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="py-8">
+      <div class="max-w-4xl mx-auto px-4">
+        <SearchBar />
+      </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blogPostsContainer">
+          {blogPosts.map(post => (
+            <BlogCard 
+              title={post.title}
+              description={post.description}
+              date={post.date}
+              slug={post.slug}
+              tags={post.tags}
+              readTime={post.readTime}
+            />
+          ))}
+        </div>
+        
+        <!-- No posts message (hidden by default) -->
+        <div id="noPostsMessage" class="text-center py-12 hidden">
+          <div class="text-6xl mb-4">📝</div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Chưa có bài viết nào</h3>
+          <p class="text-gray-600 dark:text-gray-300">Hãy quay lại sau để xem các bài viết mới!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+          Theo dõi blog của tôi
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+          Nhận thông báo về các bài viết mới và cập nhật công nghệ mới nhất
+        </p>
+        <div class="max-w-md mx-auto">
+          <div class="flex gap-2">
+            <input 
+              type="email" 
+              placeholder="Nhập email của bạn..."
+              class="flex-1 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+            />
+            <button class="px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+              Đăng ký
+            </button>
+          </div>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+            Không spam, chỉ gửi nội dung hữu ích!
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  // Blog search functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+    const blogPostsContainer = document.getElementById('blogPostsContainer');
+    const noPostsMessage = document.getElementById('noPostsMessage');
+    
+    if (searchInput && blogPostsContainer && noPostsMessage) {
+      searchInput.addEventListener('input', (e) => {
+        const query = (e.target as HTMLInputElement).value.toLowerCase().trim();
+        
+        if (query === '') {
+          // Show all posts
+          blogPostsContainer.classList.remove('hidden');
+          noPostsMessage.classList.add('hidden');
+          return;
+        }
+        
+        // Filter posts based on search query
+        const posts = blogPostsContainer.querySelectorAll('article');
+        let visibleCount = 0;
+        
+        posts.forEach(post => {
+          const title = post.querySelector('h3')?.textContent?.toLowerCase() || '';
+          const description = post.querySelector('p')?.textContent?.toLowerCase() || '';
+          const tags = Array.from(post.querySelectorAll('.px-2')).map(tag => tag.textContent?.toLowerCase() || '');
+          
+          const matches = title.includes(query) || 
+                        description.includes(query) || 
+                        tags.some(tag => tag.includes(query));
+          
+          if (matches) {
+            post.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            post.classList.add('hidden');
+          }
+        });
+        
+        // Show/hide no posts message
+        if (visibleCount === 0) {
+          blogPostsContainer.classList.add('hidden');
+          noPostsMessage.classList.remove('hidden');
+        } else {
+          blogPostsContainer.classList.remove('hidden');
+          noPostsMessage.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>

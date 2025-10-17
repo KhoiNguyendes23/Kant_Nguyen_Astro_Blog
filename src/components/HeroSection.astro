@@ -1,0 +1,114 @@
+---
+// Hero section with avatar and typing animation
+---
+
+<section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-bgLight via-blue-50 to-purple-50 dark:from-bgDark dark:via-blue-900/20 dark:to-purple-900/20">
+  <div class="max-w-6xl mx-auto px-4 py-20">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Avatar Section -->
+      <div class="flex justify-center lg:justify-start animate-fade-up">
+        <div class="relative">
+          <div class="w-80 h-80 rounded-full bg-gradient-to-br from-primary to-purple-600 p-1 shadow-2xl">
+            <div class="w-full h-full rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+              <img 
+                src="/avatar.svg" 
+                alt="Kant Nguyễn" 
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="hidden w-full h-full bg-gradient-to-br from-primary/20 to-purple-600/20 flex items-center justify-center text-6xl font-bold text-primary">
+                KN
+              </div>
+            </div>
+          </div>
+          <!-- Floating elements -->
+          <div class="absolute -top-4 -right-4 w-8 h-8 bg-accent rounded-full animate-bounce"></div>
+          <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-primary rounded-full animate-pulse"></div>
+        </div>
+      </div>
+
+      <!-- Text Section -->
+      <div class="text-center lg:text-left animate-slide-left">
+        <div class="mb-6">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <span class="gradient-text" data-i18n="hero.greeting">Xin chào, tôi là Kant Nguyễn 👋</span>
+          </h1>
+          <div class="text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 mb-8">
+            <span class="typing-text inline-block" data-i18n="hero.title">
+              Backend Developer | Java Networking Enthusiast
+            </span>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0">
+          Chuyên viên phát triển backend với niềm đam mê Java và mạng máy tính. 
+          Sinh viên tiêu biểu HUTECH 2023 với kinh nghiệm thực tế trong các dự án tích hợp hệ thống.
+        </p>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <a href="/about" 
+             class="px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+             data-i18n="hero.aboutBtn">
+            Giới thiệu
+          </a>
+          <a href="/projects" 
+             class="px-8 py-3 bg-accent text-gray-900 rounded-lg font-semibold hover:bg-accent/90 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+             data-i18n="hero.projectsBtn">
+            Dự án
+          </a>
+          <a href="/blog" 
+             class="px-8 py-3 border-2 border-primary text-primary dark:text-accent rounded-lg font-semibold hover:bg-primary hover:text-white dark:hover:bg-accent dark:hover:text-gray-900 transform hover:scale-105 transition-all duration-200"
+             data-i18n="hero.blogBtn">
+            Blog
+          </a>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="mt-12 grid grid-cols-3 gap-8 max-w-md mx-auto lg:mx-0">
+          <div class="text-center">
+            <div class="text-2xl font-bold text-primary">3+</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Dự án</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-primary">2+</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Năm kinh nghiệm</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold text-primary">5+</div>
+            <div class="text-sm text-gray-600 dark:text-gray-400">Chứng chỉ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+    </svg>
+  </div>
+</section>
+
+<script>
+  // Smooth scroll for navigation links
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('a[href^="/"]');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href !== '#' && !href.includes('mailto:') && !href.includes('http')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.location.href = href;
+          }
+        }
+      });
+    });
+  });
+</script>
