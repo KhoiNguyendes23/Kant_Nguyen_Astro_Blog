@@ -2,6 +2,39 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+// Get all posts from collections
+const allPosts = await Promise.all([
+  getCollection('posts'),
+  getCollection('java-network-series'),
+  getCollection('javascript-network-series')
+]).then(collections => collections.flat());
+
+// Sort posts by date (newest first)
+const sortedPosts = allPosts.sort((a, b) => {
+  const dateA = new Date(a.data.date);
+  const dateB = new Date(b.data.date);
+  return dateB.getTime() - dateA.getTime();
+});
+
+// Format date for display
+function formatDate(dateString: string) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('vi-VN', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+}
+
+// Calculate read time (rough estimate)
+function calculateReadTime(content: string) {
+  const wordsPerMinute = 200;
+  const wordCount = content.split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+  return `${minutes} phút đọc`;
+}
 ---
 
 <BaseLayout title="Blog - Kant Nguyễn">
@@ -24,82 +57,33 @@ import Footer from '../components/Footer.astro';
     <section class="py-16">
       <div class="max-w-4xl mx-auto px-4">
         <div class="space-y-8">
-          {[
-            {
-              title: "Spring Boot vs Spring Framework: Sự khác biệt và khi nào nên sử dụng",
-              excerpt: "Tìm hiểu sự khác biệt giữa Spring Boot và Spring Framework, cũng như các trường hợp sử dụng phù hợp cho từng framework.",
-              date: "15/12/2024",
-              readTime: "8 phút đọc",
-              tags: ["Java", "Spring Boot", "Spring Framework"],
-              featured: true
-            },
-            {
-              title: "Xây dựng RESTful API với Java Spring Boot",
-              excerpt: "Hướng dẫn chi tiết cách xây dựng RESTful API từ cơ bản đến nâng cao với Spring Boot.",
-              date: "10/12/2024",
-              readTime: "12 phút đọc",
-              tags: ["Java", "Spring Boot", "REST API"],
-              featured: false
-            },
-            {
-              title: "Docker cho Java Developer: Container hóa ứng dụng",
-              excerpt: "Tìm hiểu cách sử dụng Docker để container hóa ứng dụng Java và tối ưu hóa quy trình phát triển.",
-              date: "05/12/2024",
-              readTime: "10 phút đọc",
-              tags: ["Docker", "Java", "DevOps"],
-              featured: false
-            },
-            {
-              title: "WebSocket trong Spring Boot: Chat real-time",
-              excerpt: "Hướng dẫn xây dựng ứng dụng chat real-time sử dụng WebSocket và Spring Boot.",
-              date: "01/12/2024",
-              readTime: "15 phút đọc",
-              tags: ["WebSocket", "Spring Boot", "Real-time"],
-              featured: false
-            },
-            {
-              title: "Networking cơ bản cho Developer",
-              excerpt: "Những kiến thức cơ bản về mạng máy tính mà mọi developer nên biết.",
-              date: "25/11/2024",
-              readTime: "6 phút đọc",
-              tags: ["Networking", "TCP/IP", "HTTP"],
-              featured: false
-            },
-            {
-              title: "JWT Authentication với Spring Security",
-              excerpt: "Cách implement JWT authentication trong ứng dụng Spring Boot một cách an toàn và hiệu quả.",
-              date: "20/11/2024",
-              readTime: "14 phút đọc",
-              tags: ["JWT", "Spring Security", "Authentication"],
-              featured: false
-            }
-          ].map(post => (
+          {sortedPosts.map(post => (
             <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow p-6">
               <div class="flex items-start justify-between mb-4">
                 <div class="flex-1">
                   <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-3 hover:text-primary transition-colors cursor-pointer">
-                    {post.title}
+                    <a href={`/blog/${post.slug}`}>{post.data.title}</a>
                   </h2>
                   <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                    {post.excerpt}
+                    {post.data.description}
                   </p>
                 </div>
-                {post.featured && (
+                {post.data.series && (
                   <span class="ml-4 px-3 py-1 bg-accent text-gray-900 text-sm font-semibold rounded-full">
-                    Nổi bật
+                    Series
                   </span>
                 )}
               </div>
               
               <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-                  <span>{post.date}</span>
+                  <span>{formatDate(post.data.date)}</span>
                   <span>•</span>
-                  <span>{post.readTime}</span>
+                  <span>{calculateReadTime(post.body)}</span>
                 </div>
                 
                 <div class="flex flex-wrap gap-2">
-                  {post.tags.map(tag => (
+                  {post.data.tags.map(tag => (
                     <span class="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md">
                       {tag}
                     </span>
