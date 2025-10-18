@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+
+const base = '/Kant_Nguyen_Astro_Blog';
 ---
 
 <BaseLayout title="Giới thiệu - Kant Nguyễn">
@@ -30,7 +32,7 @@ import Footer from '../components/Footer.astro';
               <div class="w-80 h-80 rounded-full bg-gradient-to-br from-primary to-purple-600 p-1 shadow-2xl group-hover:shadow-3xl transition-all duration-500">
                 <div class="w-full h-full rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-500">
                   <img 
-                    src="/Kant_Nguyen_Astro_Blog/avatar-new.png" 
+                    src={`${base}/avatar-new.png`} 
                     alt="Kant Nguyễn" 
                     class="w-full h-full object-cover rounded-full group-hover:rotate-3 transition-transform duration-500"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
@@ -95,25 +97,25 @@ import Footer from '../components/Footer.astro';
         <div class="flex gap-6 pb-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth">
           {[
             {
-              image: "/Kant_Nguyen_Astro_Blog/activities/volleyball-2022.jpg",
+              image: `${base}/activities/volleyball-2022.jpg`,
               title: "Tham gia bóng chuyền Khoa CNTT 2022",
               description: "Tham gia giải bóng chuyền truyền thống Khoa CNTT tại HUTECH.",
               year: "2022"
             },
             {
-              image: "/Kant_Nguyen_Astro_Blog/activities/volleyball-2023.jpg",
+              image: `${base}/activities/volleyball-2023.jpg`,
               title: "Tham gia bóng chuyền Khoa CNTT 2023",
               description: "Tiếp tục tham gia và hỗ trợ đội tuyển bóng chuyền khoa CNTT.",
               year: "2023"
             },
             {
-              image: "/Kant_Nguyen_Astro_Blog/activities/netcracking-2024.png",
+              image: `${base}/activities/netcracking-2024.png`,
               title: "Hutech's Net Cracking 2024",
               description: "Tham gia cuộc thi An toàn mạng Hutech's Net Cracking 2024.",
               year: "2024"
             },
             {
-              image: "/Kant_Nguyen_Astro_Blog/activities/it-talent.png",
+              image: `${base}/activities/it-talent.png`,
               title: "Hội thi Tìm kiếm tài năng CNTT 2024",
               description: "Tham gia hội thi Tìm kiếm tài năng công nghệ thông tin 2024.",
               year: "2024"
@@ -150,7 +152,7 @@ import Footer from '../components/Footer.astro';
           <div class="text-center">
             <a href="https://www.credly.com/badges/17210156-aae7-4bd9-90c7-fde448669afd/public_url" target="_blank" rel="noopener noreferrer">
               <img
-                src="/Kant_Nguyen_Astro_Blog/certificates/networking-basics.png"
+                src={`${base}/certificates/networking-basics.png`}
                 alt="Cisco Networking Basics Certificate"
                 class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
               />
@@ -160,7 +162,7 @@ import Footer from '../components/Footer.astro';
           <div class="text-center">
             <a href="https://www.credly.com/badges/fde07599-95ee-4962-aac4-f40adaedc4da/public_url" target="_blank" rel="noopener noreferrer">
               <img
-                src="/Kant_Nguyen_Astro_Blog/certificates/javascript-essentials-1.png"
+                src={`${base}/certificates/javascript-essentials-1.png`}
                 alt="Cisco JavaScript Essentials 1 Certificate"
                 class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
               />
@@ -170,7 +172,7 @@ import Footer from '../components/Footer.astro';
           <div class="text-center">
             <a href="https://www.credly.com/badges/76e662e9-02dd-49bb-a2ac-42df9b354d8b/public_url" target="_blank" rel="noopener noreferrer">
               <img
-                src="/Kant_Nguyen_Astro_Blog/certificates/javascript-essentials-2.png"
+                src={`${base}/certificates/javascript-essentials-2.png`}
                 alt="Cisco JavaScript Essentials 2 Certificate"
                 class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
               />
