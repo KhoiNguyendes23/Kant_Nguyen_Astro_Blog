@@ -21,12 +21,11 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
-// === Hàm xử lý link (chuyển ./01-x.md -> /blog/[series]/01-x/) ===
+// === Hàm xử lý link (chuyển ./01-x.md -> /blog/01-x/) ===
 function normalizeLink(link) {
   if (!link) return null;
-  const collection = post.collection ?? 'posts';
   const clean = link.replace('./', '').replace('.md', '').replace(/^\//, '');
-  return `/Kant_Nguyen_Astro_Blog/blog/${collection}/${clean}/`;
+  return `/Kant_Nguyen_Astro_Blog/blog/${clean}/`;
 }
 
 const prevLink = normalizeLink(post.data.prev);
@@ -112,7 +111,7 @@ const nextLink = normalizeLink(post.data.next);
                                       <span class="text-gray-400 italic">Bạn đang xem</span>
                                     ) : (
                                       <a
-                                        href={`/Kant_Nguyen_Astro_Blog/blog/${post.collection}/${item.slug}/`}
+                                        href={`/Kant_Nguyen_Astro_Blog/blog/${item.slug}/`}
                                         class="text-primary hover:text-primary/80 transition-colors"
                                       >
                                         Xem bài
