@@ -7,14 +7,14 @@ import Footer from '../components/Footer.astro';
 <BaseLayout title="Giới thiệu - Kant Nguyễn">
   <Navbar />
   
-  <main class="min-h-screen bg-bgLight dark:bg-bgDark">
+  <main class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20">
     <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-br from-primary/5 to-purple-600/5">
+    <section class="pt-24 pb-20 bg-gradient-to-br from-primary/5 to-purple-600/5">
       <div class="max-w-4xl mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-fade-up">
           Giới thiệu
         </h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in">
           Tìm hiểu thêm về hành trình và đam mê của tôi trong lĩnh vực công nghệ
         </p>
       </div>
@@ -25,14 +25,14 @@ import Footer from '../components/Footer.astro';
       <div class="max-w-6xl mx-auto px-4">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <!-- Profile Image -->
-          <div class="flex justify-center lg:justify-start">
-            <div class="relative">
-              <div class="w-80 h-80 rounded-full bg-gradient-to-br from-primary to-purple-600 p-1 shadow-2xl">
-                <div class="w-full h-full rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden">
+          <div class="flex justify-center lg:justify-start animate-fade-up">
+            <div class="relative group">
+              <div class="w-80 h-80 rounded-full bg-gradient-to-br from-primary to-purple-600 p-1 shadow-2xl group-hover:shadow-3xl transition-all duration-500">
+                <div class="w-full h-full rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-500">
                   <img 
                     src="/Kant_Nguyen_Astro_Blog/avatar-new.png" 
                     alt="Kant Nguyễn" 
-                    class="w-full h-full object-cover rounded-full"
+                    class="w-full h-full object-cover rounded-full group-hover:rotate-3 transition-transform duration-500"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                   />
                   <div class="hidden w-full h-full bg-gradient-to-br from-primary/20 to-purple-600/20 flex items-center justify-center text-6xl font-bold text-primary">
@@ -40,11 +40,14 @@ import Footer from '../components/Footer.astro';
                   </div>
                 </div>
               </div>
+              <!-- Floating elements -->
+              <div class="absolute -top-4 -right-4 w-8 h-8 bg-accent rounded-full animate-bounce"></div>
+              <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-primary rounded-full animate-pulse"></div>
             </div>
           </div>
 
           <!-- Profile Info -->
-          <div class="space-y-6">
+          <div class="space-y-6 animate-slide-left">
             <div>
               <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 Nguyễn Đăng Khôi – Kant Nguyễn
@@ -79,6 +82,98 @@ import Footer from '../components/Footer.astro';
               </a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="py-16 bg-gradient-to-br from-blue-50/40 to-white dark:from-gray-800 dark:to-gray-900">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 gradient-text animate-fade-up">
+          Hoạt động
+        </h2>
+        <div class="overflow-x-auto snap-x snap-mandatory">
+          <div class="flex gap-6 pb-4" style="width: max-content;">
+            {[
+              {
+                image: "/Kant_Nguyen_Astro_Blog/ant.jpg",
+                title: "Giải Nhất Bóng chuyền Khoa CNTT",
+                description: "Đạt giải nhất trong giải bóng chuyền của khoa Công nghệ Thông tin tại trường Đại học Công nghệ TP.HCM",
+                year: "2023"
+              },
+              {
+                image: "/Kant_Nguyen_Astro_Blog/avatar.png",
+                title: "Sinh viên tiêu biểu 2023",
+                description: "Được vinh danh là sinh viên tiêu biểu của trường với thành tích học tập xuất sắc",
+                year: "2023"
+              },
+              {
+                image: "/Kant_Nguyen_Astro_Blog/avatar-new.png",
+                title: "Tham gia Hackathon",
+                description: "Tham gia cuộc thi lập trình Hackathon với dự án ứng dụng mạng máy tính",
+                year: "2023"
+              },
+              {
+                image: "/Kant_Nguyen_Astro_Blog/ant.jpg",
+                title: "Workshop Java Networking",
+                description: "Tổ chức workshop về lập trình mạng với Java cho sinh viên trong khoa",
+                year: "2024"
+              }
+            ].map((activity, index) => (
+              <div class="snap-center flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in" style={`animation-delay: ${index * 0.2}s`}>
+                <div class="p-6">
+                  <div class="w-full h-48 rounded-lg overflow-hidden mb-4">
+                    <img 
+                      src={activity.image} 
+                      alt={activity.title}
+                      class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                  <div class="flex items-center space-x-3 mb-2">
+                    <span class="px-3 py-1 bg-primary text-white text-sm font-semibold rounded-full">{activity.year}</span>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white">{activity.title}</h3>
+                  </div>
+                  <p class="text-gray-600 dark:text-gray-300 text-sm">{activity.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cisco Certificates Section -->
+    <section class="py-16">
+      <div class="max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12 gradient-text animate-fade-up">
+          Chứng chỉ Cisco
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              logo: "🌐",
+              title: "Networking Basics",
+              description: "Chứng chỉ cơ bản về mạng máy tính, bao gồm TCP/IP, DNS, và các giao thức mạng cơ bản."
+            },
+            {
+              logo: "📜",
+              title: "JavaScript Essentials 1",
+              description: "Chứng chỉ JavaScript cơ bản, bao gồm ES6+, DOM manipulation, và async programming."
+            },
+            {
+              logo: "⚡",
+              title: "JavaScript Essentials 2",
+              description: "Chứng chỉ JavaScript nâng cao, bao gồm Node.js, Express.js, và RESTful API development."
+            }
+          ].map((cert, index) => (
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in" style={`animation-delay: ${index * 0.3}s`}>
+              <div class="text-center">
+                <div class="text-6xl mb-4">{cert.logo}</div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{cert.title}</h3>
+                <p class="text-gray-600 dark:text-gray-300">{cert.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
