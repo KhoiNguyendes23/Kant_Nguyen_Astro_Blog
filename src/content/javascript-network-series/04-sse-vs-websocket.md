@@ -4,8 +4,8 @@ description: "So sánh Server-Sent Events (SSE) và WebSocket, khi nào nên dù
 date: 2025-09-23
 tags: ["JavaScript", "SSE", "WebSocket", "Realtime", "Comparison"]
 series: "Lập trình mạng với JavaScript"
-prev: "./03-websocket-intro.md"
-next: "./05-service-worker.md"
+prev: "/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/"
+next: "/Kant_Nguyen_Astro_Blog/blog/05-service-worker/"
 ---
 
 ## 📚 Series Overview
@@ -14,15 +14,15 @@ next: "./05-service-worker.md"
 
 | # | Bài viết | Liên kết |
 |:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
-| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
-| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
-| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
-| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
-| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
-| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
-| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/) |
+| 05 | Service Worker | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/) |
+| 06 | PWA Manifest | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/) |
+| 07 | DevTools Network | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
 
 </div>
 
@@ -803,4 +803,4 @@ Hãy tưởng tượng SSE và WebSocket như hai loại điện thoại khác n
 - ✅ SSE dễ implement, WebSocket phức tạp hơn
 - ✅ Chọn công nghệ dựa trên use case cụ thể
 
-**Xem bài tiếp theo →** [Service Worker](./05-service-worker.md)
+**Xem bài tiếp theo →** [Service Worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/)

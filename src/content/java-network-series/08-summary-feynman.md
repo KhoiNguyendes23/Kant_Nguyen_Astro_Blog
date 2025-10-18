@@ -4,7 +4,7 @@ description: "Tổng kết toàn bộ kiến thức đã học qua phương phá
 date: 2025-09-18
 tags: ["Java", "Summary", "Feynman", "Networking", "Review"]
 series: "Lập trình mạng với Java"
-prev: "./07-chat-mini-project.md"
+prev: "/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/"
 next: null
 ---
 
@@ -14,15 +14,15 @@ next: null
 
 | # | Bài viết | Liên kết |
 |:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
-| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](./01-tcp-socket-basic.md) |
-| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](./02-tcp-multithreaded-server.md) |
-| 03 | Lập trình mạng với UDP | [03-udp-datagram](./03-udp-datagram.md) |
-| 04 | Java 11 HttpClient | [04-httpclient-api](./04-httpclient-api.md) |
-| 05 | HTTPS và TLS | [05-https-tls](./05-https-tls.md) |
-| 06 | WebSocket trong Java | [06-websocket-java](./06-websocket-java.md) |
-| 07 | Ứng dụng chat mini | [07-chat-mini-project](./07-chat-mini-project.md) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
+| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/) |
+| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
+| 03 | Lập trình mạng với UDP | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/) |
+| 04 | Java 11 HttpClient | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/) |
+| 05 | HTTPS và TLS | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/) |
+| 06 | WebSocket trong Java | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/) |
+| 07 | Ứng dụng chat mini | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
 
 </div>
 
@@ -341,29 +341,29 @@ Hãy tưởng tượng toàn bộ series như việc xây dựng một thành ph
 
 | # | Bài viết | Liên kết |
 |:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
-| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](./01-tcp-socket-basic.md) |
-| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](./02-tcp-multithreaded-server.md) |
-| 03 | Lập trình mạng với UDP | [03-udp-datagram](./03-udp-datagram.md) |
-| 04 | Java 11 HttpClient | [04-httpclient-api](./04-httpclient-api.md) |
-| 05 | HTTPS và TLS | [05-https-tls](./05-https-tls.md) |
-| 06 | WebSocket trong Java | [06-websocket-java](./06-websocket-java.md) |
-| 07 | Ứng dụng chat mini | [07-chat-mini-project](./07-chat-mini-project.md) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
+| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/) |
+| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
+| 03 | Lập trình mạng với UDP | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/) |
+| 04 | Java 11 HttpClient | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/) |
+| 05 | HTTPS và TLS | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/) |
+| 06 | WebSocket trong Java | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/) |
+| 07 | Ứng dụng chat mini | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
 
 </div>
 
 ## 📚 Danh sách bài học hoàn chỉnh
 
-1. [Giới thiệu Series](./00-intro-environment.md)
-2. [TCP Socket Cơ bản](./01-tcp-socket-basic.md)
-3. [TCP Server Đa luồng](./02-tcp-multithreaded-server.md)
-4. [UDP Datagram](./03-udp-datagram.md)
-5. [HTTP Client API](./04-httpclient-api.md)
-6. [HTTPS và TLS](./05-https-tls.md)
-7. [WebSocket với Java](./06-websocket-java.md)
-8. [Dự án Chat Mini](./07-chat-mini-project.md)
-9. [Tổng kết Feynman](./08-summary-feynman.md) ← Bạn đang ở đây
+1. [Giới thiệu Series](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)
+2. [TCP Socket Cơ bản](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/)
+3. [TCP Server Đa luồng](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/)
+4. [UDP Datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/)
+5. [HTTP Client API](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/)
+6. [HTTPS và TLS](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/)
+7. [WebSocket với Java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/)
+8. [Dự án Chat Mini](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/)
+9. [Tổng kết Feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) ← Bạn đang ở đây
 
 **🚀 Bước tiếp theo:**
 - Thực hành với các dự án thực tế

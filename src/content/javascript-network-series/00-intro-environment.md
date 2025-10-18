@@ -5,7 +5,7 @@ date: 2025-09-19
 tags: ["JavaScript", "Networking", "Environment Setup", "Node.js"]
 series: "Lập trình mạng với JavaScript"
 prev: null
-next: "./01-fetch-basic.md"
+next: "/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/"
 ---
 
 ## 📚 Series Overview
@@ -14,15 +14,15 @@ next: "./01-fetch-basic.md"
 
 | # | Bài viết | Liên kết |
 |:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
-| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
-| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
-| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
-| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
-| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
-| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
-| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/) |
+| 05 | Service Worker | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/) |
+| 06 | PWA Manifest | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/) |
+| 07 | DevTools Network | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
 
 </div>
 
@@ -296,7 +296,7 @@ Hãy tưởng tượng JavaScript như một ngôn ngữ đa năng:
 - ✅ Modern JavaScript có async/await và Fetch API
 - ✅ PWA và Service Worker mở ra nhiều khả năng mới
 
-**Xem bài tiếp theo →** [Fetch API Cơ bản](./01-fetch-basic.md)
+**Xem bài tiếp theo →** [Fetch API Cơ bản](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/)
 
 ---
 
@@ -306,26 +306,26 @@ Hãy tưởng tượng JavaScript như một ngôn ngữ đa năng:
 
 | # | Bài viết | Liên kết |
 |:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
-| 01 | Fetch API cơ bản | [01-fetch-basic](./01-fetch-basic.md) |
-| 02 | Fetch với AbortController | [02-fetch-abortcontroller](./02-fetch-abortcontroller.md) |
-| 03 | WebSocket giới thiệu | [03-websocket-intro](./03-websocket-intro.md) |
-| 04 | SSE vs WebSocket | [04-sse-vs-websocket](./04-sse-vs-websocket.md) |
-| 05 | Service Worker | [05-service-worker](./05-service-worker.md) |
-| 06 | PWA Manifest | [06-pwa-manifest](./06-pwa-manifest.md) |
-| 07 | DevTools Network | [07-devtools-network](./07-devtools-network.md) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
+| 01 | Fetch API cơ bản | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/) |
+| 02 | Fetch với AbortController | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
+| 03 | WebSocket giới thiệu | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/) |
+| 04 | SSE vs WebSocket | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/) |
+| 05 | Service Worker | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/) |
+| 06 | PWA Manifest | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/) |
+| 07 | DevTools Network | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/) |
+| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
 
 </div>
 
 ## 📚 Danh sách bài học
 
-1. [Giới thiệu Series](./00-intro-environment.md) ← Bạn đang ở đây
-2. [Fetch API Cơ bản](./01-fetch-basic.md)
-3. [Fetch với AbortController](./02-fetch-abortcontroller.md)
-4. [WebSocket Giới thiệu](./03-websocket-intro.md)
-5. [SSE vs WebSocket](./04-sse-vs-websocket.md)
-6. [Service Worker](./05-service-worker.md)
-7. [PWA Manifest](./06-pwa-manifest.md)
-8. [DevTools Network](./07-devtools-network.md)
-9. [Tổng kết Feynman](./08-summary-feynman.md)
+1. [Giới thiệu Series](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) ← Bạn đang ở đây
+2. [Fetch API Cơ bản](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/)
+3. [Fetch với AbortController](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/)
+4. [WebSocket Giới thiệu](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/)
+5. [SSE vs WebSocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/)
+6. [Service Worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/)
+7. [PWA Manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/)
+8. [DevTools Network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/)
+9. [Tổng kết Feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)

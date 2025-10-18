@@ -4,8 +4,8 @@ description: "Học cách tạo ServerSocket và Socket để thiết lập kế
 date: 2025-09-11
 tags: ["Java", "TCP", "Socket", "Networking"]
 series: "Lập trình mạng với Java"
-prev: "./00-intro-environment.md"
-next: "./02-tcp-multithreaded-server.md"
+prev: "/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/"
+next: "/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/"
 ---
 
 ---
@@ -16,15 +16,15 @@ next: "./02-tcp-multithreaded-server.md"
 
 |  #  | Bài viết                         | Liên kết                                                        |
 | :-: | :------------------------------- | :-------------------------------------------------------------- |
-| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md)               |
-| 01  | TCP Socket cơ bản                | [01-tcp-socket-basic](./01-tcp-socket-basic.md)                 |
-| 02  | TCP Server đa luồng              | [02-tcp-multithreaded-server](./02-tcp-multithreaded-server.md) |
-| 03  | Lập trình mạng với UDP           | [03-udp-datagram](./03-udp-datagram.md)                         |
-| 04  | Java 11 HttpClient               | [04-httpclient-api](./04-httpclient-api.md)                     |
-| 05  | HTTPS và TLS                     | [05-https-tls](./05-https-tls.md)                               |
-| 06  | WebSocket trong Java             | [06-websocket-java](./06-websocket-java.md)                     |
-| 07  | Ứng dụng chat mini               | [07-chat-mini-project](./07-chat-mini-project.md)               |
-| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](./08-summary-feynman.md)                   |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)               |
+| 01  | TCP Socket cơ bản                | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/)                 |
+| 02  | TCP Server đa luồng              | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
+| 03  | Lập trình mạng với UDP           | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/)                         |
+| 04  | Java 11 HttpClient               | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/)                     |
+| 05  | HTTPS và TLS                     | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/)                               |
+| 06  | WebSocket trong Java             | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/)                     |
+| 07  | Ứng dụng chat mini               | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/)               |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)                   |
 
 </div>
 
@@ -214,4 +214,4 @@ Hãy tưởng tượng TCP Socket như một cuộc gọi điện thoại:
 - ✅ Luôn nhớ đóng kết nối để giải phóng tài nguyên
 - ✅ Blocking I/O có thể làm chương trình chậm
 
-**Xem bài tiếp theo →** [TCP Server Đa luồng](./02-tcp-multithreaded-server.md)
+**Xem bài tiếp theo →** [TCP Server Đa luồng](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/)
