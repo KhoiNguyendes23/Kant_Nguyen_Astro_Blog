@@ -87,7 +87,7 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- Activities Section -->
-    <section class="py-16 bg-gradient-to-br from-blue-50/40 to-white dark:from-gray-800 dark:to-gray-900">
+    <section class="py-16 bg-gradient-to-br from-blue-50/40 to-white dark:from-gray-800 dark:to-gray-900 fade-in">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Hoạt động
@@ -95,37 +95,37 @@ import Footer from '../components/Footer.astro';
         <div class="flex gap-6 pb-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth">
           {[
             {
-              image: "/activities/volleyball-2022.jpg",
+              image: "/Kant_Nguyen_Astro_Blog/activities/volleyball-2022.jpg",
               title: "Tham gia bóng chuyền Khoa CNTT 2022",
               description: "Tham gia giải bóng chuyền truyền thống Khoa CNTT tại HUTECH.",
               year: "2022"
             },
             {
-              image: "/activities/volleyball-2023.jpg",
+              image: "/Kant_Nguyen_Astro_Blog/activities/volleyball-2023.jpg",
               title: "Tham gia bóng chuyền Khoa CNTT 2023",
               description: "Tiếp tục tham gia và hỗ trợ đội tuyển bóng chuyền khoa CNTT.",
               year: "2023"
             },
             {
-              image: "/activities/netcracking-2024.png",
+              image: "/Kant_Nguyen_Astro_Blog/activities/netcracking-2024.png",
               title: "Hutech's Net Cracking 2024",
               description: "Tham gia cuộc thi An toàn mạng Hutech's Net Cracking 2024.",
               year: "2024"
             },
             {
-              image: "/activities/it-talent.png",
+              image: "/Kant_Nguyen_Astro_Blog/activities/it-talent.png",
               title: "Hội thi Tìm kiếm tài năng CNTT 2024",
               description: "Tham gia hội thi Tìm kiếm tài năng công nghệ thông tin 2024.",
               year: "2024"
             }
           ].map((activity, index) => (
             <div class="snap-start flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
-              <div class="p-6">
+              <div class="p-4 md:p-6">
                 <div class="w-full h-48 rounded-lg overflow-hidden mb-4">
                   <img 
                     src={activity.image} 
                     alt={activity.title}
-                    class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500 ease-out"
+                    class="w-full h-full object-cover rounded-lg transform hover:scale-105 transition-transform duration-500 ease-out"
                   />
                 </div>
                 <div class="mb-2">
@@ -141,39 +141,48 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- Cisco Certificates Section -->
-    <section class="py-16">
+    <section class="py-16 fade-in">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Chứng chỉ Cisco
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center mt-10">
-          <a href="https://www.credly.com/badges/17210156-aae7-4bd9-90c7-fde448669afd/public_url" target="_blank" rel="noopener noreferrer">
-            <img
-              src="/Kant_Nguyen_Astro_Blog/certificates/networking-basics.png"
-              alt="Cisco Networking Basics Certificate"
-              class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-transform duration-300 h-56 md:h-64 object-cover"
-            />
-          </a>
-          <a href="https://www.credly.com/badges/fde07599-95ee-4962-aac4-f40adaedc4da/public_url" target="_blank" rel="noopener noreferrer">
-            <img
-              src="/Kant_Nguyen_Astro_Blog/certificates/javascript-essentials-1.png"
-              alt="Cisco JavaScript Essentials 1 Certificate"
-              class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-transform duration-300 h-56 md:h-64 object-cover"
-            />
-          </a>
-          <a href="https://www.credly.com/badges/76e662e9-02dd-49bb-a2ac-42df9b354d8b/public_url" target="_blank" rel="noopener noreferrer">
-            <img
-              src="/Kant_Nguyen_Astro_Blog/certificates/javascript-essentials-2.png"
-              alt="Cisco JavaScript Essentials 2 Certificate"
-              class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-transform duration-300 h-56 md:h-64 object-cover"
-            />
-          </a>
+          <div class="text-center">
+            <a href="https://www.credly.com/badges/17210156-aae7-4bd9-90c7-fde448669afd/public_url" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/Kant_Nguyen_Astro_Blog/certificates/networking-basics.png"
+                alt="Cisco Networking Basics Certificate"
+                class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
+              />
+            </a>
+            <p class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">Networking Basics</p>
+          </div>
+          <div class="text-center">
+            <a href="https://www.credly.com/badges/fde07599-95ee-4962-aac4-f40adaedc4da/public_url" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/Kant_Nguyen_Astro_Blog/certificates/javascript-essentials-1.png"
+                alt="Cisco JavaScript Essentials 1 Certificate"
+                class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
+              />
+            </a>
+            <p class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">JS Essentials 1</p>
+          </div>
+          <div class="text-center">
+            <a href="https://www.credly.com/badges/76e662e9-02dd-49bb-a2ac-42df9b354d8b/public_url" target="_blank" rel="noopener noreferrer">
+              <img
+                src="/Kant_Nguyen_Astro_Blog/certificates/javascript-essentials-2.png"
+                alt="Cisco JavaScript Essentials 2 Certificate"
+                class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
+              />
+            </a>
+            <p class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">JS Essentials 2</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+    <section class="py-16 bg-gray-50 dark:bg-gray-900 fade-in">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Kỹ năng
@@ -195,7 +204,7 @@ import Footer from '../components/Footer.astro';
                 <span class="text-sm text-gray-500 dark:text-gray-400">{skill.level}%</span>
               </div>
               <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                <div class={`h-2 rounded-full ${skill.color} transition-all duration-1000`} style={`width: ${skill.level}%`}></div>
+                <div class={`h-2 rounded-full ${skill.color} transition-[width] duration-1000 ease-out`} style={`width: ${skill.level}%`}></div>
               </div>
             </div>
           ))}
@@ -204,7 +213,7 @@ import Footer from '../components/Footer.astro';
     </section>
 
     <!-- Activities & Awards Section -->
-    <section class="py-16">
+    <section class="py-16 fade-in">
       <div class="max-w-4xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Hoạt động & Giải thưởng
@@ -231,7 +240,7 @@ import Footer from '../components/Footer.astro';
             }
           ].map(activity => (
             <div class="flex items-start space-x-4 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div class="text-3xl">{activity.icon}</div>
+              <div class="text-3xl flex items-center justify-center w-12 h-12">{activity.icon}</div>
               <div class="flex-1">
                 <div class="flex items-center space-x-3 mb-2">
                   <span class="px-3 py-1 bg-primary text-white text-sm font-semibold rounded-full">{activity.year}</span>
