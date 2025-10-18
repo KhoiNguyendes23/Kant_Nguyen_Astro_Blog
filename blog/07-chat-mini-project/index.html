@@ -85,19 +85,19 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">SpringBootApplication</span></span>
 <span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">EnableWebSocket</span></span>
 <span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ChatServer</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> WebSocketConfigurer</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        SpringApplication.</span><span style="color:#B392F0">run</span><span style="color:#E1E4E8">(ChatServer.class, args);</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"🚀 Chat Server đang chạy trên port 8080"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"WebSocket endpoint: ws://localhost:8080/chat"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> registerWebSocketHandlers</span><span style="color:#E1E4E8">(WebSocketHandlerRegistry </span><span style="color:#FFAB70">registry</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        registry.</span><span style="color:#B392F0">addHandler</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> ChatWebSocketHandler</span><span style="color:#E1E4E8">(), </span><span style="color:#9ECBFF">"/chat"</span><span style="color:#E1E4E8">)</span></span>
 <span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">setAllowedOrigins</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"*"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Bean</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> ServerEndpointExporter </span><span style="color:#B392F0">serverEndpointExporter</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#F97583">        return</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ServerEndpointExporter</span><span style="color:#E1E4E8">();</span></span>
@@ -115,35 +115,35 @@ Kant Nguyễn
 <span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.ArrayList;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ChatWebSocketHandler</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> WebSocketHandler</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">WebSocketSession</span><span style="color:#E1E4E8">> sessions </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ConcurrentHashMap&#x3C;>();</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> userNames </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ConcurrentHashMap&#x3C;>();</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> ObjectMapper objectMapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ObjectMapper</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> ChatService chatService </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatService</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> afterConnectionEstablished</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        sessions.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(sessionId, session);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"✅ Client kết nối: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> sessionId);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Gửi danh sách user online</span></span>
 <span class="line"><span style="color:#B392F0">        sendUserList</span><span style="color:#E1E4E8">(session);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Gửi tin nhắn gần đây</span></span>
 <span class="line"><span style="color:#B392F0">        sendRecentMessages</span><span style="color:#E1E4E8">(session);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleMessage</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, WebSocketMessage&#x3C;</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        String messageText </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (String) message.</span><span style="color:#B392F0">getPayload</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#6A737D">            // Parse JSON message</span></span>
 <span class="line"><span style="color:#E1E4E8">            ChatMessage chatMessage </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> objectMapper.</span><span style="color:#B392F0">readValue</span><span style="color:#E1E4E8">(messageText, ChatMessage.class);</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">            switch</span><span style="color:#E1E4E8"> (chatMessage.</span><span style="color:#B392F0">getType</span><span style="color:#E1E4E8">()) {</span></span>
 <span class="line"><span style="color:#F97583">                case</span><span style="color:#9ECBFF"> "JOIN"</span><span style="color:#F97583">:</span></span>
 <span class="line"><span style="color:#B392F0">                    handleJoin</span><span style="color:#E1E4E8">(session, chatMessage);</span></span>
@@ -161,111 +161,111 @@ Kant Nguyễn
 <span class="line"><span style="color:#B392F0">                    handleTyping</span><span style="color:#E1E4E8">(session, chatMessage);</span></span>
 <span class="line"><span style="color:#F97583">                    break</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E1E4E8">            }</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi parse message: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleJoin</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, ChatMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        String userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        userNames.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(sessionId, userName);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Lưu vào database</span></span>
 <span class="line"><span style="color:#E1E4E8">        chatService.</span><span style="color:#B392F0">saveMessage</span><span style="color:#E1E4E8">(userName, </span><span style="color:#9ECBFF">"JOIN"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"đã tham gia chat"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Broadcast đến tất cả client</span></span>
 <span class="line"><span style="color:#B392F0">        broadcast</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"SYSTEM"</span><span style="color:#E1E4E8">, userName </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> " đã tham gia chat"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"JOIN"</span><span style="color:#E1E4E8">));</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Gửi danh sách user mới</span></span>
 <span class="line"><span style="color:#B392F0">        broadcastUserList</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleMessage</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, ChatMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        String userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> userNames.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(sessionId);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (userName </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">            // Lưu vào database</span></span>
 <span class="line"><span style="color:#E1E4E8">            chatService.</span><span style="color:#B392F0">saveMessage</span><span style="color:#E1E4E8">(userName, </span><span style="color:#9ECBFF">"MESSAGE"</span><span style="color:#E1E4E8">, message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">            // Broadcast tin nhắn</span></span>
 <span class="line"><span style="color:#E1E4E8">            ChatMessage broadcastMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(userName, message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">(), </span><span style="color:#9ECBFF">"MESSAGE"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#B392F0">            broadcast</span><span style="color:#E1E4E8">(broadcastMessage);</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleFile</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, ChatMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        String userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> userNames.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(sessionId);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (userName </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">            // Lưu file info vào database</span></span>
 <span class="line"><span style="color:#E1E4E8">            chatService.</span><span style="color:#B392F0">saveMessage</span><span style="color:#E1E4E8">(userName, </span><span style="color:#9ECBFF">"FILE"</span><span style="color:#E1E4E8">, message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">            // Broadcast file message</span></span>
 <span class="line"><span style="color:#E1E4E8">            ChatMessage broadcastMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(userName, message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">(), </span><span style="color:#9ECBFF">"FILE"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#B392F0">            broadcast</span><span style="color:#E1E4E8">(broadcastMessage);</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleEmoji</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, ChatMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        String userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> userNames.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(sessionId);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (userName </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            ChatMessage broadcastMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(userName, message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">(), </span><span style="color:#9ECBFF">"EMOJI"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#B392F0">            broadcast</span><span style="color:#E1E4E8">(broadcastMessage);</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleTyping</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, ChatMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        String userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> userNames.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(sessionId);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (userName </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">            // Chỉ gửi đến các client khác</span></span>
 <span class="line"><span style="color:#E1E4E8">            ChatMessage typingMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(userName, message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">(), </span><span style="color:#9ECBFF">"TYPING"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#B392F0">            broadcast</span><span style="color:#E1E4E8">(typingMessage, sessionId);</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> afterConnectionClosed</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, CloseStatus </span><span style="color:#FFAB70">closeStatus</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        String userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> userNames.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(sessionId);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        sessions.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(sessionId);</span></span>
 <span class="line"><span style="color:#E1E4E8">        userNames.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(sessionId);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (userName </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            chatService.</span><span style="color:#B392F0">saveMessage</span><span style="color:#E1E4E8">(userName, </span><span style="color:#9ECBFF">"LEAVE"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"đã rời khỏi chat"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#B392F0">            broadcast</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"SYSTEM"</span><span style="color:#E1E4E8">, userName </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> " đã rời khỏi chat"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"LEAVE"</span><span style="color:#E1E4E8">));</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#B392F0">        broadcastUserList</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleTransportError</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, Throwable </span><span style="color:#FFAB70">exception</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Transport error: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> exception.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> supportsPartialMessages</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> broadcast</span><span style="color:#E1E4E8">(ChatMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#B392F0">        broadcast</span><span style="color:#E1E4E8">(message, </span><span style="color:#79B8FF">null</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> broadcast</span><span style="color:#E1E4E8">(ChatMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">excludeSessionId</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E1E4E8">            String jsonMessage </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> objectMapper.</span><span style="color:#B392F0">writeValueAsString</span><span style="color:#E1E4E8">(message);</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">            sessions.</span><span style="color:#B392F0">values</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">stream</span><span style="color:#E1E4E8">()</span></span>
 <span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">filter</span><span style="color:#E1E4E8">(session </span><span style="color:#F97583">-></span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">equals</span><span style="color:#E1E4E8">(excludeSessionId))</span></span>
 <span class="line"><span style="color:#E1E4E8">                .</span><span style="color:#B392F0">forEach</span><span style="color:#E1E4E8">(session </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> {</span></span>
@@ -281,31 +281,31 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi serialize message: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> sendUserList</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E1E4E8">            List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> users </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>(userNames.</span><span style="color:#B392F0">values</span><span style="color:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#E1E4E8">            ChatMessage userListMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"SYSTEM"</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#E1E4E8">            ChatMessage userListMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"SYSTEM"</span><span style="color:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#E1E4E8">                objectMapper.</span><span style="color:#B392F0">writeValueAsString</span><span style="color:#E1E4E8">(users), </span><span style="color:#9ECBFF">"USER_LIST"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">            session.</span><span style="color:#B392F0">sendMessage</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> TextMessage</span><span style="color:#E1E4E8">(objectMapper.</span><span style="color:#B392F0">writeValueAsString</span><span style="color:#E1E4E8">(userListMessage)));</span></span>
 <span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (IOException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi gửi user list: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> broadcastUserList</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E1E4E8">            List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> users </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>(userNames.</span><span style="color:#B392F0">values</span><span style="color:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#E1E4E8">            ChatMessage userListMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"SYSTEM"</span><span style="color:#E1E4E8">, </span></span>
+<span class="line"><span style="color:#E1E4E8">            ChatMessage userListMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"SYSTEM"</span><span style="color:#E1E4E8">,</span></span>
 <span class="line"><span style="color:#E1E4E8">                objectMapper.</span><span style="color:#B392F0">writeValueAsString</span><span style="color:#E1E4E8">(users), </span><span style="color:#9ECBFF">"USER_LIST"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#B392F0">            broadcast</span><span style="color:#E1E4E8">(userListMessage);</span></span>
 <span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi broadcast user list: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> sendRecentMessages</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E1E4E8">            List&#x3C;</span><span style="color:#F97583">ChatMessage</span><span style="color:#E1E4E8">> recentMessages </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> chatService.</span><span style="color:#B392F0">getRecentMessages</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);</span></span>
@@ -325,37 +325,37 @@ Kant Nguyễn
 <span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">JsonProperty</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"sender"</span><span style="color:#E1E4E8">)</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String sender;</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">JsonProperty</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"content"</span><span style="color:#E1E4E8">)</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String content;</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">JsonProperty</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"type"</span><span style="color:#E1E4E8">)</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String type;</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">JsonProperty</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"timestamp"</span><span style="color:#E1E4E8">)</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String timestamp;</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.timestamp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LocalDateTime.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">format</span><span style="color:#E1E4E8">(DateTimeFormatter.</span><span style="color:#B392F0">ofPattern</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"HH:mm:ss"</span><span style="color:#E1E4E8">));</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">sender</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.sender </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> sender;</span></span>
 <span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.content </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> content;</span></span>
 <span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.type </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> type;</span></span>
 <span class="line"><span style="color:#79B8FF">        this</span><span style="color:#E1E4E8">.timestamp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> LocalDateTime.</span><span style="color:#B392F0">now</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">format</span><span style="color:#E1E4E8">(DateTimeFormatter.</span><span style="color:#B392F0">ofPattern</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"HH:mm:ss"</span><span style="color:#E1E4E8">));</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">    // Getters and setters</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">getSender</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> sender; }</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> setSender</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">sender</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.sender </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> sender; }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> content; }</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> setContent</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.content </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> content; }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">getType</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> type; }</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> setType</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.type </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> type; }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">getTimestamp</span><span style="color:#E1E4E8">() { </span><span style="color:#F97583">return</span><span style="color:#E1E4E8"> timestamp; }</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> setTimestamp</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">timestamp</span><span style="color:#E1E4E8">) { </span><span style="color:#79B8FF">this</span><span style="color:#E1E4E8">.timestamp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> timestamp; }</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
@@ -368,11 +368,11 @@ Kant Nguyễn
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String DB_URL </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "jdbc:h2:mem:chatdb"</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String DB_USER </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "sa"</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> static</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> String DB_PASSWORD </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> ""</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> ChatService</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#B392F0">        initializeDatabase</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> initializeDatabase</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> (Connection conn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> DriverManager.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">(DB_URL, DB_USER, DB_PASSWORD)) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            String createTable </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> """</span></span>
@@ -384,40 +384,40 @@ Kant Nguyễn
 <span class="line"><span style="color:#9ECBFF">                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP</span></span>
 <span class="line"><span style="color:#9ECBFF">                )</span></span>
 <span class="line"><span style="color:#9ECBFF">                """</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">            conn.</span><span style="color:#B392F0">createStatement</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">execute</span><span style="color:#E1E4E8">(createTable);</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"✅ Database initialized"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Database error: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> saveMessage</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">sender</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">type</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">content</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> (Connection conn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> DriverManager.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">(DB_URL, DB_USER, DB_PASSWORD)) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "INSERT INTO messages (sender, type, content) VALUES (?, ?, ?)"</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> (PreparedStatement stmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> conn.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql)) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                stmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, sender);</span></span>
 <span class="line"><span style="color:#E1E4E8">                stmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, type);</span></span>
 <span class="line"><span style="color:#E1E4E8">                stmt.</span><span style="color:#B392F0">setString</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, content);</span></span>
 <span class="line"><span style="color:#E1E4E8">                stmt.</span><span style="color:#B392F0">executeUpdate</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">            }</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Save message error: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#E1E4E8"> List&#x3C;</span><span style="color:#F97583">ChatMessage</span><span style="color:#E1E4E8">> </span><span style="color:#B392F0">getRecentMessages</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> limit</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        List&#x3C;</span><span style="color:#F97583">ChatMessage</span><span style="color:#E1E4E8">> messages </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ArrayList&#x3C;>();</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> (Connection conn </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> DriverManager.</span><span style="color:#B392F0">getConnection</span><span style="color:#E1E4E8">(DB_URL, DB_USER, DB_PASSWORD)) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            String sql </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "SELECT sender, type, content, timestamp FROM messages ORDER BY timestamp DESC LIMIT ?"</span><span style="color:#E1E4E8">;</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">            try</span><span style="color:#E1E4E8"> (PreparedStatement stmt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> conn.</span><span style="color:#B392F0">prepareStatement</span><span style="color:#E1E4E8">(sql)) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                stmt.</span><span style="color:#B392F0">setInt</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, limit);</span></span>
-<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">                try</span><span style="color:#E1E4E8"> (ResultSet rs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> stmt.</span><span style="color:#B392F0">executeQuery</span><span style="color:#E1E4E8">()) {</span></span>
 <span class="line"><span style="color:#F97583">                    while</span><span style="color:#E1E4E8"> (rs.</span><span style="color:#B392F0">next</span><span style="color:#E1E4E8">()) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                        ChatMessage message </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">();</span></span>
@@ -430,11 +430,11 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">                    }</span></span>
 <span class="line"><span style="color:#E1E4E8">                }</span></span>
 <span class="line"><span style="color:#E1E4E8">            }</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (SQLException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Get messages error: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> messages;</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
@@ -455,79 +455,79 @@ Kant Nguyễn
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> WebSocketClient webSocketClient;</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> ObjectMapper objectMapper </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ObjectMapper</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String userName;</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> TextArea chatArea;</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> TextField messageField;</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> ListView&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> userList;</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Button sendButton;</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> Button emojiButton;</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> start</span><span style="color:#E1E4E8">(Stage </span><span style="color:#FFAB70">primaryStage</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        primaryStage.</span><span style="color:#B392F0">setTitle</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Chat Client"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Tạo layout chính</span></span>
 <span class="line"><span style="color:#E1E4E8">        BorderPane mainPane </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> BorderPane</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Chat area</span></span>
 <span class="line"><span style="color:#E1E4E8">        chatArea </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> TextArea</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        chatArea.</span><span style="color:#B392F0">setEditable</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        chatArea.</span><span style="color:#B392F0">setWrapText</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        chatArea.</span><span style="color:#B392F0">setPrefRowCount</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // User list</span></span>
 <span class="line"><span style="color:#E1E4E8">        userList </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ListView&#x3C;>();</span></span>
 <span class="line"><span style="color:#E1E4E8">        userList.</span><span style="color:#B392F0">setPrefWidth</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">150</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Message input area</span></span>
 <span class="line"><span style="color:#E1E4E8">        HBox inputArea </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> HBox</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        messageField </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> TextField</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        messageField.</span><span style="color:#B392F0">setPromptText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Nhập tin nhắn..."</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        messageField.</span><span style="color:#B392F0">setOnAction</span><span style="color:#E1E4E8">(e </span><span style="color:#F97583">-></span><span style="color:#B392F0"> sendMessage</span><span style="color:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        sendButton </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Button</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Gửi"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        sendButton.</span><span style="color:#B392F0">setOnAction</span><span style="color:#E1E4E8">(e </span><span style="color:#F97583">-></span><span style="color:#B392F0"> sendMessage</span><span style="color:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        emojiButton </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Button</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"😀"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        emojiButton.</span><span style="color:#B392F0">setOnAction</span><span style="color:#E1E4E8">(e </span><span style="color:#F97583">-></span><span style="color:#B392F0"> showEmojiPicker</span><span style="color:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        inputArea.</span><span style="color:#B392F0">getChildren</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">addAll</span><span style="color:#E1E4E8">(messageField, sendButton, emojiButton);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Layout</span></span>
 <span class="line"><span style="color:#E1E4E8">        VBox rightPane </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> VBox</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        rightPane.</span><span style="color:#B392F0">getChildren</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">addAll</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Label</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Người dùng online:"</span><span style="color:#E1E4E8">), userList);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        mainPane.</span><span style="color:#B392F0">setCenter</span><span style="color:#E1E4E8">(chatArea);</span></span>
 <span class="line"><span style="color:#E1E4E8">        mainPane.</span><span style="color:#B392F0">setRight</span><span style="color:#E1E4E8">(rightPane);</span></span>
 <span class="line"><span style="color:#E1E4E8">        mainPane.</span><span style="color:#B392F0">setBottom</span><span style="color:#E1E4E8">(inputArea);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Padding</span></span>
 <span class="line"><span style="color:#E1E4E8">        mainPane.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">));</span></span>
 <span class="line"><span style="color:#E1E4E8">        rightPane.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">));</span></span>
 <span class="line"><span style="color:#E1E4E8">        inputArea.</span><span style="color:#B392F0">setPadding</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> Insets</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">));</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        Scene scene </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Scene</span><span style="color:#E1E4E8">(mainPane, </span><span style="color:#79B8FF">800</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">600</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        primaryStage.</span><span style="color:#B392F0">setScene</span><span style="color:#E1E4E8">(scene);</span></span>
 <span class="line"><span style="color:#E1E4E8">        primaryStage.</span><span style="color:#B392F0">show</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Kết nối WebSocket</span></span>
 <span class="line"><span style="color:#B392F0">        connectToServer</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> connectToServer</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E1E4E8">            webSocketClient </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> WebSocketClient</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">new</span><span style="color:#B392F0"> URI</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"ws://localhost:8080/chat"</span><span style="color:#E1E4E8">)) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">                public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onOpen</span><span style="color:#E1E4E8">(ServerHandshake </span><span style="color:#FFAB70">handshake</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"✅ Kết nối thành công"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">                    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">                    // Nhập tên người dùng</span></span>
 <span class="line"><span style="color:#E1E4E8">                    userName </span><span style="color:#F97583">=</span><span style="color:#B392F0"> showInputDialog</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Nhập tên của bạn:"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#F97583">                    if</span><span style="color:#E1E4E8"> (userName </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">userName.</span><span style="color:#B392F0">trim</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">isEmpty</span><span style="color:#E1E4E8">()) {</span></span>
 <span class="line"><span style="color:#B392F0">                        sendJoinMessage</span><span style="color:#E1E4E8">(userName);</span></span>
 <span class="line"><span style="color:#E1E4E8">                    }</span></span>
 <span class="line"><span style="color:#E1E4E8">                }</span></span>
-<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">                @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">                public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onMessage</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">                    try</span><span style="color:#E1E4E8"> {</span></span>
@@ -537,38 +537,38 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">                        System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi parse message: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">                    }</span></span>
 <span class="line"><span style="color:#E1E4E8">                }</span></span>
-<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">                @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">                public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onClose</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> code</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">reason</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">boolean</span><span style="color:#FFAB70"> remote</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"👋 Kết nối đã đóng"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">                }</span></span>
-<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">                @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">                public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onError</span><span style="color:#E1E4E8">(Exception </span><span style="color:#FFAB70">ex</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                    System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ WebSocket error: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> ex.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">                }</span></span>
 <span class="line"><span style="color:#E1E4E8">            };</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">            webSocketClient.</span><span style="color:#B392F0">connect</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi kết nối: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleMessage</span><span style="color:#E1E4E8">(ChatMessage </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">        switch</span><span style="color:#E1E4E8"> (message.</span><span style="color:#B392F0">getType</span><span style="color:#E1E4E8">()) {</span></span>
 <span class="line"><span style="color:#F97583">            case</span><span style="color:#9ECBFF"> "MESSAGE"</span><span style="color:#F97583">:</span></span>
-<span class="line"><span style="color:#E1E4E8">                chatArea.</span><span style="color:#B392F0">appendText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"["</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> message.</span><span style="color:#B392F0">getTimestamp</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "] "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">                chatArea.</span><span style="color:#B392F0">appendText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"["</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> message.</span><span style="color:#B392F0">getTimestamp</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "] "</span><span style="color:#F97583"> +</span></span>
 <span class="line"><span style="color:#E1E4E8">                    message.</span><span style="color:#B392F0">getSender</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> ": "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#F97583">                break</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#F97583">            case</span><span style="color:#9ECBFF"> "SYSTEM"</span><span style="color:#F97583">:</span></span>
-<span class="line"><span style="color:#E1E4E8">                chatArea.</span><span style="color:#B392F0">appendText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"["</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> message.</span><span style="color:#B392F0">getTimestamp</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "] "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">                chatArea.</span><span style="color:#B392F0">appendText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"["</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> message.</span><span style="color:#B392F0">getTimestamp</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "] "</span><span style="color:#F97583"> +</span></span>
 <span class="line"><span style="color:#E1E4E8">                    message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#F97583">                break</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#F97583">            case</span><span style="color:#9ECBFF"> "USER_LIST"</span><span style="color:#F97583">:</span></span>
 <span class="line"><span style="color:#F97583">                try</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">                    List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> users </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> objectMapper.</span><span style="color:#B392F0">readValue</span><span style="color:#E1E4E8">(message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">(), </span></span>
+<span class="line"><span style="color:#E1E4E8">                    List&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">> users </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> objectMapper.</span><span style="color:#B392F0">readValue</span><span style="color:#E1E4E8">(message.</span><span style="color:#B392F0">getContent</span><span style="color:#E1E4E8">(),</span></span>
 <span class="line"><span style="color:#E1E4E8">                        objectMapper.</span><span style="color:#B392F0">getTypeFactory</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">constructCollectionType</span><span style="color:#E1E4E8">(List.class, String.class));</span></span>
 <span class="line"><span style="color:#E1E4E8">                    userList.</span><span style="color:#B392F0">getItems</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">clear</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">                    userList.</span><span style="color:#B392F0">getItems</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">addAll</span><span style="color:#E1E4E8">(users);</span></span>
@@ -581,7 +581,7 @@ Kant Nguyễn
 <span class="line"><span style="color:#F97583">                break</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> sendMessage</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#E1E4E8">        String message </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> messageField.</span><span style="color:#B392F0">getText</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">trim</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#F97583">        if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">message.</span><span style="color:#B392F0">isEmpty</span><span style="color:#E1E4E8">()) {</span></span>
@@ -594,7 +594,7 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">            }</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> sendJoinMessage</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">userName</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#E1E4E8">            ChatMessage joinMessage </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> ChatMessage</span><span style="color:#E1E4E8">(userName, userName, </span><span style="color:#9ECBFF">"JOIN"</span><span style="color:#E1E4E8">);</span></span>
@@ -603,14 +603,14 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi gửi join message: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> showEmojiPicker</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#6A737D">        // Simple emoji picker</span></span>
 <span class="line"><span style="color:#F97583">        String</span><span style="color:#E1E4E8">[] emojis </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">"😀"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"😂"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"😍"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"🤔"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"👍"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"👎"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"❤️"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"🎉"</span><span style="color:#E1E4E8">};</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        Alert alert </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Alert</span><span style="color:#E1E4E8">(Alert.AlertType.NONE);</span></span>
 <span class="line"><span style="color:#E1E4E8">        alert.</span><span style="color:#B392F0">setTitle</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Chọn Emoji"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        HBox emojiBox </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> HBox</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#F97583">        for</span><span style="color:#E1E4E8"> (String emoji </span><span style="color:#F97583">:</span><span style="color:#E1E4E8"> emojis) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            Button emojiBtn </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Button</span><span style="color:#E1E4E8">(emoji);</span></span>
@@ -625,20 +625,20 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">            });</span></span>
 <span class="line"><span style="color:#E1E4E8">            emojiBox.</span><span style="color:#B392F0">getChildren</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">add</span><span style="color:#E1E4E8">(emojiBtn);</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        alert.</span><span style="color:#B392F0">getDialogPane</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">setContent</span><span style="color:#E1E4E8">(emojiBox);</span></span>
 <span class="line"><span style="color:#E1E4E8">        alert.</span><span style="color:#B392F0">showAndWait</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">showInputDialog</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        TextInputDialog dialog </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> TextInputDialog</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        dialog.</span><span style="color:#B392F0">setTitle</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Chat Client"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        dialog.</span><span style="color:#B392F0">setHeaderText</span><span style="color:#E1E4E8">(message);</span></span>
 <span class="line"><span style="color:#E1E4E8">        dialog.</span><span style="color:#B392F0">setContentText</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Tên:"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> dialog.</span><span style="color:#B392F0">showAndWait</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">orElse</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#B392F0">        launch</span><span style="color:#E1E4E8">(args);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
@@ -763,7 +763,7 @@ Xem bài
 Xem bài
 </a> </td> </tr><tr class="bg-primary/10 dark:bg-primary/20 font-semibold transition-colors" data-astro-cid-7jjqptxk> <td class="border px-4 py-2 text-center" data-astro-cid-7jjqptxk>07</td> <td class="border px-4 py-2" data-astro-cid-7jjqptxk>Dự án Chat Mini - Ứng dụng chat hoàn chỉnh</td> <td class="border px-4 py-2 text-center" data-astro-cid-7jjqptxk> <span class="text-gray-400 italic" data-astro-cid-7jjqptxk>Bạn đang xem</span> </td> </tr><tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" data-astro-cid-7jjqptxk> <td class="border px-4 py-2 text-center" data-astro-cid-7jjqptxk>08</td> <td class="border px-4 py-2" data-astro-cid-7jjqptxk>Tổng kết Feynman - Ôn lại toàn bộ series</td> <td class="border px-4 py-2 text-center" data-astro-cid-7jjqptxk> <a href="/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/" class="text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk>
 Xem bài
-</a> </td> </tr> </tbody> </table> </div> </div> </section> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <a href="/Kant_Nguyen_Astro_Blog/blog/Kant_Nguyen_Astro_Blog/blog/06-websocket-java//" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-7jjqptxk></path> </svg> <span data-astro-cid-7jjqptxk>Bài trước</span> </a> <a href="/Kant_Nguyen_Astro_Blog/blog/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman//" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>Bài tiếp theo</span> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-7jjqptxk></path> </svg> </a> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
+</a> </td> </tr> </tbody> </table> </div> </div> </section> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <a href="/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-7jjqptxk></path> </svg> <span data-astro-cid-7jjqptxk>Bài trước</span> </a> <a href="/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>Bài tiếp theo</span> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-7jjqptxk></path> </svg> </a> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
 "Work hard in silence — let success make noise."
 </blockquote> <!-- Social Links --> <div class="flex justify-center space-x-6 mb-8"> <a href="https://github.com/KhoiNguyendes23" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> <a href="https://www.linkedin.com/in/nguyen-dang-khoi-6247a337b/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="mailto:khoind82@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> <!-- Copyright --> <div class="text-sm text-gray-500 dark:text-gray-400">
 © 2024 Kant Nguyễn. Tất cả quyền được bảo lưu.

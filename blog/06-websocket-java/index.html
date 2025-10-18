@@ -75,7 +75,7 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">Configuration</span></span>
 <span class="line"><span style="color:#E1E4E8">@</span><span style="color:#F97583">EnableWebSocket</span></span>
 <span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> WebSocketConfig</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> WebSocketConfigurer</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> registerWebSocketHandlers</span><span style="color:#E1E4E8">(WebSocketHandlerRegistry </span><span style="color:#FFAB70">registry</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">        // Đăng ký WebSocket handler cho endpoint /chat</span></span>
@@ -90,61 +90,61 @@ Kant Nguyễn
 <span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> java.util.Map;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> ChatWebSocketHandler</span><span style="color:#F97583"> implements</span><span style="color:#B392F0"> WebSocketHandler</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">    // Map để lưu trữ các session đang kết nối</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> final</span><span style="color:#E1E4E8"> Map&#x3C;</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">WebSocketSession</span><span style="color:#E1E4E8">> sessions </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#E1E4E8"> ConcurrentHashMap&#x3C;>();</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> afterConnectionEstablished</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
 <span class="line"><span style="color:#6A737D">        // Khi client kết nối thành công</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        sessions.</span><span style="color:#B392F0">put</span><span style="color:#E1E4E8">(sessionId, session);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"✅ Client kết nối: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> sessionId);</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"👥 Tổng số client: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> sessions.</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">());</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Gửi thông báo chào mừng</span></span>
 <span class="line"><span style="color:#B392F0">        sendMessage</span><span style="color:#E1E4E8">(session, </span><span style="color:#9ECBFF">"Chào mừng bạn đến với chat room!"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Thông báo cho các client khác</span></span>
 <span class="line"><span style="color:#B392F0">        broadcast</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Người dùng mới đã tham gia chat room!"</span><span style="color:#E1E4E8">, sessionId);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleMessage</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, WebSocketMessage&#x3C;</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">> </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
 <span class="line"><span style="color:#6A737D">        // Xử lý tin nhắn từ client</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        String messageText </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (String) message.</span><span style="color:#B392F0">getPayload</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"💬 Tin nhắn từ "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> sessionId </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> ": "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> messageText);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Broadcast tin nhắn đến tất cả client khác</span></span>
 <span class="line"><span style="color:#B392F0">        broadcast</span><span style="color:#E1E4E8">(sessionId </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> ": "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> messageText, sessionId);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> handleTransportError</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, Throwable </span><span style="color:#FFAB70">exception</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi transport: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> exception.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> afterConnectionClosed</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, CloseStatus </span><span style="color:#FFAB70">closeStatus</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#E1E4E8"> Exception {</span></span>
 <span class="line"><span style="color:#6A737D">        // Khi client ngắt kết nối</span></span>
 <span class="line"><span style="color:#E1E4E8">        String sessionId </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> session.</span><span style="color:#B392F0">getId</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#E1E4E8">        sessions.</span><span style="color:#B392F0">remove</span><span style="color:#E1E4E8">(sessionId);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"👋 Client ngắt kết nối: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> sessionId);</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"👥 Còn lại: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> sessions.</span><span style="color:#B392F0">size</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> " client"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">        // Thông báo cho các client khác</span></span>
 <span class="line"><span style="color:#B392F0">        broadcast</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Người dùng đã rời khỏi chat room!"</span><span style="color:#E1E4E8">, sessionId);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> boolean</span><span style="color:#B392F0"> supportsPartialMessages</span><span style="color:#E1E4E8">() {</span></span>
 <span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">    // Gửi tin nhắn đến một session cụ thể</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> sendMessage</span><span style="color:#E1E4E8">(WebSocketSession </span><span style="color:#FFAB70">session</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
@@ -155,7 +155,7 @@ Kant Nguyễn
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi gửi tin nhắn: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">    // Broadcast tin nhắn đến tất cả client khác</span></span>
 <span class="line"><span style="color:#F97583">    private</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> broadcast</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">excludeSessionId</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        sessions.</span><span style="color:#B392F0">values</span><span style="color:#E1E4E8">().</span><span style="color:#B392F0">stream</span><span style="color:#E1E4E8">()</span></span>
@@ -170,62 +170,62 @@ Kant Nguyễn
 <span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> org.java_websocket.handshake.ServerHandshake;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> class</span><span style="color:#B392F0"> WebSocketClient</span><span style="color:#F97583"> extends</span><span style="color:#B392F0"> WebSocketClient</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#B392F0"> WebSocketClient</span><span style="color:#E1E4E8">(URI </span><span style="color:#FFAB70">serverUri</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#79B8FF">        super</span><span style="color:#E1E4E8">(serverUri);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onOpen</span><span style="color:#E1E4E8">(ServerHandshake </span><span style="color:#FFAB70">handshake</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"🔗 Đã kết nối đến WebSocket server"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Status: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> handshake.</span><span style="color:#B392F0">getHttpStatus</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onMessage</span><span style="color:#E1E4E8">(String </span><span style="color:#FFAB70">message</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"📥 Nhận được: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> message);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onClose</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> code</span><span style="color:#E1E4E8">, String </span><span style="color:#FFAB70">reason</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">boolean</span><span style="color:#FFAB70"> remote</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"👋 Kết nối đã đóng"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Code: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> code </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> ", Reason: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> reason);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    @</span><span style="color:#F97583">Override</span></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> onError</span><span style="color:#E1E4E8">(Exception </span><span style="color:#FFAB70">ex</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">        System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi WebSocket: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> ex.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">    public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">String</span><span style="color:#E1E4E8">[] </span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#6A737D">            // Kết nối đến WebSocket server</span></span>
 <span class="line"><span style="color:#E1E4E8">            WebSocketClient client </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> WebSocketClient</span><span style="color:#E1E4E8">(</span></span>
 <span class="line"><span style="color:#F97583">                new</span><span style="color:#B392F0"> URI</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"ws://localhost:8080/chat"</span><span style="color:#E1E4E8">)</span></span>
 <span class="line"><span style="color:#E1E4E8">            );</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">            client.</span><span style="color:#B392F0">connect</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">            // Chờ kết nối thành công</span></span>
 <span class="line"><span style="color:#E1E4E8">            Thread.</span><span style="color:#B392F0">sleep</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1000</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">            Scanner scanner </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Scanner</span><span style="color:#E1E4E8">(System.in);</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">            while</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                System.out.</span><span style="color:#B392F0">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Nhập tin nhắn (hoặc 'quit' để thoát): "</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">                String message </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scanner.</span><span style="color:#B392F0">nextLine</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#F97583">                if</span><span style="color:#E1E4E8"> (message.</span><span style="color:#B392F0">equals</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"quit"</span><span style="color:#E1E4E8">)) {</span></span>
 <span class="line"><span style="color:#E1E4E8">                    client.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
 <span class="line"><span style="color:#F97583">                    break</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#E1E4E8">                }</span></span>
-<span class="line"><span style="color:#E1E4E8">                </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#6A737D">                // Gửi tin nhắn đến server</span></span>
 <span class="line"><span style="color:#E1E4E8">                client.</span><span style="color:#B392F0">send</span><span style="color:#E1E4E8">(message);</span></span>
 <span class="line"><span style="color:#E1E4E8">            }</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">            scanner.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">            </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#E1E4E8">            System.err.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"❌ Lỗi client: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> e.</span><span style="color:#B392F0">getMessage</span><span style="color:#E1E4E8">());</span></span>
 <span class="line"><span style="color:#E1E4E8">        }</span></span>
@@ -247,37 +247,37 @@ Kant Nguyễn
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="xml"><code><span class="line"><span style="color:#E1E4E8">&#x3C;?</span><span style="color:#85E89D">xml</span><span style="color:#B392F0"> version</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"1.0"</span><span style="color:#B392F0"> encoding</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"UTF-8"</span><span style="color:#E1E4E8">?></span></span>
 <span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">project</span><span style="color:#B392F0"> xmlns</span><span style="color:#E1E4E8">=</span><span style="color:#9ECBFF">"http://maven.apache.org/POM/4.0.0"</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">modelVersion</span><span style="color:#E1E4E8">>4.0.0&#x3C;/</span><span style="color:#85E89D">modelVersion</span><span style="color:#E1E4E8">></span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">parent</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">>org.springframework.boot&#x3C;/</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">>spring-boot-starter-parent&#x3C;/</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">version</span><span style="color:#E1E4E8">>3.1.0&#x3C;/</span><span style="color:#85E89D">version</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">relativePath</span><span style="color:#E1E4E8">/></span></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">parent</span><span style="color:#E1E4E8">></span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">>com.example&#x3C;/</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">>websocket-chat&#x3C;/</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">version</span><span style="color:#E1E4E8">>1.0.0&#x3C;/</span><span style="color:#85E89D">version</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">packaging</span><span style="color:#E1E4E8">>jar&#x3C;/</span><span style="color:#85E89D">packaging</span><span style="color:#E1E4E8">></span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">dependencies</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">dependency</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">>org.springframework.boot&#x3C;/</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">>spring-boot-starter-web&#x3C;/</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">dependency</span><span style="color:#E1E4E8">></span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">dependency</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">>org.springframework.boot&#x3C;/</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">>spring-boot-starter-websocket&#x3C;/</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">dependency</span><span style="color:#E1E4E8">></span></span>
-<span class="line"><span style="color:#E1E4E8">        </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">dependency</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">>org.java-websocket&#x3C;/</span><span style="color:#85E89D">groupId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">>Java-WebSocket&#x3C;/</span><span style="color:#85E89D">artifactId</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">version</span><span style="color:#E1E4E8">>1.5.3&#x3C;/</span><span style="color:#85E89D">version</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#85E89D">dependency</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">dependencies</span><span style="color:#E1E4E8">></span></span>
-<span class="line"><span style="color:#E1E4E8">    </span></span>
+<span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">build</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#85E89D">plugins</span><span style="color:#E1E4E8">></span></span>
 <span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">plugin</span><span style="color:#E1E4E8">></span></span>
@@ -423,7 +423,7 @@ Xem bài
 Xem bài
 </a> </td> </tr><tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors" data-astro-cid-7jjqptxk> <td class="border px-4 py-2 text-center" data-astro-cid-7jjqptxk>08</td> <td class="border px-4 py-2" data-astro-cid-7jjqptxk>Tổng kết Feynman - Ôn lại toàn bộ series</td> <td class="border px-4 py-2 text-center" data-astro-cid-7jjqptxk> <a href="/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/" class="text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk>
 Xem bài
-</a> </td> </tr> </tbody> </table> </div> </div> </section> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <a href="/Kant_Nguyen_Astro_Blog/blog/Kant_Nguyen_Astro_Blog/blog/05-https-tls//" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-7jjqptxk></path> </svg> <span data-astro-cid-7jjqptxk>Bài trước</span> </a> <a href="/Kant_Nguyen_Astro_Blog/blog/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project//" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>Bài tiếp theo</span> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-7jjqptxk></path> </svg> </a> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
+</a> </td> </tr> </tbody> </table> </div> </div> </section> <!-- Navigation --> <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700" data-astro-cid-7jjqptxk> <div class="flex justify-between items-center" data-astro-cid-7jjqptxk> <a href="/Kant_Nguyen_Astro_Blog/blog/05-https-tls/" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" data-astro-cid-7jjqptxk></path> </svg> <span data-astro-cid-7jjqptxk>Bài trước</span> </a> <a href="/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/" class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors" data-astro-cid-7jjqptxk> <span data-astro-cid-7jjqptxk>Bài tiếp theo</span> <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-7jjqptxk> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" data-astro-cid-7jjqptxk></path> </svg> </a> </div> </div> </div> </section> </main> <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700"> <div class="max-w-6xl mx-auto px-4 py-12"> <div class="text-center"> <!-- Quote --> <blockquote class="text-xl md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-8 italic">
 "Work hard in silence — let success make noise."
 </blockquote> <!-- Social Links --> <div class="flex justify-center space-x-6 mb-8"> <a href="https://github.com/KhoiNguyendes23" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </a> <a href="https://www.linkedin.com/in/nguyen-dang-khoi-6247a337b/" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="mailto:khoind82@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-accent transition-colors duration-200 group"> <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> <!-- Copyright --> <div class="text-sm text-gray-500 dark:text-gray-400">
 © 2024 Kant Nguyễn. Tất cả quyền được bảo lưu.
