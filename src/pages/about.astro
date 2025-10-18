@@ -89,12 +89,12 @@ const base = '/Kant_Nguyen_Astro_Blog';
     </section>
 
     <!-- Activities Section -->
-    <section class="py-20 bg-gradient-to-br from-blue-50/40 to-white dark:from-gray-800 dark:to-gray-900">
+    <section class="py-20 bg-gradient-to-br from-blue-50/40 to-white dark:from-gray-800 dark:to-gray-900 relative">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
-          Hoạt động
-        </h2>
-        <div class="flex gap-6 pb-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth">
+        <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Hoạt động</h2>
+
+        <!-- Grid hiển thị hoạt động -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
             {
               image: `${base}/activities/volleyball-2022.jpg`,
@@ -121,23 +121,52 @@ const base = '/Kant_Nguyen_Astro_Blog';
               year: "2024"
             }
           ].map((activity, index) => (
-            <div class="snap-start flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 group">
-              <div class="p-4 md:p-6">
-                <div class="w-full h-52 rounded-xl overflow-hidden mb-4 shadow-md">
-                  <img 
-                    src={activity.image} 
-                    alt={activity.title}
-                    class="w-full h-full object-cover rounded-xl transform group-hover:scale-110 transition-transform duration-500 ease-out"
-                  />
-                </div>
-                <div class="mb-2">
-                  <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{activity.title}</h3>
-                  <span class="inline-block px-3 py-1 bg-primary text-white text-sm font-semibold rounded-full">{activity.year}</span>
-                </div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{activity.description}</p>
+            <div
+              class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
+              onclick={`setSelectedImage('${activity.image}')`}
+            >
+              <!-- Hình ảnh -->
+              <div class="relative h-56">
+                <img
+                  src={activity.image}
+                  alt={activity.title}
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                <span class="absolute top-3 left-3 px-3 py-1 bg-blue-600 text-white text-sm font-semibold rounded-full shadow-md">
+                  {activity.year}
+                </span>
+              </div>
+
+              <!-- Nội dung -->
+              <div class="p-5 space-y-2">
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors duration-300">
+                  {activity.title}
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                  {activity.description}
+                </p>
               </div>
             </div>
           ))}
+        </div>
+
+        <!-- Modal xem ảnh to -->
+        <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-300 hidden">
+          <div class="relative max-w-4xl max-h-[90vh] p-4">
+            <img
+              id="modalImage"
+              src=""
+              alt="Preview"
+              class="rounded-2xl shadow-2xl max-h-[85vh] object-contain mx-auto transition-transform duration-300 scale-95 hover:scale-100"
+            />
+            <button
+              id="closeModal"
+              class="absolute top-3 right-3 text-white bg-black/50 hover:bg-black/80 rounded-full p-2 transition"
+            >
+              ✕
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -267,3 +296,52 @@ const base = '/Kant_Nguyen_Astro_Blog';
 
   <Footer />
 </BaseLayout>
+
+<script>
+  // Image modal functionality
+  function setSelectedImage(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    if (modal && modalImage) {
+      modalImage.src = imageSrc;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+  }
+
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('imageModal');
+    const closeBtn = document.getElementById('closeModal');
+    
+    // Close modal when clicking outside the image
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+    
+    // Close modal when clicking the close button
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  });
+</script>
