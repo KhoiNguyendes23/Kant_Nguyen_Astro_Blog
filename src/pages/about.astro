@@ -23,7 +23,7 @@ const base = '/Kant_Nguyen_Astro_Blog';
     </section>
 
     <!-- About Content -->
-    <section class="py-16">
+    <section class="py-20">
       <div class="max-w-6xl mx-auto px-4">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <!-- Profile Image -->
@@ -89,7 +89,7 @@ const base = '/Kant_Nguyen_Astro_Blog';
     </section>
 
     <!-- Activities Section -->
-    <section class="py-16 bg-gradient-to-br from-blue-50/40 to-white dark:from-gray-800 dark:to-gray-900 fade-in">
+    <section class="py-20 bg-gradient-to-br from-blue-50/40 to-white dark:from-gray-800 dark:to-gray-900">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Hoạt động
@@ -121,20 +121,20 @@ const base = '/Kant_Nguyen_Astro_Blog';
               year: "2024"
             }
           ].map((activity, index) => (
-            <div class="snap-start flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300">
+            <div class="snap-start flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 group">
               <div class="p-4 md:p-6">
-                <div class="w-full h-48 rounded-lg overflow-hidden mb-4">
+                <div class="w-full h-52 rounded-xl overflow-hidden mb-4 shadow-md">
                   <img 
                     src={activity.image} 
                     alt={activity.title}
-                    class="w-full h-full object-cover rounded-lg transform hover:scale-105 transition-transform duration-500 ease-out"
+                    class="w-full h-full object-cover rounded-xl transform group-hover:scale-110 transition-transform duration-500 ease-out"
                   />
                 </div>
                 <div class="mb-2">
-                  <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1">{activity.title}</h3>
+                  <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">{activity.title}</h3>
                   <span class="inline-block px-3 py-1 bg-primary text-white text-sm font-semibold rounded-full">{activity.year}</span>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 text-sm">{activity.description}</p>
+                <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">{activity.description}</p>
               </div>
             </div>
           ))}
@@ -143,48 +143,54 @@ const base = '/Kant_Nguyen_Astro_Blog';
     </section>
 
     <!-- Cisco Certificates Section -->
-    <section class="py-16 fade-in">
+    <section class="py-20">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Chứng chỉ Cisco
         </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center mt-10">
-          <div class="text-center">
-            <a href="https://www.credly.com/badges/17210156-aae7-4bd9-90c7-fde448669afd/public_url" target="_blank" rel="noopener noreferrer">
-              <img
-                src={`${base}/certificates/networking-basics.png`}
-                alt="Cisco Networking Basics Certificate"
-                class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
-              />
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+          <div class="text-center group">
+            <a href="https://www.credly.com/badges/17210156-aae7-4bd9-90c7-fde448669afd/public_url" target="_blank" rel="noopener noreferrer" class="block">
+              <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-4 group-hover:scale-105">
+                <img
+                  src={`${base}/certificates/networking-basics.png`}
+                  alt="Cisco Networking Basics Certificate"
+                  class="rounded-xl shadow-md h-56 w-full object-cover"
+                />
+              </div>
             </a>
-            <p class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">Networking Basics</p>
+            <p class="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">Networking Basics</p>
           </div>
-          <div class="text-center">
-            <a href="https://www.credly.com/badges/fde07599-95ee-4962-aac4-f40adaedc4da/public_url" target="_blank" rel="noopener noreferrer">
-              <img
-                src={`${base}/certificates/javascript-essentials-1.png`}
-                alt="Cisco JavaScript Essentials 1 Certificate"
-                class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
-              />
+          <div class="text-center group">
+            <a href="https://www.credly.com/badges/fde07599-95ee-4962-aac4-f40adaedc4da/public_url" target="_blank" rel="noopener noreferrer" class="block">
+              <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-4 group-hover:scale-105">
+                <img
+                  src={`${base}/certificates/javascript-essentials-1.png`}
+                  alt="Cisco JavaScript Essentials 1 Certificate"
+                  class="rounded-xl shadow-md h-56 w-full object-cover"
+                />
+              </div>
             </a>
-            <p class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">JS Essentials 1</p>
+            <p class="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">JS Essentials 1</p>
           </div>
-          <div class="text-center">
-            <a href="https://www.credly.com/badges/76e662e9-02dd-49bb-a2ac-42df9b354d8b/public_url" target="_blank" rel="noopener noreferrer">
-              <img
-                src={`${base}/certificates/javascript-essentials-2.png`}
-                alt="Cisco JavaScript Essentials 2 Certificate"
-                class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-all duration-300 h-56 md:h-64 object-cover"
-              />
+          <div class="text-center group">
+            <a href="https://www.credly.com/badges/76e662e9-02dd-49bb-a2ac-42df9b354d8b/public_url" target="_blank" rel="noopener noreferrer" class="block">
+              <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 p-4 group-hover:scale-105">
+                <img
+                  src={`${base}/certificates/javascript-essentials-2.png`}
+                  alt="Cisco JavaScript Essentials 2 Certificate"
+                  class="rounded-xl shadow-md h-56 w-full object-cover"
+                />
+              </div>
             </a>
-            <p class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300">JS Essentials 2</p>
+            <p class="mt-4 text-sm font-medium text-gray-700 dark:text-gray-300">JS Essentials 2</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-900 fade-in">
+    <section class="py-20 bg-gray-50 dark:bg-gray-900">
       <div class="max-w-6xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Kỹ năng
@@ -200,7 +206,7 @@ const base = '/Kant_Nguyen_Astro_Blog';
             { name: "WebSocket", level: 70, color: "bg-purple-500" },
             { name: "HTML/CSS/JS", level: 82, color: "bg-yellow-500" }
           ].map(skill => (
-            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+            <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
               <div class="flex items-center justify-between mb-2">
                 <span class="font-semibold text-gray-900 dark:text-white">{skill.name}</span>
                 <span class="text-sm text-gray-500 dark:text-gray-400">{skill.level}%</span>
@@ -215,12 +221,12 @@ const base = '/Kant_Nguyen_Astro_Blog';
     </section>
 
     <!-- Activities & Awards Section -->
-    <section class="py-16 fade-in">
+    <section class="py-20">
       <div class="max-w-4xl mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Hoạt động & Giải thưởng
         </h2>
-        <div class="space-y-8">
+        <div class="space-y-6">
           {[
             {
               year: "2023",
@@ -241,14 +247,16 @@ const base = '/Kant_Nguyen_Astro_Blog';
               icon: "🎓"
             }
           ].map(activity => (
-            <div class="flex items-start space-x-4 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-              <div class="text-3xl flex items-center justify-center w-12 h-12">{activity.icon}</div>
+            <div class="flex items-start space-x-6 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300 group">
+              <div class="text-4xl flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary/10 to-purple-600/10 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                {activity.icon}
+              </div>
               <div class="flex-1">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-3 mb-3">
                   <span class="px-3 py-1 bg-primary text-white text-sm font-semibold rounded-full">{activity.year}</span>
                   <h3 class="text-xl font-bold text-gray-900 dark:text-white">{activity.title}</h3>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300">{activity.description}</p>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{activity.description}</p>
               </div>
             </div>
           ))}
