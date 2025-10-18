@@ -12,17 +12,17 @@ next: "./01-tcp-socket-basic.md"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md) |
-| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](./01-tcp-socket-basic.md) |
-| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](./02-tcp-multithreaded-server.md) |
-| 03 | Lập trình mạng với UDP | [03-udp-datagram](./03-udp-datagram.md) |
-| 04 | Java 11 HttpClient | [04-httpclient-api](./04-httpclient-api.md) |
-| 05 | HTTPS và TLS | [05-https-tls](./05-https-tls.md) |
-| 06 | WebSocket trong Java | [06-websocket-java](./06-websocket-java.md) |
-| 07 | Ứng dụng chat mini | [07-chat-mini-project](./07-chat-mini-project.md) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](./08-summary-feynman.md) |
+|  #  | Bài viết                         | Liên kết                                                        |
+| :-: | :------------------------------- | :-------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](./00-intro-environment.md)               |
+| 01  | TCP Socket cơ bản                | [01-tcp-socket-basic](./01-tcp-socket-basic.md)                 |
+| 02  | TCP Server đa luồng              | [02-tcp-multithreaded-server](./02-tcp-multithreaded-server.md) |
+| 03  | Lập trình mạng với UDP           | [03-udp-datagram](./03-udp-datagram.md)                         |
+| 04  | Java 11 HttpClient               | [04-httpclient-api](./04-httpclient-api.md)                     |
+| 05  | HTTPS và TLS                     | [05-https-tls](./05-https-tls.md)                               |
+| 06  | WebSocket trong Java             | [06-websocket-java](./06-websocket-java.md)                     |
+| 07  | Ứng dụng chat mini               | [07-chat-mini-project](./07-chat-mini-project.md)               |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](./08-summary-feynman.md)                   |
 
 </div>
 
@@ -31,6 +31,7 @@ next: "./01-tcp-socket-basic.md"
 Chào mừng bạn đến với series **"Lập trình mạng với Java"**! Trong series này, chúng ta sẽ cùng nhau khám phá cách Java xử lý các kết nối mạng, từ những khái niệm cơ bản nhất như TCP Socket đến những ứng dụng phức tạp như WebSocket và HTTPS.
 
 Bạn sẽ học được cách:
+
 - Tạo server và client sử dụng TCP/UDP
 - Xây dựng ứng dụng chat đa luồng
 - Làm việc với HTTP Client API
@@ -62,7 +63,7 @@ public class HelloWorldSocket {
             // Tạo socket kết nối đến localhost port 8080
             Socket socket = new Socket("localhost", 8080);
             System.out.println("✅ Kết nối thành công!");
-            
+
             // Đóng kết nối
             socket.close();
         } catch (IOException e) {
@@ -77,10 +78,12 @@ public class HelloWorldSocket {
 **Cài đặt môi trường:**
 
 1. **JDK 17**: Java Development Kit phiên bản 17 trở lên
+
    - Download từ [Oracle](https://www.oracle.com/java/technologies/downloads/) hoặc [OpenJDK](https://openjdk.org/)
    - Cài đặt và cấu hình JAVA_HOME
 
 2. **IntelliJ IDEA**: IDE chuyên nghiệp cho Java
+
    - Community Edition miễn phí
    - Hỗ trợ debugging mạnh mẽ
    - Tích hợp Git và Maven/Gradle
@@ -91,6 +94,7 @@ public class HelloWorldSocket {
    - Phù hợp cho người mới bắt đầu
 
 **Giải thích code:**
+
 - `Socket socket = new Socket("localhost", 8080)`: Tạo kết nối TCP đến địa chỉ localhost port 8080
 - `socket.close()`: Đóng kết nối để giải phóng tài nguyên
 - `IOException`: Xử lý lỗi khi không thể kết nối

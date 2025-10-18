@@ -1,7 +1,7 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const posts = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -14,7 +14,7 @@ const posts = defineCollection({
 });
 
 const javaNetworkSeries = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -27,7 +27,7 @@ const javaNetworkSeries = defineCollection({
 });
 
 const javascriptNetworkSeries = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -40,7 +40,7 @@ const javascriptNetworkSeries = defineCollection({
 });
 
 export const collections = {
-  'posts': posts,
-  'java-network-series': javaNetworkSeries,
-  'javascript-network-series': javascriptNetworkSeries,
+  posts: posts,
+  "java-network-series": javaNetworkSeries,
+  "javascript-network-series": javascriptNetworkSeries,
 };

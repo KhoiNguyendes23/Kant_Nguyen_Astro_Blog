@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
+// === Lấy tất cả bài viết từ nhiều collection ===
 export async function getStaticPaths() {
   const allPosts = await Promise.all([
     getCollection('posts'),
@@ -19,6 +20,17 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+
+// === Hàm xử lý link (chuyển ./01-x.md -> /blog/[series]/01-x/) ===
+function normalizeLink(link) {
+  if (!link) return null;
+  const collection = post.collection ?? 'posts';
+  const clean = link.replace('./', '').replace('.md', '').replace(/^\//, '');
+  return `/Kant_Nguyen_Astro_Blog/blog/${collection}/${clean}/`;
+}
+
+const prevLink = normalizeLink(post.data.prev);
+const nextLink = normalizeLink(post.data.next);
 ---
 
 <BaseLayout title={`${post.data.title} - Kant Nguyễn`}>
@@ -48,7 +60,7 @@ const { Content } = await post.render();
           </div>
           
           <div class="flex flex-wrap justify-center gap-2 mt-6">
-            {post.data.tags.map(tag => (
+            {post.data.tags?.map(tag => (
               <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-md">
                 {tag}
               </span>
@@ -64,32 +76,84 @@ const { Content } = await post.render();
         <article class="prose prose-lg max-w-none dark:prose-invert">
           <Content />
         </article>
-        
+
+        <!-- Series Overview Section -->
+        {post.data.series && (
+          <section class="mt-16 mb-8 pt-12 border-t border-gray-200 dark:border-gray-700">
+            <div class="max-w-4xl mx-auto px-4">
+              <h2 class="text-2xl font-bold mb-6 text-center text-primary">
+                📚 {post.data.series}
+              </h2>
+              {
+                await getCollection(post.collection).then(allSeries => {
+                  const sorted = allSeries.sort((a, b) => a.slug.localeCompare(b.slug));
+                  return (
+                    <div class="overflow-x-auto">
+                      <table class="min-w-full border border-gray-200 dark:border-gray-700 text-sm md:text-base">
+                        <thead class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+                          <tr>
+                            <th class="px-4 py-2 border">#</th>
+                            <th class="px-4 py-2 border">Bài viết</th>
+                            <th class="px-4 py-2 border">Liên kết</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {
+                            sorted.map((item, i) => {
+                              const isActive = item.slug === post.slug;
+                              return (
+                                <tr
+                                  class={`${isActive ? 'bg-primary/10 dark:bg-primary/20 font-semibold' : 'hover:bg-gray-50 dark:hover:bg-gray-800'} transition-colors`}
+                                >
+                                  <td class="border px-4 py-2 text-center">{String(i).padStart(2, '0')}</td>
+                                  <td class="border px-4 py-2">{item.data.title}</td>
+                                  <td class="border px-4 py-2 text-center">
+                                    {isActive ? (
+                                      <span class="text-gray-400 italic">Bạn đang xem</span>
+                                    ) : (
+                                      <a
+                                        href={`/Kant_Nguyen_Astro_Blog/blog/${post.collection}/${item.slug}/`}
+                                        class="text-primary hover:text-primary/80 transition-colors"
+                                      >
+                                        Xem bài
+                                      </a>
+                                    )}
+                                  </td>
+                                </tr>
+                              );
+                            })
+                          }
+                        </tbody>
+                      </table>
+                    </div>
+                  );
+                })
+              }
+            </div>
+          </section>
+        )}
+
         <!-- Navigation -->
-        {(post.data.prev || post.data.next) && (
+        {(prevLink || nextLink) && (
           <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
             <div class="flex justify-between items-center">
-              {post.data.prev ? (
-                <a href={post.data.prev} class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors">
+              {prevLink ? (
+                <a href={prevLink} class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                   </svg>
                   <span>Bài trước</span>
                 </a>
-              ) : (
-                <div></div>
-              )}
-              
-              {post.data.next ? (
-                <a href={post.data.next} class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors">
+              ) : <div></div>}
+
+              {nextLink ? (
+                <a href={nextLink} class="flex items-center space-x-3 text-primary hover:text-primary/80 transition-colors">
                   <span>Bài tiếp theo</span>
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                   </svg>
                 </a>
-              ) : (
-                <div></div>
-              )}
+              ) : <div></div>}
             </div>
           </div>
         )}
@@ -101,40 +165,12 @@ const { Content } = await post.render();
 </BaseLayout>
 
 <style>
-  .prose {
-    color: rgb(55 65 81);
-  }
-  
-  .dark .prose {
-    color: rgb(209 213 219);
-  }
-  
-  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-    color: rgb(17 24 39);
-  }
-  
-  .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4, .dark .prose h5, .dark .prose h6 {
-    color: rgb(243 244 246);
-  }
-  
-  .prose code {
-    background-color: rgb(243 244 246);
-    padding: 0.125rem 0.25rem;
-    border-radius: 0.25rem;
-    font-size: 0.875em;
-  }
-  
-  .dark .prose code {
-    background-color: rgb(55 65 81);
-  }
-  
-  .prose pre {
-    background-color: rgb(17 24 39);
-    color: rgb(243 244 246);
-  }
-  
-  .prose blockquote {
-    border-left-color: rgb(99 102 241);
-    background-color: rgb(99 102 241 / 0.05);
-  }
+  .prose { color: rgb(55 65 81); }
+  .dark .prose { color: rgb(209 213 219); }
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 { color: rgb(17 24 39); }
+  .dark .prose h1, .dark .prose h2, .dark .prose h3, .dark .prose h4, .dark .prose h5, .dark .prose h6 { color: rgb(243 244 246); }
+  .prose code { background-color: rgb(243 244 246); padding: 0.125rem 0.25rem; border-radius: 0.25rem; font-size: 0.875em; }
+  .dark .prose code { background-color: rgb(55 65 81); }
+  .prose pre { background-color: rgb(17 24 39); color: rgb(243 244 246); }
+  .prose blockquote { border-left-color: rgb(99 102 241); background-color: rgb(99 102 241 / 0.05); }
 </style>

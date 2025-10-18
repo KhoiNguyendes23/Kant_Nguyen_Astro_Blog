@@ -180,7 +180,7 @@ body {
 @media (prefers-color-scheme: dark) {
   .series-table table {
     background: linear-gradient(180deg, #1b1f24 0%, #222a34 100%);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
   .series-table th {
     background: #0073e6;
