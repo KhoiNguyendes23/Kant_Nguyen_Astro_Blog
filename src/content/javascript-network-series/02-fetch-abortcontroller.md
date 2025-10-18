@@ -2,7 +2,14 @@
 title: "Fetch với AbortController - Timeout và hủy request"
 description: "Học cách sử dụng AbortController để hủy requests, implement timeout và xử lý race conditions"
 date: 2025-09-21
-tags: ["JavaScript", "AbortController", "Timeout", "Race Conditions", "Error Handling"]
+tags:
+  [
+    "JavaScript",
+    "AbortController",
+    "Timeout",
+    "Race Conditions",
+    "Error Handling",
+  ]
 series: "Lập trình mạng với JavaScript"
 prev: "/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/"
 next: "/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/"
@@ -12,17 +19,17 @@ next: "/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | Fetch API cơ bản | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/) |
-| 02 | Fetch với AbortController | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
-| 03 | WebSocket giới thiệu | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/) |
-| 04 | SSE vs WebSocket | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/) |
-| 05 | Service Worker | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/) |
-| 06 | PWA Manifest | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/) |
-| 07 | DevTools Network | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                           |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)         |
+| 01  | Fetch API cơ bản                 | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/)                     |
+| 02  | Fetch với AbortController        | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
+| 03  | WebSocket giới thiệu             | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/)             |
+| 04  | SSE vs WebSocket                 | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/)           |
+| 05  | Service Worker                   | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/)               |
+| 06  | PWA Manifest                     | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/)                   |
+| 07  | DevTools Network                 | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/)           |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)             |
 
 </div>
 
@@ -41,79 +48,77 @@ Bài này sẽ dạy bạn cách sử dụng AbortController để implement tim
 ```javascript
 // AbortController cơ bản
 async function fetchWithAbortController() {
-    try {
-        console.log('🧪 Testing AbortController...');
-        
-        // Tạo AbortController
-        const controller = new AbortController();
-        const signal = controller.signal;
-        
-        // Fetch request với signal
-        const fetchPromise = fetch('https://httpbin.org/delay/3', {
-            signal: signal
-        });
-        
-        // Hủy request sau 2 giây
-        setTimeout(() => {
-            console.log('⏰ Hủy request sau 2 giây...');
-            controller.abort();
-        }, 2000);
-        
-        const response = await fetchPromise;
-        const data = await response.json();
-        
-        console.log('✅ Request thành công!');
-        console.log('📊 Data:', data);
-        
-    } catch (error) {
-        if (error.name === 'AbortError') {
-            console.log('❌ Request đã bị hủy!');
-        } else {
-            console.error('❌ Lỗi khác:', error.message);
-        }
+  try {
+    console.log("🧪 Testing AbortController...");
+
+    // Tạo AbortController
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    // Fetch request với signal
+    const fetchPromise = fetch("https://httpbin.org/delay/3", {
+      signal: signal,
+    });
+
+    // Hủy request sau 2 giây
+    setTimeout(() => {
+      console.log("⏰ Hủy request sau 2 giây...");
+      controller.abort();
+    }, 2000);
+
+    const response = await fetchPromise;
+    const data = await response.json();
+
+    console.log("✅ Request thành công!");
+    console.log("📊 Data:", data);
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("❌ Request đã bị hủy!");
+    } else {
+      console.error("❌ Lỗi khác:", error.message);
     }
+  }
 }
 
 // Fetch với timeout
 async function fetchWithTimeout(url, timeout = 5000) {
-    try {
-        console.log(`🧪 Fetching với timeout ${timeout}ms...`);
-        
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => {
-            console.log('⏰ Timeout! Hủy request...');
-            controller.abort();
-        }, timeout);
-        
-        const response = await fetch(url, {
-            signal: controller.signal
-        });
-        
-        // Clear timeout nếu request thành công
-        clearTimeout(timeoutId);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('✅ Request thành công!');
-        console.log('📊 Data:', data);
-        
-        return data;
-        
-    } catch (error) {
-        if (error.name === 'AbortError') {
-            console.log('❌ Request timeout!');
-        } else {
-            console.error('❌ Lỗi request:', error.message);
-        }
+  try {
+    console.log(`🧪 Fetching với timeout ${timeout}ms...`);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+      console.log("⏰ Timeout! Hủy request...");
+      controller.abort();
+    }, timeout);
+
+    const response = await fetch(url, {
+      signal: controller.signal,
+    });
+
+    // Clear timeout nếu request thành công
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const data = await response.json();
+    console.log("✅ Request thành công!");
+    console.log("📊 Data:", data);
+
+    return data;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.log("❌ Request timeout!");
+    } else {
+      console.error("❌ Lỗi request:", error.message);
+    }
+  }
 }
 
 // Chạy examples
 fetchWithAbortController();
-fetchWithTimeout('https://httpbin.org/delay/2');
+fetchWithTimeout("https://httpbin.org/delay/2");
 ```
 
 **race-conditions.js - Xử lý race conditions:**
@@ -121,93 +126,100 @@ fetchWithTimeout('https://httpbin.org/delay/2');
 ```javascript
 // Xử lý race conditions
 class RequestManager {
-    constructor() {
-        this.activeRequests = new Map();
+  constructor() {
+    this.activeRequests = new Map();
+  }
+
+  // Fetch với race condition protection
+  async fetchWithRaceProtection(key, url, options = {}) {
+    try {
+      // Hủy request cũ nếu có
+      if (this.activeRequests.has(key)) {
+        console.log(`🔄 Hủy request cũ cho key: ${key}`);
+        this.activeRequests.get(key).abort();
+      }
+
+      // Tạo AbortController mới
+      const controller = new AbortController();
+      this.activeRequests.set(key, controller);
+
+      // Fetch request
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
+
+      // Xóa khỏi active requests
+      this.activeRequests.delete(key);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(`✅ Request thành công cho key: ${key}`);
+      console.log("📊 Data:", data);
+
+      return data;
+    } catch (error) {
+      // Xóa khỏi active requests
+      this.activeRequests.delete(key);
+
+      if (error.name === "AbortError") {
+        console.log(`❌ Request bị hủy cho key: ${key}`);
+      } else {
+        console.error(`❌ Lỗi request cho key: ${key}:`, error.message);
+      }
+      throw error;
     }
-    
-    // Fetch với race condition protection
-    async fetchWithRaceProtection(key, url, options = {}) {
-        try {
-            // Hủy request cũ nếu có
-            if (this.activeRequests.has(key)) {
-                console.log(`🔄 Hủy request cũ cho key: ${key}`);
-                this.activeRequests.get(key).abort();
-            }
-            
-            // Tạo AbortController mới
-            const controller = new AbortController();
-            this.activeRequests.set(key, controller);
-            
-            // Fetch request
-            const response = await fetch(url, {
-                ...options,
-                signal: controller.signal
-            });
-            
-            // Xóa khỏi active requests
-            this.activeRequests.delete(key);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            console.log(`✅ Request thành công cho key: ${key}`);
-            console.log('📊 Data:', data);
-            
-            return data;
-            
-        } catch (error) {
-            // Xóa khỏi active requests
-            this.activeRequests.delete(key);
-            
-            if (error.name === 'AbortError') {
-                console.log(`❌ Request bị hủy cho key: ${key}`);
-            } else {
-                console.error(`❌ Lỗi request cho key: ${key}:`, error.message);
-            }
-            throw error;
-        }
+  }
+
+  // Hủy tất cả requests
+  abortAll() {
+    console.log("🛑 Hủy tất cả requests...");
+    for (const [key, controller] of this.activeRequests) {
+      controller.abort();
     }
-    
-    // Hủy tất cả requests
-    abortAll() {
-        console.log('🛑 Hủy tất cả requests...');
-        for (const [key, controller] of this.activeRequests) {
-            controller.abort();
-        }
-        this.activeRequests.clear();
+    this.activeRequests.clear();
+  }
+
+  // Hủy request cụ thể
+  abortRequest(key) {
+    if (this.activeRequests.has(key)) {
+      console.log(`🛑 Hủy request cho key: ${key}`);
+      this.activeRequests.get(key).abort();
+      this.activeRequests.delete(key);
     }
-    
-    // Hủy request cụ thể
-    abortRequest(key) {
-        if (this.activeRequests.has(key)) {
-            console.log(`🛑 Hủy request cho key: ${key}`);
-            this.activeRequests.get(key).abort();
-            this.activeRequests.delete(key);
-        }
-    }
+  }
 }
 
 // Test race conditions
 async function testRaceConditions() {
-    const requestManager = new RequestManager();
-    
-    try {
-        // Gửi nhiều requests cùng lúc với cùng key
-        const promises = [
-            requestManager.fetchWithRaceProtection('search', 'https://httpbin.org/delay/1'),
-            requestManager.fetchWithRaceProtection('search', 'https://httpbin.org/delay/2'),
-            requestManager.fetchWithRaceProtection('search', 'https://httpbin.org/delay/3')
-        ];
-        
-        // Chỉ request cuối cùng sẽ thành công
-        const result = await Promise.race(promises);
-        console.log('🏆 Request thắng:', result);
-        
-    } catch (error) {
-        console.error('❌ Lỗi race conditions:', error.message);
-    }
+  const requestManager = new RequestManager();
+
+  try {
+    // Gửi nhiều requests cùng lúc với cùng key
+    const promises = [
+      requestManager.fetchWithRaceProtection(
+        "search",
+        "https://httpbin.org/delay/1"
+      ),
+      requestManager.fetchWithRaceProtection(
+        "search",
+        "https://httpbin.org/delay/2"
+      ),
+      requestManager.fetchWithRaceProtection(
+        "search",
+        "https://httpbin.org/delay/3"
+      ),
+    ];
+
+    // Chỉ request cuối cùng sẽ thành công
+    const result = await Promise.race(promises);
+    console.log("🏆 Request thắng:", result);
+  } catch (error) {
+    console.error("❌ Lỗi race conditions:", error.message);
+  }
 }
 
 // Chạy test
@@ -219,98 +231,98 @@ testRaceConditions();
 ```javascript
 // Search với debounce và AbortController
 class SearchManager {
-    constructor() {
-        this.searchController = null;
-        this.searchTimeout = null;
-    }
-    
-    // Search với debounce
-    async search(query, delay = 300) {
-        try {
-            // Clear timeout cũ
-            if (this.searchTimeout) {
-                clearTimeout(this.searchTimeout);
+  constructor() {
+    this.searchController = null;
+    this.searchTimeout = null;
+  }
+
+  // Search với debounce
+  async search(query, delay = 300) {
+    try {
+      // Clear timeout cũ
+      if (this.searchTimeout) {
+        clearTimeout(this.searchTimeout);
+      }
+
+      // Hủy request cũ
+      if (this.searchController) {
+        this.searchController.abort();
+      }
+
+      // Tạo AbortController mới
+      this.searchController = new AbortController();
+
+      // Debounce search
+      return new Promise((resolve, reject) => {
+        this.searchTimeout = setTimeout(async () => {
+          try {
+            console.log(`🔍 Searching for: "${query}"`);
+
+            const response = await fetch(
+              `https://httpbin.org/get?q=${encodeURIComponent(query)}`,
+              {
+                signal: this.searchController.signal,
+              }
+            );
+
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
             }
-            
-            // Hủy request cũ
-            if (this.searchController) {
-                this.searchController.abort();
+
+            const data = await response.json();
+            console.log("✅ Search thành công!");
+            console.log("📊 Results:", data);
+
+            resolve(data);
+          } catch (error) {
+            if (error.name === "AbortError") {
+              console.log("❌ Search bị hủy");
+            } else {
+              console.error("❌ Lỗi search:", error.message);
             }
-            
-            // Tạo AbortController mới
-            this.searchController = new AbortController();
-            
-            // Debounce search
-            return new Promise((resolve, reject) => {
-                this.searchTimeout = setTimeout(async () => {
-                    try {
-                        console.log(`🔍 Searching for: "${query}"`);
-                        
-                        const response = await fetch(`https://httpbin.org/get?q=${encodeURIComponent(query)}`, {
-                            signal: this.searchController.signal
-                        });
-                        
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        
-                        const data = await response.json();
-                        console.log('✅ Search thành công!');
-                        console.log('📊 Results:', data);
-                        
-                        resolve(data);
-                        
-                    } catch (error) {
-                        if (error.name === 'AbortError') {
-                            console.log('❌ Search bị hủy');
-                        } else {
-                            console.error('❌ Lỗi search:', error.message);
-                        }
-                        reject(error);
-                    }
-                }, delay);
-            });
-            
-        } catch (error) {
-            console.error('❌ Lỗi search manager:', error.message);
-        }
+            reject(error);
+          }
+        }, delay);
+      });
+    } catch (error) {
+      console.error("❌ Lỗi search manager:", error.message);
     }
-    
-    // Hủy search hiện tại
-    cancelSearch() {
-        if (this.searchTimeout) {
-            clearTimeout(this.searchTimeout);
-            this.searchTimeout = null;
-        }
-        
-        if (this.searchController) {
-            this.searchController.abort();
-            this.searchController = null;
-        }
-        
-        console.log('🛑 Đã hủy search');
+  }
+
+  // Hủy search hiện tại
+  cancelSearch() {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+      this.searchTimeout = null;
     }
+
+    if (this.searchController) {
+      this.searchController.abort();
+      this.searchController = null;
+    }
+
+    console.log("🛑 Đã hủy search");
+  }
 }
 
 // Test search với debounce
 async function testSearchWithDebounce() {
-    const searchManager = new SearchManager();
-    
-    try {
-        // Simulate user typing
-        const queries = ['a', 'ab', 'abc', 'abcd'];
-        
-        for (const query of queries) {
-            console.log(`\n📝 User typing: "${query}"`);
-            await searchManager.search(query);
-            
-            // Wait a bit between keystrokes
-            await new Promise(resolve => setTimeout(resolve, 100));
-        }
-        
-    } catch (error) {
-        console.error('❌ Lỗi test search:', error.message);
+  const searchManager = new SearchManager();
+
+  try {
+    // Simulate user typing
+    const queries = ["a", "ab", "abc", "abcd"];
+
+    for (const query of queries) {
+      console.log(`\n📝 User typing: "${query}"`);
+      await searchManager.search(query);
+
+      // Wait a bit between keystrokes
+      await new Promise((resolve) => setTimeout(resolve, 100));
     }
+  } catch (error) {
+    console.error("❌ Lỗi test search:", error.message);
+  }
 }
 
 // Chạy test
@@ -322,78 +334,76 @@ testSearchWithDebounce();
 ```javascript
 // Upload file với progress và AbortController
 class FileUploadManager {
-    constructor() {
-        this.uploadController = null;
+  constructor() {
+    this.uploadController = null;
+  }
+
+  // Upload file với progress
+  async uploadFile(file, onProgress = null) {
+    try {
+      // Hủy upload cũ nếu có
+      if (this.uploadController) {
+        this.uploadController.abort();
+      }
+
+      // Tạo AbortController mới
+      this.uploadController = new AbortController();
+
+      // Tạo FormData
+      const formData = new FormData();
+      formData.append("file", file);
+
+      console.log(`📤 Uploading file: ${file.name} (${file.size} bytes)`);
+
+      // Upload với fetch
+      const response = await fetch("https://httpbin.org/post", {
+        method: "POST",
+        body: formData,
+        signal: this.uploadController.signal,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("✅ Upload thành công!");
+      console.log("📊 Response:", data);
+
+      return data;
+    } catch (error) {
+      if (error.name === "AbortError") {
+        console.log("❌ Upload bị hủy!");
+      } else {
+        console.error("❌ Lỗi upload:", error.message);
+      }
+      throw error;
     }
-    
-    // Upload file với progress
-    async uploadFile(file, onProgress = null) {
-        try {
-            // Hủy upload cũ nếu có
-            if (this.uploadController) {
-                this.uploadController.abort();
-            }
-            
-            // Tạo AbortController mới
-            this.uploadController = new AbortController();
-            
-            // Tạo FormData
-            const formData = new FormData();
-            formData.append('file', file);
-            
-            console.log(`📤 Uploading file: ${file.name} (${file.size} bytes)`);
-            
-            // Upload với fetch
-            const response = await fetch('https://httpbin.org/post', {
-                method: 'POST',
-                body: formData,
-                signal: this.uploadController.signal
-            });
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            console.log('✅ Upload thành công!');
-            console.log('📊 Response:', data);
-            
-            return data;
-            
-        } catch (error) {
-            if (error.name === 'AbortError') {
-                console.log('❌ Upload bị hủy!');
-            } else {
-                console.error('❌ Lỗi upload:', error.message);
-            }
-            throw error;
-        }
+  }
+
+  // Hủy upload
+  cancelUpload() {
+    if (this.uploadController) {
+      console.log("🛑 Hủy upload...");
+      this.uploadController.abort();
+      this.uploadController = null;
     }
-    
-    // Hủy upload
-    cancelUpload() {
-        if (this.uploadController) {
-            console.log('🛑 Hủy upload...');
-            this.uploadController.abort();
-            this.uploadController = null;
-        }
-    }
+  }
 }
 
 // Test upload file
 async function testFileUpload() {
-    const uploadManager = new FileUploadManager();
-    
-    try {
-        // Tạo file test
-        const file = new File(['Hello World!'], 'test.txt', { type: 'text/plain' });
-        
-        // Upload file
-        await uploadManager.uploadFile(file);
-        
-    } catch (error) {
-        console.error('❌ Lỗi test upload:', error.message);
-    }
+  const uploadManager = new FileUploadManager();
+
+  try {
+    // Tạo file test
+    const file = new File(["Hello World!"], "test.txt", { type: "text/plain" });
+
+    // Upload file
+    await uploadManager.uploadFile(file);
+  } catch (error) {
+    console.error("❌ Lỗi test upload:", error.message);
+  }
 }
 
 // Chạy test
@@ -405,6 +415,7 @@ testFileUpload();
 **AbortController API:**
 
 1. **AbortController**: Controller để hủy operations
+
    - `new AbortController()`: Tạo controller mới
    - `controller.signal`: Signal để pass vào fetch
    - `controller.abort()`: Hủy operation
@@ -462,36 +473,43 @@ testFileUpload();
 Hãy tưởng tượng AbortController như một công tắc điện:
 
 **AbortController** như công tắc điện thông minh:
+
 - Có thể bật/tắt bất kỳ lúc nào
 - Khi tắt, tất cả thiết bị đều dừng hoạt động
 - Như công tắc tổng trong nhà
 
 **Fetch Request** như thiết bị điện:
+
 - Chạy khi có điện (signal)
 - Dừng ngay khi mất điện (abort)
 - Như máy tính chạy khi có điện
 
 **Timeout** như đồng hồ báo thức:
+
 - Tự động tắt sau thời gian nhất định
 - Như đồng hồ báo thức tự tắt sau 5 phút
 - Tránh để thiết bị chạy quá lâu
 
 **Race Conditions** như nhiều người cùng bật TV:
+
 - Chỉ một người có thể bật TV
 - Người sau sẽ tắt TV của người trước
 - Như remote control chỉ điều khiển một TV
 
 **Debounce** như công tắc có độ trễ:
+
 - Không phản hồi ngay lập tức
 - Chờ một lúc rồi mới hoạt động
 - Như công tắc đèn có độ trễ 3 giây
 
 **Request Manager** như tổng đài điện:
+
 - Quản lý tất cả cuộc gọi
 - Có thể hủy cuộc gọi bất kỳ lúc nào
 - Như tổng đài có thể ngắt cuộc gọi
 
 **Error Handling** như hệ thống báo động:
+
 - Báo khi có sự cố
 - Xử lý các tình huống khác nhau
 - Như hệ thống báo động báo cháy, trộm

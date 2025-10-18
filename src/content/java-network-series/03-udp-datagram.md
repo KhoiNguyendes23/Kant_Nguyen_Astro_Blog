@@ -12,17 +12,17 @@ next: "/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/) |
-| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
-| 03 | Lập trình mạng với UDP | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/) |
-| 04 | Java 11 HttpClient | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/) |
-| 05 | HTTPS và TLS | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/) |
-| 06 | WebSocket trong Java | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/) |
-| 07 | Ứng dụng chat mini | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                                 |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)               |
+| 01  | TCP Socket cơ bản                | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/)                 |
+| 02  | TCP Server đa luồng              | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
+| 03  | Lập trình mạng với UDP           | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/)                         |
+| 04  | Java 11 HttpClient               | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/)                     |
+| 05  | HTTPS và TLS                     | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/)                               |
+| 06  | WebSocket trong Java             | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/)                     |
+| 07  | Ứng dụng chat mini               | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/)               |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)                   |
 
 </div>
 
@@ -46,47 +46,47 @@ import java.nio.charset.StandardCharsets;
 public class UDPServer {
     private static final int PORT = 8080;
     private static final int BUFFER_SIZE = 1024;
-    
+
     public static void main(String[] args) {
         try {
             // Tạo DatagramSocket để lắng nghe UDP packets
             DatagramSocket socket = new DatagramSocket(PORT);
             System.out.println("🚀 UDP Server đang chạy trên port " + PORT);
-            
+
             // Buffer để nhận dữ liệu
             byte[] buffer = new byte[BUFFER_SIZE];
-            
+
             while (true) {
                 // Tạo DatagramPacket để nhận dữ liệu
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length);
-                
+
                 // Chờ nhận packet (blocking)
                 socket.receive(packet);
-                
+
                 // Chuyển đổi byte array thành String
                 String message = new String(packet.getData(), 0, packet.getLength(), StandardCharsets.UTF_8);
                 String clientAddress = packet.getAddress().getHostAddress();
                 int clientPort = packet.getPort();
-                
+
                 System.out.println("📨 Nhận từ " + clientAddress + ":" + clientPort + " - " + message);
-                
+
                 // Tạo phản hồi
                 String response = "Server đã nhận được: " + message;
                 byte[] responseBytes = response.getBytes(StandardCharsets.UTF_8);
-                
+
                 // Tạo DatagramPacket để gửi phản hồi
                 DatagramPacket responsePacket = new DatagramPacket(
-                    responseBytes, 
+                    responseBytes,
                     responseBytes.length,
-                    packet.getAddress(), 
+                    packet.getAddress(),
                     packet.getPort()
                 );
-                
+
                 // Gửi phản hồi về client
                 socket.send(responsePacket);
                 System.out.println("📤 Đã gửi phản hồi về " + clientAddress + ":" + clientPort);
             }
-            
+
         } catch (IOException e) {
             System.err.println("❌ Lỗi UDP server: " + e.getMessage());
         }
@@ -106,26 +106,26 @@ public class UDPClient {
     private static final String SERVER_HOST = "localhost";
     private static final int SERVER_PORT = 8080;
     private static final int BUFFER_SIZE = 1024;
-    
+
     public static void main(String[] args) {
         try {
             // Tạo DatagramSocket cho client
             DatagramSocket socket = new DatagramSocket();
             System.out.println("🔗 UDP Client đã sẵn sàng");
-            
+
             Scanner scanner = new Scanner(System.in);
-            
+
             while (true) {
                 System.out.print("Nhập tin nhắn (hoặc 'quit' để thoát): ");
                 String message = scanner.nextLine();
-                
+
                 if (message.equals("quit")) {
                     break;
                 }
-                
+
                 // Chuyển đổi String thành byte array
                 byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
-                
+
                 // Tạo DatagramPacket để gửi
                 DatagramPacket packet = new DatagramPacket(
                     messageBytes,
@@ -133,15 +133,15 @@ public class UDPClient {
                     InetAddress.getByName(SERVER_HOST),
                     SERVER_PORT
                 );
-                
+
                 // Gửi packet
                 socket.send(packet);
                 System.out.println("📤 Đã gửi: " + message);
-                
+
                 // Buffer để nhận phản hồi
                 byte[] buffer = new byte[BUFFER_SIZE];
                 DatagramPacket responsePacket = new DatagramPacket(buffer, buffer.length);
-                
+
                 // Nhận phản hồi (có timeout)
                 socket.setSoTimeout(5000); // 5 giây timeout
                 try {
@@ -152,10 +152,10 @@ public class UDPClient {
                     System.out.println("⏰ Timeout - không nhận được phản hồi");
                 }
             }
-            
+
             socket.close();
             scanner.close();
-            
+
         } catch (IOException e) {
             System.err.println("❌ Lỗi UDP client: " + e.getMessage());
         }
@@ -176,10 +176,10 @@ public class BroadcastSender {
             // Tạo DatagramSocket với broadcast enabled
             DatagramSocket socket = new DatagramSocket();
             socket.setBroadcast(true);
-            
+
             String message = "Hello từ Broadcast Sender!";
             byte[] messageBytes = message.getBytes(StandardCharsets.UTF_8);
-            
+
             // Broadcast đến tất cả máy trong mạng local
             DatagramPacket packet = new DatagramPacket(
                 messageBytes,
@@ -187,12 +187,12 @@ public class BroadcastSender {
                 InetAddress.getByName("255.255.255.255"), // Broadcast address
                 8080
             );
-            
+
             socket.send(packet);
             System.out.println("📡 Đã gửi broadcast message");
-            
+
             socket.close();
-            
+
         } catch (IOException e) {
             System.err.println("❌ Lỗi broadcast: " + e.getMessage());
         }
@@ -205,6 +205,7 @@ public class BroadcastSender {
 **DatagramSocket vs Socket:**
 
 1. **DatagramSocket**: Không có kết nối persistent
+
    - Không cần `accept()` như ServerSocket
    - Mỗi packet độc lập với nhau
    - Có thể gửi đến bất kỳ địa chỉ nào
@@ -248,12 +249,14 @@ public class BroadcastSender {
 **UDP vs TCP Decision:**
 
 **Chọn UDP khi:**
+
 - Cần tốc độ cao, latency thấp
 - Mất một vài packet không quan trọng
 - Real-time applications
 - Broadcasting/multicasting
 
 **Chọn TCP khi:**
+
 - Cần đảm bảo dữ liệu đến đích
 - File transfer, web browsing
 - Database connections
@@ -271,24 +274,28 @@ public class BroadcastSender {
 Hãy tưởng tượng UDP như việc gửi thư không có mã theo dõi:
 
 **TCP** như gửi bưu kiện có mã theo dõi:
+
 - Bưu điện đảm bảo gói hàng đến đúng nơi
 - Nếu mất, sẽ gửi lại
 - Thư đến đúng thứ tự
 - Nhưng chậm và tốn kém
 
 **UDP** như ném thư qua hàng rào:
+
 - Nhanh và đơn giản
 - Không biết thư có đến không
 - Có thể mất hoặc đến sai thứ tự
 - Nhưng rất nhanh và hiệu quả
 
 **DatagramPacket** như phong bì thư:
+
 - Có địa chỉ người nhận
 - Có nội dung bên trong
 - Mỗi thư độc lập với nhau
 - Không cần thiết lập kết nối trước
 
 **Broadcast** như hét to trong sân vận động:
+
 - Tất cả mọi người đều nghe được
 - Không cần biết ai đang nghe
 - Nhanh nhưng không chắc chắn ai nghe được

@@ -12,17 +12,17 @@ next: "/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | Fetch API cơ bản | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/) |
-| 02 | Fetch với AbortController | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
-| 03 | WebSocket giới thiệu | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/) |
-| 04 | SSE vs WebSocket | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/) |
-| 05 | Service Worker | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/) |
-| 06 | PWA Manifest | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/) |
-| 07 | DevTools Network | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                           |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)         |
+| 01  | Fetch API cơ bản                 | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/)                     |
+| 02  | Fetch với AbortController        | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
+| 03  | WebSocket giới thiệu             | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/)             |
+| 04  | SSE vs WebSocket                 | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/)           |
+| 05  | Service Worker                   | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/)               |
+| 06  | PWA Manifest                     | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/)                   |
+| 07  | DevTools Network                 | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/)           |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)             |
 
 </div>
 
@@ -41,135 +41,139 @@ Trong bài này, chúng ta sẽ học cách sử dụng Fetch API để gửi GE
 ```javascript
 // GET request - Lấy dữ liệu
 async function fetchData() {
-    try {
-        console.log('🧪 Đang gửi GET request...');
-        
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
-        
-        // Kiểm tra status code
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('✅ GET thành công!');
-        console.log('📊 Dữ liệu:', data);
-        
-        return data;
-        
-    } catch (error) {
-        console.error('❌ Lỗi GET request:', error.message);
+  try {
+    console.log("🧪 Đang gửi GET request...");
+
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/posts/1"
+    );
+
+    // Kiểm tra status code
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const data = await response.json();
+    console.log("✅ GET thành công!");
+    console.log("📊 Dữ liệu:", data);
+
+    return data;
+  } catch (error) {
+    console.error("❌ Lỗi GET request:", error.message);
+  }
 }
 
 // POST request - Gửi dữ liệu
 async function postData() {
-    try {
-        console.log('🧪 Đang gửi POST request...');
-        
-        const postData = {
-            title: 'Bài viết mới từ JavaScript',
-            body: 'Nội dung bài viết được tạo từ Fetch API',
-            userId: 1
-        };
-        
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData)
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const result = await response.json();
-        console.log('✅ POST thành công!');
-        console.log('📊 Kết quả:', result);
-        
-        return result;
-        
-    } catch (error) {
-        console.error('❌ Lỗi POST request:', error.message);
+  try {
+    console.log("🧪 Đang gửi POST request...");
+
+    const postData = {
+      title: "Bài viết mới từ JavaScript",
+      body: "Nội dung bài viết được tạo từ Fetch API",
+      userId: 1,
+    };
+
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const result = await response.json();
+    console.log("✅ POST thành công!");
+    console.log("📊 Kết quả:", result);
+
+    return result;
+  } catch (error) {
+    console.error("❌ Lỗi POST request:", error.message);
+  }
 }
 
 // PUT request - Cập nhật dữ liệu
 async function updateData() {
-    try {
-        console.log('🧪 Đang gửi PUT request...');
-        
-        const updateData = {
-            id: 1,
-            title: 'Bài viết đã được cập nhật',
-            body: 'Nội dung mới được cập nhật từ Fetch API',
-            userId: 1
-        };
-        
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts/1', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(updateData)
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const result = await response.json();
-        console.log('✅ PUT thành công!');
-        console.log('📊 Kết quả:', result);
-        
-        return result;
-        
-    } catch (error) {
-        console.error('❌ Lỗi PUT request:', error.message);
+  try {
+    console.log("🧪 Đang gửi PUT request...");
+
+    const updateData = {
+      id: 1,
+      title: "Bài viết đã được cập nhật",
+      body: "Nội dung mới được cập nhật từ Fetch API",
+      userId: 1,
+    };
+
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/posts/1",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const result = await response.json();
+    console.log("✅ PUT thành công!");
+    console.log("📊 Kết quả:", result);
+
+    return result;
+  } catch (error) {
+    console.error("❌ Lỗi PUT request:", error.message);
+  }
 }
 
 // DELETE request - Xóa dữ liệu
 async function deleteData() {
-    try {
-        console.log('🧪 Đang gửi DELETE request...');
-        
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts/1', {
-            method: 'DELETE'
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        console.log('✅ DELETE thành công!');
-        console.log('📊 Status:', response.status);
-        
-        return response.status;
-        
-    } catch (error) {
-        console.error('❌ Lỗi DELETE request:', error.message);
+  try {
+    console.log("🧪 Đang gửi DELETE request...");
+
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/posts/1",
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    console.log("✅ DELETE thành công!");
+    console.log("📊 Status:", response.status);
+
+    return response.status;
+  } catch (error) {
+    console.error("❌ Lỗi DELETE request:", error.message);
+  }
 }
 
 // Chạy tất cả examples
 async function runExamples() {
-    console.log('🚀 Bắt đầu Fetch API Examples...\n');
-    
-    await fetchData();
-    console.log('\n' + '='.repeat(50) + '\n');
-    
-    await postData();
-    console.log('\n' + '='.repeat(50) + '\n');
-    
-    await updateData();
-    console.log('\n' + '='.repeat(50) + '\n');
-    
-    await deleteData();
-    
-    console.log('\n🎉 Hoàn thành tất cả examples!');
+  console.log("🚀 Bắt đầu Fetch API Examples...\n");
+
+  await fetchData();
+  console.log("\n" + "=".repeat(50) + "\n");
+
+  await postData();
+  console.log("\n" + "=".repeat(50) + "\n");
+
+  await updateData();
+  console.log("\n" + "=".repeat(50) + "\n");
+
+  await deleteData();
+
+  console.log("\n🎉 Hoàn thành tất cả examples!");
 }
 
 // Chạy examples
@@ -181,64 +185,62 @@ runExamples();
 ```javascript
 // Fetch với custom headers
 async function fetchWithHeaders() {
-    try {
-        console.log('🧪 Đang gửi request với custom headers...');
-        
-        const response = await fetch('https://httpbin.org/headers', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer your-token-here',
-                'User-Agent': 'JavaScript Fetch API Client',
-                'X-Custom-Header': 'Custom Value'
-            }
-        });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('✅ Request với headers thành công!');
-        console.log('📊 Response:', data);
-        
-        return data;
-        
-    } catch (error) {
-        console.error('❌ Lỗi request với headers:', error.message);
+  try {
+    console.log("🧪 Đang gửi request với custom headers...");
+
+    const response = await fetch("https://httpbin.org/headers", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer your-token-here",
+        "User-Agent": "JavaScript Fetch API Client",
+        "X-Custom-Header": "Custom Value",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const data = await response.json();
+    console.log("✅ Request với headers thành công!");
+    console.log("📊 Response:", data);
+
+    return data;
+  } catch (error) {
+    console.error("❌ Lỗi request với headers:", error.message);
+  }
 }
 
 // Fetch với query parameters
 async function fetchWithQueryParams() {
-    try {
-        console.log('🧪 Đang gửi request với query parameters...');
-        
-        const params = new URLSearchParams({
-            page: '1',
-            limit: '10',
-            sort: 'date',
-            order: 'desc'
-        });
-        
-        const url = `https://httpbin.org/get?${params}`;
-        console.log('🔗 URL:', url);
-        
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('✅ Request với query params thành công!');
-        console.log('📊 Response:', data);
-        
-        return data;
-        
-    } catch (error) {
-        console.error('❌ Lỗi request với query params:', error.message);
+  try {
+    console.log("🧪 Đang gửi request với query parameters...");
+
+    const params = new URLSearchParams({
+      page: "1",
+      limit: "10",
+      sort: "date",
+      order: "desc",
+    });
+
+    const url = `https://httpbin.org/get?${params}`;
+    console.log("🔗 URL:", url);
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const data = await response.json();
+    console.log("✅ Request với query params thành công!");
+    console.log("📊 Response:", data);
+
+    return data;
+  } catch (error) {
+    console.error("❌ Lỗi request với query params:", error.message);
+  }
 }
 
 // Chạy examples
@@ -251,73 +253,71 @@ fetchWithQueryParams();
 ```javascript
 // Xử lý lỗi nâng cao
 async function fetchWithErrorHandling() {
-    try {
-        console.log('🧪 Testing error handling...');
-        
-        // Test với URL không tồn tại
-        const response = await fetch('https://httpbin.org/status/404');
-        
-        if (!response.ok) {
-            if (response.status === 404) {
-                throw new Error('Không tìm thấy resource (404)');
-            } else if (response.status === 500) {
-                throw new Error('Lỗi server (500)');
-            } else {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-        }
-        
-        const data = await response.json();
-        console.log('✅ Request thành công!');
-        console.log('📊 Data:', data);
-        
-    } catch (error) {
-        if (error.name === 'TypeError') {
-            console.error('❌ Network error:', error.message);
-        } else if (error.name === 'SyntaxError') {
-            console.error('❌ JSON parse error:', error.message);
-        } else {
-            console.error('❌ HTTP error:', error.message);
-        }
+  try {
+    console.log("🧪 Testing error handling...");
+
+    // Test với URL không tồn tại
+    const response = await fetch("https://httpbin.org/status/404");
+
+    if (!response.ok) {
+      if (response.status === 404) {
+        throw new Error("Không tìm thấy resource (404)");
+      } else if (response.status === 500) {
+        throw new Error("Lỗi server (500)");
+      } else {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
     }
+
+    const data = await response.json();
+    console.log("✅ Request thành công!");
+    console.log("📊 Data:", data);
+  } catch (error) {
+    if (error.name === "TypeError") {
+      console.error("❌ Network error:", error.message);
+    } else if (error.name === "SyntaxError") {
+      console.error("❌ JSON parse error:", error.message);
+    } else {
+      console.error("❌ HTTP error:", error.message);
+    }
+  }
 }
 
 // Fetch với timeout
 async function fetchWithTimeout(url, timeout = 5000) {
-    try {
-        console.log(`🧪 Fetching với timeout ${timeout}ms...`);
-        
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), timeout);
-        
-        const response = await fetch(url, {
-            signal: controller.signal
-        });
-        
-        clearTimeout(timeoutId);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('✅ Request thành công!');
-        console.log('📊 Data:', data);
-        
-        return data;
-        
-    } catch (error) {
-        if (error.name === 'AbortError') {
-            console.error('❌ Request timeout!');
-        } else {
-            console.error('❌ Request error:', error.message);
-        }
+  try {
+    console.log(`🧪 Fetching với timeout ${timeout}ms...`);
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+    const response = await fetch(url, {
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const data = await response.json();
+    console.log("✅ Request thành công!");
+    console.log("📊 Data:", data);
+
+    return data;
+  } catch (error) {
+    if (error.name === "AbortError") {
+      console.error("❌ Request timeout!");
+    } else {
+      console.error("❌ Request error:", error.message);
+    }
+  }
 }
 
 // Chạy examples
 fetchWithErrorHandling();
-fetchWithTimeout('https://httpbin.org/delay/2');
+fetchWithTimeout("https://httpbin.org/delay/2");
 ```
 
 # ⚙️ Phân tích & Giải thích
@@ -325,6 +325,7 @@ fetchWithTimeout('https://httpbin.org/delay/2');
 **Fetch API vs XMLHttpRequest:**
 
 1. **Fetch API**: Modern, Promise-based
+
    - Sử dụng async/await
    - Cleaner syntax
    - Better error handling
@@ -408,38 +409,45 @@ fetchWithTimeout('https://httpbin.org/delay/2');
 Hãy tưởng tượng Fetch API như một người đưa thư thông minh:
 
 **Fetch API** như người đưa thư có nhiều kỹ năng:
+
 - Biết cách gửi thư đến đúng địa chỉ
 - Có thể gửi nhiều loại thư khác nhau (GET, POST, PUT, DELETE)
 - Biết cách đóng gói thư đúng cách
 - Có thể gửi thư đồng thời đến nhiều nơi
 
 **GET Request** như gửi thư hỏi thông tin:
+
 - Gửi thư hỏi "Bạn có thông tin gì không?"
 - Chờ thư phản hồi với thông tin
 - Như gửi thư hỏi thời tiết
 
 **POST Request** như gửi thư với nội dung:
+
 - Gửi thư có nội dung quan trọng
 - Chờ xác nhận đã nhận được
 - Như gửi thư đăng ký khóa học
 
 **PUT Request** như gửi thư cập nhật:
+
 - Gửi thư để thay đổi thông tin cũ
 - Chờ xác nhận đã cập nhật
 - Như gửi thư thay đổi địa chỉ
 
 **DELETE Request** như gửi thư hủy bỏ:
+
 - Gửi thư để xóa thông tin
 - Chờ xác nhận đã xóa
 - Như gửi thư hủy đăng ký
 
 **Headers** như tem và dấu bưu điện:
+
 - Có thông tin về người gửi
 - Có thông tin về loại thư
 - Có thông tin về cách xử lý
 - Như tem bưu điện có mã vạch
 
 **Error Handling** như xử lý thư không đến:
+
 - Kiểm tra thư có đến đúng nơi không
 - Xử lý khi thư bị thất lạc
 - Xử lý khi thư bị từ chối

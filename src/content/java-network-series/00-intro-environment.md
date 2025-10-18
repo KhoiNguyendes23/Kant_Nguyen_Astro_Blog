@@ -12,8 +12,8 @@ next: "/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/"
 
 <div class="series-table">
 
-|  #  | Bài viết                         | Liên kết                                                        |
-| :-: | :------------------------------- | :-------------------------------------------------------------- |
+|  #  | Bài viết                         | Liên kết                                                                                 |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------------- |
 | 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)               |
 | 01  | TCP Socket cơ bản                | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/)                 |
 | 02  | TCP Server đa luồng              | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |

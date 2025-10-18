@@ -24,6 +24,18 @@ const { Content } = await post.render();
 // === Hàm xử lý link (chuyển ./01-x.md -> /blog/01-x/) ===
 function normalizeLink(link) {
   if (!link) return null;
+  
+  // Nếu link đã có base path, trả về nguyên vẹn
+  if (link.startsWith('/Kant_Nguyen_Astro_Blog/blog/')) {
+    return link;
+  }
+  
+  // Nếu link đã có base path nhưng thiếu trailing slash, thêm vào
+  if (link.startsWith('/Kant_Nguyen_Astro_Blog/blog/') && !link.endsWith('/')) {
+    return link + '/';
+  }
+  
+  // Xử lý link tương đối hoặc .md
   const clean = link.replace('./', '').replace('.md', '').replace(/^\//, '');
   return `/Kant_Nguyen_Astro_Blog/blog/${clean}/`;
 }

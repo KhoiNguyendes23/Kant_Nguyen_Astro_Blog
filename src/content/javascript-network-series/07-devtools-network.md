@@ -12,17 +12,17 @@ next: "/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | Fetch API cơ bản | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/) |
-| 02 | Fetch với AbortController | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
-| 03 | WebSocket giới thiệu | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/) |
-| 04 | SSE vs WebSocket | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/) |
-| 05 | Service Worker | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/) |
-| 06 | PWA Manifest | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/) |
-| 07 | DevTools Network | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                           |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)         |
+| 01  | Fetch API cơ bản                 | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/)                     |
+| 02  | Fetch với AbortController        | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
+| 03  | WebSocket giới thiệu             | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/)             |
+| 04  | SSE vs WebSocket                 | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/)           |
+| 05  | Service Worker                   | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/)               |
+| 06  | PWA Manifest                     | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/)                   |
+| 07  | DevTools Network                 | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/)           |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)             |
 
 </div>
 

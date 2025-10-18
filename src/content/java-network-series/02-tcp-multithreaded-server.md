@@ -12,17 +12,17 @@ next: "/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/) |
-| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
-| 03 | Lập trình mạng với UDP | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/) |
-| 04 | Java 11 HttpClient | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/) |
-| 05 | HTTPS và TLS | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/) |
-| 06 | WebSocket trong Java | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/) |
-| 07 | Ứng dụng chat mini | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                                 |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)               |
+| 01  | TCP Socket cơ bản                | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/)                 |
+| 02  | TCP Server đa luồng              | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
+| 03  | Lập trình mạng với UDP           | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/)                         |
+| 04  | Java 11 HttpClient               | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/)                     |
+| 05  | HTTPS và TLS                     | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/)                               |
+| 06  | WebSocket trong Java             | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/)                     |
+| 07  | Ứng dụng chat mini               | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/)               |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)                   |
 
 </div>
 
@@ -49,31 +49,31 @@ public class MultiThreadedServer {
     private static final int MAX_CLIENTS = 10;
     private static Set<ClientHandler> clients = ConcurrentHashMap.newKeySet();
     private static ExecutorService threadPool = Executors.newFixedThreadPool(MAX_CLIENTS);
-    
+
     public static void main(String[] args) {
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("🚀 Multi-threaded Server đang chạy trên port " + PORT);
             System.out.println("👥 Tối đa " + MAX_CLIENTS + " client đồng thời");
-            
+
             while (true) {
                 // Chờ client kết nối
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("✅ Client mới kết nối: " + clientSocket.getInetAddress());
-                
+
                 // Tạo ClientHandler cho client này
                 ClientHandler clientHandler = new ClientHandler(clientSocket);
                 clients.add(clientHandler);
-                
+
                 // Chạy client handler trong thread riêng
                 threadPool.execute(clientHandler);
             }
-            
+
         } catch (IOException e) {
             System.err.println("❌ Lỗi server: " + e.getMessage());
         }
     }
-    
+
     // Broadcast tin nhắn đến tất cả client
     public static void broadcast(String message, ClientHandler sender) {
         for (ClientHandler client : clients) {
@@ -82,7 +82,7 @@ public class MultiThreadedServer {
             }
         }
     }
-    
+
     // Xóa client khỏi danh sách
     public static void removeClient(ClientHandler client) {
         clients.remove(client);
@@ -102,39 +102,39 @@ public class ClientHandler implements Runnable {
     private BufferedReader in;
     private PrintWriter out;
     private String clientName;
-    
+
     public ClientHandler(Socket socket) {
         this.socket = socket;
     }
-    
+
     @Override
     public void run() {
         try {
             // Tạo I/O streams
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(socket.getOutputStream(), true);
-            
+
             // Nhận tên client
             clientName = in.readLine();
             System.out.println("👤 Client đăng nhập: " + clientName);
-            
+
             // Gửi thông báo đến các client khác
             MultiThreadedServer.broadcast(clientName + " đã tham gia chat!", this);
-            
+
             String message;
             // Đọc tin nhắn từ client
             while ((message = in.readLine()) != null) {
                 if (message.equals("/quit")) {
                     break;
                 }
-                
+
                 String fullMessage = clientName + ": " + message;
                 System.out.println("💬 " + fullMessage);
-                
+
                 // Broadcast tin nhắn đến tất cả client khác
                 MultiThreadedServer.broadcast(fullMessage, this);
             }
-            
+
         } catch (IOException e) {
             System.err.println("❌ Lỗi client handler: " + e.getMessage());
         } finally {
@@ -142,17 +142,17 @@ public class ClientHandler implements Runnable {
             try {
                 MultiThreadedServer.broadcast(clientName + " đã rời khỏi chat!", this);
                 MultiThreadedServer.removeClient(this);
-                
+
                 if (in != null) in.close();
                 if (out != null) out.close();
                 if (socket != null) socket.close();
-                
+
             } catch (IOException e) {
                 System.err.println("❌ Lỗi đóng kết nối: " + e.getMessage());
             }
         }
     }
-    
+
     // Gửi tin nhắn đến client này
     public void sendMessage(String message) {
         if (out != null) {
@@ -174,16 +174,16 @@ public class ChatClient {
         try {
             Socket socket = new Socket("localhost", 8080);
             System.out.println("🔗 Đã kết nối đến chat server");
-            
+
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             Scanner scanner = new Scanner(System.in);
-            
+
             // Nhập tên
             System.out.print("Nhập tên của bạn: ");
             String name = scanner.nextLine();
             out.println(name);
-            
+
             // Thread để đọc tin nhắn từ server
             Thread readThread = new Thread(() -> {
                 try {
@@ -196,7 +196,7 @@ public class ChatClient {
                 }
             });
             readThread.start();
-            
+
             // Đọc tin nhắn từ user và gửi đến server
             String message;
             while (true) {
@@ -207,10 +207,10 @@ public class ChatClient {
                 }
                 out.println(message);
             }
-            
+
             socket.close();
             scanner.close();
-            
+
         } catch (IOException e) {
             System.err.println("❌ Lỗi client: " + e.getMessage());
         }
@@ -223,6 +223,7 @@ public class ChatClient {
 **Thread Pool và ExecutorService:**
 
 1. **ExecutorService**: Quản lý pool các thread
+
    - `Executors.newFixedThreadPool(10)`: Tạo pool với tối đa 10 thread
    - `execute(Runnable)`: Chạy task trong thread từ pool
    - Tự động tái sử dụng thread, tránh tạo/xóa thread liên tục
@@ -279,21 +280,25 @@ public class ChatClient {
 Hãy tưởng tượng server đa luồng như một nhà hàng:
 
 **Single-threaded Server** như nhà hàng chỉ có 1 nhân viên:
+
 - Phải phục vụ từng khách một cách tuần tự
 - Khách phải chờ đợi rất lâu
 - Không thể phục vụ nhiều bàn cùng lúc
 
 **Multi-threaded Server** như nhà hàng có nhiều nhân viên:
+
 - Mỗi nhân viên phục vụ một bàn riêng
 - Tất cả bàn được phục vụ đồng thời
 - Khách không phải chờ đợi lâu
 
 **Thread Pool** như việc quản lý nhân viên:
+
 - Có sẵn một số nhân viên nhất định
 - Khi có khách mới, giao cho nhân viên rảnh
 - Không thuê/fire nhân viên liên tục
 
 **Broadcast** như hệ thống loa trong nhà hàng:
+
 - Khi có thông báo quan trọng, phát cho tất cả bàn
 - Mỗi bàn đều nghe được thông báo
 - Tạo cảm giác cộng đồng trong nhà hàng

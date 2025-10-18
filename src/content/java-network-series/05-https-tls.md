@@ -12,17 +12,17 @@ next: "/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/) |
-| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
-| 03 | Lập trình mạng với UDP | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/) |
-| 04 | Java 11 HttpClient | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/) |
-| 05 | HTTPS và TLS | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/) |
-| 06 | WebSocket trong Java | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/) |
-| 07 | Ứng dụng chat mini | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                                 |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)               |
+| 01  | TCP Socket cơ bản                | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/)                 |
+| 02  | TCP Server đa luồng              | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
+| 03  | Lập trình mạng với UDP           | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/)                         |
+| 04  | Java 11 HttpClient               | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/)                     |
+| 05  | HTTPS và TLS                     | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/)                               |
+| 06  | WebSocket trong Java             | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/)                     |
+| 07  | Ứng dụng chat mini               | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/)               |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)                   |
 
 </div>
 
@@ -60,13 +60,13 @@ public class HttpsClientExample {
                     public void checkServerTrusted(X509Certificate[] certs, String authType) {}
                 }
             }, new java.security.SecureRandom());
-            
+
             // Tạo HttpClient với custom SSLContext
             HttpClient client = HttpClient.newBuilder()
                 .sslContext(sslContext)
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
-            
+
             // Tạo HTTPS request
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://httpbin.org/get"))
@@ -74,15 +74,15 @@ public class HttpsClientExample {
                 .header("User-Agent", "Java HTTPS Client")
                 .GET()
                 .build();
-            
+
             // Gửi request
-            HttpResponse<String> response = client.send(request, 
+            HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-            
+
             System.out.println("🔒 HTTPS Request thành công!");
             System.out.println("Status Code: " + response.statusCode());
             System.out.println("Response Body: " + response.body());
-            
+
         } catch (Exception e) {
             System.err.println("❌ Lỗi HTTPS request: " + e.getMessage());
         }
@@ -110,34 +110,34 @@ public class CertificateValidationExample {
             FileInputStream trustStoreFile = new FileInputStream("truststore.jks");
             trustStore.load(trustStoreFile, "password".toCharArray());
             trustStoreFile.close();
-            
+
             // Tạo TrustManagerFactory
             TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
             tmf.init(trustStore);
-            
+
             // Tạo SSLContext với custom truststore
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(null, tmf.getTrustManagers(), null);
-            
+
             // Tạo HttpClient
             HttpClient client = HttpClient.newBuilder()
                 .sslContext(sslContext)
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
-            
+
             // Test với self-signed certificate
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://self-signed.badssl.com/"))
                 .timeout(Duration.ofSeconds(30))
                 .GET()
                 .build();
-            
-            HttpResponse<String> response = client.send(request, 
+
+            HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-            
+
             System.out.println("✅ Certificate validation thành công!");
             System.out.println("Status Code: " + response.statusCode());
-            
+
         } catch (Exception e) {
             System.err.println("❌ Certificate validation failed: " + e.getMessage());
         }
@@ -164,32 +164,32 @@ public class HttpsServerExample {
             FileInputStream keyStoreFile = new FileInputStream("keystore.jks");
             keyStore.load(keyStoreFile, "password".toCharArray());
             keyStoreFile.close();
-            
+
             // Tạo KeyManagerFactory
             KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
             kmf.init(keyStore, "password".toCharArray());
-            
+
             // Tạo SSLContext
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(kmf.getKeyManagers(), null, null);
-            
+
             // Tạo HTTPS server
             HttpsServer server = HttpsServer.create(new InetSocketAddress(8443), 0);
             server.setHttpsConfigurator(new HttpsConfigurator(sslContext));
-            
+
             // Tạo context và handler
             server.createContext("/", new HttpsHandler());
-            
+
             // Bắt đầu server
             server.start();
             System.out.println("🔒 HTTPS Server đang chạy trên port 8443");
             System.out.println("Truy cập: https://localhost:8443/");
-            
+
         } catch (Exception e) {
             System.err.println("❌ Lỗi HTTPS server: " + e.getMessage());
         }
     }
-    
+
     static class HttpsHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange exchange) throws IOException {
@@ -203,10 +203,10 @@ public class HttpsServerExample {
                 </body>
                 </html>
                 """;
-            
+
             exchange.getResponseHeaders().set("Content-Type", "text/html");
             exchange.sendResponseHeaders(200, response.getBytes().length);
-            
+
             OutputStream os = exchange.getResponseBody();
             os.write(response.getBytes());
             os.close();
@@ -232,34 +232,34 @@ public class TlsHandshakeDebug {
         try {
             // Enable SSL debugging
             System.setProperty("javax.net.debug", "ssl:handshake");
-            
+
             HttpClient client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
-            
+
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://www.google.com"))
                 .timeout(Duration.ofSeconds(30))
                 .GET()
                 .build();
-            
-            HttpResponse<String> response = client.send(request, 
+
+            HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-            
+
             System.out.println("✅ TLS handshake thành công!");
             System.out.println("Status Code: " + response.statusCode());
-            
+
             // In thông tin SSL session
             URL url = new URL("https://www.google.com");
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             SSLSession session = connection.getSSLSession();
-            
+
             System.out.println("\n🔍 SSL Session Info:");
             System.out.println("Protocol: " + session.getProtocol());
             System.out.println("Cipher Suite: " + session.getCipherSuite());
             System.out.println("Peer Host: " + session.getPeerHost());
             System.out.println("Peer Port: " + session.getPeerPort());
-            
+
         } catch (Exception e) {
             System.err.println("❌ Lỗi TLS handshake: " + e.getMessage());
         }
@@ -288,7 +288,7 @@ public class TlsHandshakeDebug {
 
 - **Self-signed**: Certificate tự ký (không được CA verify)
 - **CA-signed**: Certificate được Certificate Authority verify
-- **Wildcard**: Certificate cho nhiều subdomains (*.example.com)
+- **Wildcard**: Certificate cho nhiều subdomains (\*.example.com)
 - **SAN**: Subject Alternative Name certificate
 
 **Security Best Practices:**
@@ -329,28 +329,33 @@ public class TlsHandshakeDebug {
 Hãy tưởng tượng HTTPS như một cuộc trò chuyện bí mật:
 
 **HTTP** như nói chuyện bình thường:
+
 - Mọi người xung quanh đều nghe được
 - Không có mã hóa gì cả
 - Như nói chuyện trong quán cà phê đông người
 
 **HTTPS** như nói chuyện bằng mã Morse:
+
 - Chỉ hai người biết cách giải mã
 - Người khác nghe được nhưng không hiểu
 - Cần có "chìa khóa" để giải mã
 
 **TLS Handshake** như việc thỏa thuận mã Morse:
+
 - Hai bên phải đồng ý về cách mã hóa
 - Kiểm tra danh tính của nhau (certificate)
 - Trao đổi "chìa khóa" để mã hóa/giải mã
 - Xác nhận cả hai đều hiểu cách thức
 
 **Certificate** như giấy tờ tùy thân:
+
 - Chứng minh bạn là ai
 - Được cơ quan có thẩm quyền cấp (CA)
 - Có thể kiểm tra tính hợp lệ
 - Có thời hạn sử dụng
 
 **Trust Store** như danh sách cơ quan có thẩm quyền:
+
 - Danh sách các CA đáng tin cậy
 - Chỉ tin tưởng certificates từ các CA này
 - Như danh sách các cơ quan cấp giấy tờ hợp lệ

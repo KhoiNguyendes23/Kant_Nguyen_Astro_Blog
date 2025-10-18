@@ -12,17 +12,17 @@ next: "/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | Fetch API cơ bản | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/) |
-| 02 | Fetch với AbortController | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
-| 03 | WebSocket giới thiệu | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/) |
-| 04 | SSE vs WebSocket | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/) |
-| 05 | Service Worker | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/) |
-| 06 | PWA Manifest | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/) |
-| 07 | DevTools Network | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                           |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)         |
+| 01  | Fetch API cơ bản                 | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/)                     |
+| 02  | Fetch với AbortController        | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
+| 03  | WebSocket giới thiệu             | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/)             |
+| 04  | SSE vs WebSocket                 | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/)           |
+| 05  | Service Worker                   | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/)               |
+| 06  | PWA Manifest                     | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/)                   |
+| 07  | DevTools Network                 | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/)           |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)             |
 
 </div>
 
@@ -31,6 +31,7 @@ next: "/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/"
 Chào mừng bạn đến với series **"Lập trình mạng với JavaScript"**! Trong series này, chúng ta sẽ khám phá cách JavaScript xử lý các kết nối mạng, từ những API cơ bản như Fetch đến những công nghệ hiện đại như WebSocket, Service Worker và PWA.
 
 JavaScript đã phát triển từ một ngôn ngữ chỉ chạy trên browser thành một ngôn ngữ full-stack mạnh mẽ với Node.js. Bạn sẽ học được cách:
+
 - Sử dụng Fetch API để giao tiếp với REST APIs
 - Xây dựng ứng dụng realtime với WebSocket
 - Tạo Progressive Web Apps (PWA) với Service Worker
@@ -86,45 +87,44 @@ npm init -y
 
 ```javascript
 // Test Fetch API trong Node.js
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 async function testFetch() {
-    try {
-        console.log('🧪 Testing Fetch API...');
-        
-        const response = await fetch('https://httpbin.org/get');
-        const data = await response.json();
-        
-        console.log('✅ Fetch API hoạt động!');
-        console.log('📊 Response status:', response.status);
-        console.log('📊 Response data:', data);
-        
-    } catch (error) {
-        console.error('❌ Lỗi Fetch API:', error.message);
-    }
+  try {
+    console.log("🧪 Testing Fetch API...");
+
+    const response = await fetch("https://httpbin.org/get");
+    const data = await response.json();
+
+    console.log("✅ Fetch API hoạt động!");
+    console.log("📊 Response status:", response.status);
+    console.log("📊 Response data:", data);
+  } catch (error) {
+    console.error("❌ Lỗi Fetch API:", error.message);
+  }
 }
 
 // Test WebSocket trong Node.js
-const WebSocket = require('ws');
+const WebSocket = require("ws");
 
 function testWebSocket() {
-    console.log('🧪 Testing WebSocket...');
-    
-    const ws = new WebSocket('wss://echo.websocket.org/');
-    
-    ws.on('open', function open() {
-        console.log('✅ WebSocket kết nối thành công!');
-        ws.send('Hello WebSocket!');
-    });
-    
-    ws.on('message', function message(data) {
-        console.log('📨 Nhận được:', data.toString());
-        ws.close();
-    });
-    
-    ws.on('error', function error(err) {
-        console.error('❌ Lỗi WebSocket:', err.message);
-    });
+  console.log("🧪 Testing WebSocket...");
+
+  const ws = new WebSocket("wss://echo.websocket.org/");
+
+  ws.on("open", function open() {
+    console.log("✅ WebSocket kết nối thành công!");
+    ws.send("Hello WebSocket!");
+  });
+
+  ws.on("message", function message(data) {
+    console.log("📨 Nhận được:", data.toString());
+    ws.close();
+  });
+
+  ws.on("error", function error(err) {
+    console.error("❌ Lỗi WebSocket:", err.message);
+  });
 }
 
 // Chạy tests
@@ -137,65 +137,64 @@ testWebSocket();
 ```html
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Networking Test</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>🧪 Test JavaScript Networking</h1>
     <div id="results"></div>
-    
+
     <script>
-        // Test Fetch API trong browser
-        async function testBrowserFetch() {
-            try {
-                console.log('🧪 Testing Fetch API in browser...');
-                
-                const response = await fetch('https://httpbin.org/get');
-                const data = await response.json();
-                
-                document.getElementById('results').innerHTML += 
-                    '<p>✅ Fetch API hoạt động! Status: ' + response.status + '</p>';
-                
-            } catch (error) {
-                document.getElementById('results').innerHTML += 
-                    '<p>❌ Lỗi Fetch API: ' + error.message + '</p>';
-            }
+      // Test Fetch API trong browser
+      async function testBrowserFetch() {
+        try {
+          console.log("🧪 Testing Fetch API in browser...");
+
+          const response = await fetch("https://httpbin.org/get");
+          const data = await response.json();
+
+          document.getElementById("results").innerHTML +=
+            "<p>✅ Fetch API hoạt động! Status: " + response.status + "</p>";
+        } catch (error) {
+          document.getElementById("results").innerHTML +=
+            "<p>❌ Lỗi Fetch API: " + error.message + "</p>";
         }
-        
-        // Test WebSocket trong browser
-        function testBrowserWebSocket() {
-            console.log('🧪 Testing WebSocket in browser...');
-            
-            const ws = new WebSocket('wss://echo.websocket.org/');
-            
-            ws.onopen = function() {
-                console.log('✅ WebSocket kết nối thành công!');
-                ws.send('Hello from browser!');
-            };
-            
-            ws.onmessage = function(event) {
-                console.log('📨 Nhận được:', event.data);
-                document.getElementById('results').innerHTML += 
-                    '<p>✅ WebSocket hoạt động! Nhận được: ' + event.data + '</p>';
-                ws.close();
-            };
-            
-            ws.onerror = function(error) {
-                console.error('❌ Lỗi WebSocket:', error);
-                document.getElementById('results').innerHTML += 
-                    '<p>❌ Lỗi WebSocket: ' + error + '</p>';
-            };
-        }
-        
-        // Chạy tests khi trang load
-        window.onload = function() {
-            testBrowserFetch();
-            testBrowserWebSocket();
+      }
+
+      // Test WebSocket trong browser
+      function testBrowserWebSocket() {
+        console.log("🧪 Testing WebSocket in browser...");
+
+        const ws = new WebSocket("wss://echo.websocket.org/");
+
+        ws.onopen = function () {
+          console.log("✅ WebSocket kết nối thành công!");
+          ws.send("Hello from browser!");
         };
+
+        ws.onmessage = function (event) {
+          console.log("📨 Nhận được:", event.data);
+          document.getElementById("results").innerHTML +=
+            "<p>✅ WebSocket hoạt động! Nhận được: " + event.data + "</p>";
+          ws.close();
+        };
+
+        ws.onerror = function (error) {
+          console.error("❌ Lỗi WebSocket:", error);
+          document.getElementById("results").innerHTML +=
+            "<p>❌ Lỗi WebSocket: " + error + "</p>";
+        };
+      }
+
+      // Chạy tests khi trang load
+      window.onload = function () {
+        testBrowserFetch();
+        testBrowserWebSocket();
+      };
     </script>
-</body>
+  </body>
 </html>
 ```
 
@@ -204,11 +203,13 @@ testWebSocket();
 **Môi trường phát triển:**
 
 1. **Node.js**: Runtime để chạy JavaScript trên server
+
    - Download từ [nodejs.org](https://nodejs.org/)
    - Phiên bản LTS (Long Term Support) được khuyến nghị
    - Bao gồm npm (Node Package Manager)
 
 2. **VS Code**: Editor với JavaScript support mạnh mẽ
+
    - Extension: JavaScript (ES6) code snippets
    - Extension: Node.js Extension Pack
    - Extension: Live Server (cho browser testing)
@@ -259,30 +260,35 @@ Kiến thức trong series này sẽ giúp bạn:
 Hãy tưởng tượng JavaScript như một ngôn ngữ đa năng:
 
 **JavaScript** như một ngôn ngữ có thể nói được ở nhiều nơi:
+
 - Trên browser như người dẫn chương trình TV
 - Trên server như người phục vụ nhà hàng
 - Trên mobile như người hướng dẫn du lịch
 - Trên desktop như người quản lý văn phòng
 
 **Fetch API** như người đưa thư thông minh:
+
 - Biết cách gửi thư đến đúng địa chỉ
 - Có thể gửi nhiều loại thư khác nhau
 - Biết cách đóng gói thư đúng cách
 - Có thể gửi thư đồng thời đến nhiều nơi
 
 **WebSocket** như đường dây nóng:
+
 - Kết nối trực tiếp, liên tục
 - Có thể nói chuyện bất kỳ lúc nào
 - Không cần thiết lập kết nối mỗi lần
 - Như đường dây nóng của tổng thống
 
 **Service Worker** như người trợ lý cá nhân:
+
 - Làm việc ngầm trong background
 - Có thể lưu trữ thông tin quan trọng
 - Có thể thông báo khi có tin mới
 - Như trợ lý cá nhân luôn sẵn sàng
 
 **PWA** như ứng dụng di động thông minh:
+
 - Có thể cài đặt như app thật
 - Hoạt động offline khi cần
 - Có thể gửi thông báo
@@ -304,17 +310,17 @@ Hãy tưởng tượng JavaScript như một ngôn ngữ đa năng:
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | Fetch API cơ bản | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/) |
-| 02 | Fetch với AbortController | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
-| 03 | WebSocket giới thiệu | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/) |
-| 04 | SSE vs WebSocket | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/) |
-| 05 | Service Worker | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/) |
-| 06 | PWA Manifest | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/) |
-| 07 | DevTools Network | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                           |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)         |
+| 01  | Fetch API cơ bản                 | [01-fetch-basic](/Kant_Nguyen_Astro_Blog/blog/01-fetch-basic/)                     |
+| 02  | Fetch với AbortController        | [02-fetch-abortcontroller](/Kant_Nguyen_Astro_Blog/blog/02-fetch-abortcontroller/) |
+| 03  | WebSocket giới thiệu             | [03-websocket-intro](/Kant_Nguyen_Astro_Blog/blog/03-websocket-intro/)             |
+| 04  | SSE vs WebSocket                 | [04-sse-vs-websocket](/Kant_Nguyen_Astro_Blog/blog/04-sse-vs-websocket/)           |
+| 05  | Service Worker                   | [05-service-worker](/Kant_Nguyen_Astro_Blog/blog/05-service-worker/)               |
+| 06  | PWA Manifest                     | [06-pwa-manifest](/Kant_Nguyen_Astro_Blog/blog/06-pwa-manifest/)                   |
+| 07  | DevTools Network                 | [07-devtools-network](/Kant_Nguyen_Astro_Blog/blog/07-devtools-network/)           |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)             |
 
 </div>
 

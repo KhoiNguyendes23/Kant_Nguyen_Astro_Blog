@@ -12,17 +12,17 @@ next: "/Kant_Nguyen_Astro_Blog/blog/05-https-tls/"
 
 <div class="series-table">
 
-| # | Bài viết | Liên kết |
-|:-:|:---------------------------|:------------------------------|
-| 00 | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/) |
-| 01 | TCP Socket cơ bản | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/) |
-| 02 | TCP Server đa luồng | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
-| 03 | Lập trình mạng với UDP | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/) |
-| 04 | Java 11 HttpClient | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/) |
-| 05 | HTTPS và TLS | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/) |
-| 06 | WebSocket trong Java | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/) |
-| 07 | Ứng dụng chat mini | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/) |
-| 08 | Tổng kết & Feynman Review | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/) |
+|  #  | Bài viết                         | Liên kết                                                                                 |
+| :-: | :------------------------------- | :--------------------------------------------------------------------------------------- |
+| 00  | Giới thiệu & Chuẩn bị môi trường | [00-intro-environment](/Kant_Nguyen_Astro_Blog/blog/00-intro-environment/)               |
+| 01  | TCP Socket cơ bản                | [01-tcp-socket-basic](/Kant_Nguyen_Astro_Blog/blog/01-tcp-socket-basic/)                 |
+| 02  | TCP Server đa luồng              | [02-tcp-multithreaded-server](/Kant_Nguyen_Astro_Blog/blog/02-tcp-multithreaded-server/) |
+| 03  | Lập trình mạng với UDP           | [03-udp-datagram](/Kant_Nguyen_Astro_Blog/blog/03-udp-datagram/)                         |
+| 04  | Java 11 HttpClient               | [04-httpclient-api](/Kant_Nguyen_Astro_Blog/blog/04-httpclient-api/)                     |
+| 05  | HTTPS và TLS                     | [05-https-tls](/Kant_Nguyen_Astro_Blog/blog/05-https-tls/)                               |
+| 06  | WebSocket trong Java             | [06-websocket-java](/Kant_Nguyen_Astro_Blog/blog/06-websocket-java/)                     |
+| 07  | Ứng dụng chat mini               | [07-chat-mini-project](/Kant_Nguyen_Astro_Blog/blog/07-chat-mini-project/)               |
+| 08  | Tổng kết & Feynman Review        | [08-summary-feynman](/Kant_Nguyen_Astro_Blog/blog/08-summary-feynman/)                   |
 
 </div>
 
@@ -51,7 +51,7 @@ public class BasicHttpClient {
             HttpClient client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
-            
+
             // Tạo GET request
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts/1"))
@@ -59,16 +59,16 @@ public class BasicHttpClient {
                 .header("User-Agent", "Java HttpClient")
                 .GET()
                 .build();
-            
+
             // Gửi request và nhận response
-            HttpResponse<String> response = client.send(request, 
+            HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-            
+
             // In kết quả
             System.out.println("Status Code: " + response.statusCode());
             System.out.println("Headers: " + response.headers().map());
             System.out.println("Body: " + response.body());
-            
+
         } catch (IOException | InterruptedException e) {
             System.err.println("❌ Lỗi HTTP request: " + e.getMessage());
         }
@@ -90,7 +90,7 @@ public class PostRequestExample {
             HttpClient client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
-            
+
             // JSON data để gửi
             String jsonData = """
                 {
@@ -99,7 +99,7 @@ public class PostRequestExample {
                     "userId": 1
                 }
                 """;
-            
+
             // Tạo POST request
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
@@ -108,14 +108,14 @@ public class PostRequestExample {
                 .header("User-Agent", "Java HttpClient")
                 .POST(HttpRequest.BodyPublishers.ofString(jsonData))
                 .build();
-            
+
             // Gửi request
-            HttpResponse<String> response = client.send(request, 
+            HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-            
+
             System.out.println("Status Code: " + response.statusCode());
             System.out.println("Response Body: " + response.body());
-            
+
         } catch (IOException | InterruptedException e) {
             System.err.println("❌ Lỗi POST request: " + e.getMessage());
         }
@@ -137,14 +137,14 @@ public class AsyncHttpClient {
         HttpClient client = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(10))
             .build();
-        
+
         // Danh sách URLs để fetch
         List<String> urls = List.of(
             "https://jsonplaceholder.typicode.com/posts/1",
             "https://jsonplaceholder.typicode.com/posts/2",
             "https://jsonplaceholder.typicode.com/posts/3"
         );
-        
+
         // Tạo async requests
         List<CompletableFuture<HttpResponse<String>>> futures = urls.stream()
             .map(url -> {
@@ -153,27 +153,27 @@ public class AsyncHttpClient {
                     .timeout(Duration.ofSeconds(30))
                     .GET()
                     .build();
-                
+
                 return client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
             })
             .toList();
-        
+
         // Chờ tất cả requests hoàn thành
         CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
             .thenRun(() -> {
                 System.out.println("✅ Tất cả requests đã hoàn thành!");
-                
+
                 futures.forEach(future -> {
                     try {
                         HttpResponse<String> response = future.get();
-                        System.out.println("Status: " + response.statusCode() + 
+                        System.out.println("Status: " + response.statusCode() +
                                          " - Body length: " + response.body().length());
                     } catch (Exception e) {
                         System.err.println("❌ Lỗi async request: " + e.getMessage());
                     }
                 });
             });
-        
+
         // Chờ để chương trình không kết thúc sớm
         try {
             Thread.sleep(5000);
@@ -195,33 +195,33 @@ import java.io.IOException;
 public class WeatherApiClient {
     private static final String API_KEY = "your_api_key_here";
     private static final String BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
-    
+
     public static void main(String[] args) {
         if (args.length == 0) {
             System.out.println("Usage: java WeatherApiClient <city_name>");
             return;
         }
-        
+
         String city = args[0];
-        
+
         try {
             HttpClient client = HttpClient.newBuilder()
                 .connectTimeout(Duration.ofSeconds(10))
                 .build();
-            
+
             // Tạo URL với query parameters
             String url = BASE_URL + "?q=" + city + "&appid=" + API_KEY + "&units=metric";
-            
+
             HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .timeout(Duration.ofSeconds(30))
                 .header("User-Agent", "Java Weather Client")
                 .GET()
                 .build();
-            
-            HttpResponse<String> response = client.send(request, 
+
+            HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-            
+
             if (response.statusCode() == 200) {
                 System.out.println("🌤️ Thông tin thời tiết cho " + city + ":");
                 System.out.println(response.body());
@@ -229,7 +229,7 @@ public class WeatherApiClient {
                 System.out.println("❌ Lỗi API: " + response.statusCode());
                 System.out.println(response.body());
             }
-            
+
         } catch (IOException | InterruptedException e) {
             System.err.println("❌ Lỗi weather API: " + e.getMessage());
         }
@@ -242,6 +242,7 @@ public class WeatherApiClient {
 **HttpClient Configuration:**
 
 1. **HttpClient.newBuilder()**: Tạo client với custom configuration
+
    - `connectTimeout()`: Timeout cho việc kết nối
    - `followRedirects()`: Tự động follow redirects
    - `proxy()`: Cấu hình proxy nếu cần
@@ -305,23 +306,27 @@ public class WeatherApiClient {
 Hãy tưởng tượng HttpClient như một người đưa thư thông minh:
 
 **HttpClient** như người đưa thư có nhiều kỹ năng:
+
 - Biết cách gửi thư đến đúng địa chỉ
 - Có thể gửi nhiều loại thư khác nhau (GET, POST, PUT)
 - Biết cách đóng gói thư đúng cách
 - Có thể gửi thư đồng thời đến nhiều nơi
 
 **HttpRequest** như phong bì thư:
+
 - Có địa chỉ người nhận (URI)
 - Có nội dung bên trong (body)
 - Có tem và dấu bưu điện (headers)
 - Có thời hạn gửi (timeout)
 
 **HttpResponse** như thư phản hồi:
+
 - Có mã trạng thái (status code) - thư có đến không?
 - Có nội dung phản hồi (body)
 - Có thông tin về người gửi (headers)
 
 **Async Operations** như gửi thư không cần chờ:
+
 - Gửi thư đi và làm việc khác
 - Khi có phản hồi, người đưa thư sẽ báo
 - Có thể gửi nhiều thư cùng lúc
