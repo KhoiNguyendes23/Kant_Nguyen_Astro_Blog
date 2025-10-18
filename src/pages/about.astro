@@ -148,32 +148,28 @@ import Footer from '../components/Footer.astro';
         <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Chứng chỉ Cisco
         </h2>
-        <div class="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              logo: "🌐",
-              title: "Networking Basics",
-              description: "Chứng chỉ cơ bản về mạng máy tính, bao gồm TCP/IP, DNS, và các giao thức mạng cơ bản."
-            },
-            {
-              logo: "📜",
-              title: "JavaScript Essentials 1",
-              description: "Chứng chỉ JavaScript cơ bản, bao gồm ES6+, DOM manipulation, và async programming."
-            },
-            {
-              logo: "⚡",
-              title: "JavaScript Essentials 2",
-              description: "Chứng chỉ JavaScript nâng cao, bao gồm Node.js, Express.js, và RESTful API development."
-            }
-          ].map((cert, index) => (
-            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <div class="text-center">
-                <div class="text-6xl mb-4">{cert.logo}</div>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{cert.title}</h3>
-                <p class="text-gray-600 dark:text-gray-300">{cert.description}</p>
-              </div>
-            </div>
-          ))}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center mt-10">
+          <a href="https://www.credly.com/badges/17210156-aae7-4bd9-90c7-fde448669afd/public_url" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/Kant_Nguyen_Astro_Blog/certificates/networking-basics.png"
+              alt="Cisco Networking Basics Certificate"
+              class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-transform duration-300 h-56 md:h-64 object-cover"
+            />
+          </a>
+          <a href="https://www.credly.com/badges/fde07599-95ee-4962-aac4-f40adaedc4da/public_url" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/Kant_Nguyen_Astro_Blog/certificates/javascript-essentials-1.png"
+              alt="Cisco JavaScript Essentials 1 Certificate"
+              class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-transform duration-300 h-56 md:h-64 object-cover"
+            />
+          </a>
+          <a href="https://www.credly.com/badges/76e662e9-02dd-49bb-a2ac-42df9b354d8b/public_url" target="_blank" rel="noopener noreferrer">
+            <img
+              src="/Kant_Nguyen_Astro_Blog/certificates/javascript-essentials-2.png"
+              alt="Cisco JavaScript Essentials 2 Certificate"
+              class="rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.03] transition-transform duration-300 h-56 md:h-64 object-cover"
+            />
+          </a>
         </div>
       </div>
     </section>
