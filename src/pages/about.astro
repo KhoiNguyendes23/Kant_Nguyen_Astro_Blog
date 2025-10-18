@@ -11,10 +11,10 @@ import Footer from '../components/Footer.astro';
     <!-- Hero Section -->
     <section class="pt-24 pb-20 bg-gradient-to-br from-primary/5 to-purple-600/5">
       <div class="max-w-4xl mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text animate-fade-up">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
           Giới thiệu
         </h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in">
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Tìm hiểu thêm về hành trình và đam mê của tôi trong lĩnh vực công nghệ
         </p>
       </div>
@@ -25,7 +25,7 @@ import Footer from '../components/Footer.astro';
       <div class="max-w-6xl mx-auto px-4">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <!-- Profile Image -->
-          <div class="flex justify-center lg:justify-start animate-fade-up">
+          <div class="flex justify-center lg:justify-start">
             <div class="relative group">
               <div class="w-80 h-80 rounded-full bg-gradient-to-br from-primary to-purple-600 p-1 shadow-2xl group-hover:shadow-3xl transition-all duration-500">
                 <div class="w-full h-full rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-500">
@@ -47,7 +47,7 @@ import Footer from '../components/Footer.astro';
           </div>
 
           <!-- Profile Info -->
-          <div class="space-y-6 animate-slide-left">
+          <div class="space-y-6">
             <div>
               <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">
                 Nguyễn Đăng Khôi – Kant Nguyễn
@@ -89,7 +89,7 @@ import Footer from '../components/Footer.astro';
     <!-- Activities Section -->
     <section class="py-16 bg-gradient-to-br from-blue-50/40 to-white dark:from-gray-800 dark:to-gray-900">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 gradient-text animate-fade-up">
+        <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Hoạt động
         </h2>
         <div class="overflow-x-auto snap-x snap-mandatory">
@@ -120,7 +120,7 @@ import Footer from '../components/Footer.astro';
                 year: "2024"
               }
             ].map((activity, index) => (
-              <div class="snap-center flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in" style={`animation-delay: ${index * 0.2}s`}>
+              <div class="snap-center flex-shrink-0 w-80 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
                 <div class="p-6">
                   <div class="w-full h-48 rounded-lg overflow-hidden mb-4">
                     <img 
@@ -145,7 +145,7 @@ import Footer from '../components/Footer.astro';
     <!-- Cisco Certificates Section -->
     <section class="py-16">
       <div class="max-w-6xl mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 gradient-text animate-fade-up">
+        <h2 class="text-3xl font-bold text-center mb-12 gradient-text">
           Chứng chỉ Cisco
         </h2>
         <div class="grid md:grid-cols-3 gap-8">
@@ -166,7 +166,7 @@ import Footer from '../components/Footer.astro';
               description: "Chứng chỉ JavaScript nâng cao, bao gồm Node.js, Express.js, và RESTful API development."
             }
           ].map((cert, index) => (
-            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in" style={`animation-delay: ${index * 0.3}s`}>
+            <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
               <div class="text-center">
                 <div class="text-6xl mb-4">{cert.logo}</div>
                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">{cert.title}</h3>
