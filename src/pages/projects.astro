@@ -32,7 +32,7 @@ import ProjectCard from '../components/ProjectCard.astro';
             description="Hệ thống học trực tuyến E-Learning tích hợp ERP Odoo cho phép học viên đăng ký khóa học, học bài giảng, làm bài kiểm tra và thanh toán MoMo. Tích hợp BigBlueButton để tổ chức lớp học trực tiếp và ERP Odoo để quản lý tài chính, học viên và nội dung."
             techStack={["C#", "ASP.NET Core MVC", "SQL Server", "Odoo 17", "PostgreSQL", "Bootstrap 5", "MoMo API"]}
             githubUrl="https://github.com/KhoiNguyendes23/DA_Web_HocOnline"
-            imageUrl="/projects/elearning.png"
+            imageUrl={`${import.meta.env.BASE_URL}projects/elearning.png`}
           />
 
           <!-- 📊 Quản lý bán vé máy bay -->
@@ -41,7 +41,7 @@ import ProjectCard from '../components/ProjectCard.astro';
             description="Phần mềm desktop quản lý toàn bộ quy trình đặt vé máy bay, chuyến bay, nhân viên, tài khoản và doanh thu. Hỗ trợ xác thực OTP qua email, lập lịch chuyến bay, xuất báo cáo doanh thu tháng/năm và biểu đồ thống kê trực quan."
             techStack={["C#", ".NET Framework 4.6.2", "WinForms", "SQL Server", "MVVM"]}
             githubUrl="https://github.com/KhoiNguyendes23/QLMB"
-            imageUrl="/projects/maybay.png"
+            imageUrl={`${import.meta.env.BASE_URL}projects/maybay.png`}
           />
 
           <!-- ⚽ MiniClub – Ứng dụng tổ chức sự kiện thể thao -->
@@ -50,7 +50,7 @@ import ProjectCard from '../components/ProjectCard.astro';
             description="Ứng dụng di động đa nền tảng giúp người dùng tạo, quản lý và tham gia các sự kiện thể thao trong cộng đồng. Phát triển bằng Flutter, kết nối Firebase và Cloudinary, hỗ trợ thông báo sự kiện, chia sẻ hình ảnh và định vị địa điểm bằng Google Maps."
             techStack={["Dart", "Flutter", "Firebase", "Cloudinary", "Google Maps API"]}
             githubUrl="https://gitlab.com/khoinguyendes23-group/miniclub"
-            imageUrl="/projects/miniclub.png"
+            imageUrl={`${import.meta.env.BASE_URL}projects/miniclub.png`}
           />
 
         </div>
