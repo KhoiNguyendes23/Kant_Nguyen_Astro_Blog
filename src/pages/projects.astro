@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 ---
 
 <BaseLayout title="Dự án - Kant Nguyễn">
@@ -15,7 +16,7 @@ import Footer from '../components/Footer.astro';
           Dự án của tôi
         </h1>
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          Khám phá các dự án backend và networking mà tôi đã thực hiện
+          Khám phá các dự án backend, desktop và di động mà tôi đã thực hiện
         </p>
       </div>
     </section>
@@ -24,79 +25,34 @@ import Footer from '../components/Footer.astro';
     <section class="py-16">
       <div class="max-w-6xl mx-auto px-4">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            {
-              title: "Hệ thống quản lý sinh viên",
-              description: "Ứng dụng web quản lý thông tin sinh viên với Java Spring Boot và PostgreSQL",
-              tech: ["Java", "Spring Boot", "PostgreSQL", "Thymeleaf"],
-              status: "Hoàn thành",
-              year: "2023"
-            },
-            {
-              title: "API Gateway với Spring Cloud",
-              description: "Xây dựng API Gateway để quản lý và định tuyến các microservices",
-              tech: ["Java", "Spring Cloud", "Netflix Zuul", "Docker"],
-              status: "Đang phát triển",
-              year: "2024"
-            },
-            {
-              title: "Hệ thống chat real-time",
-              description: "Ứng dụng chat sử dụng WebSocket và Spring Boot",
-              tech: ["Java", "Spring Boot", "WebSocket", "JavaScript"],
-              status: "Hoàn thành",
-              year: "2023"
-            },
-            {
-              title: "Network Monitoring Tool",
-              description: "Công cụ giám sát mạng sử dụng Java và SNMP",
-              tech: ["Java", "SNMP", "JFreeChart", "Swing"],
-              status: "Hoàn thành",
-              year: "2023"
-            },
-            {
-              title: "RESTful API cho e-commerce",
-              description: "API backend cho ứng dụng thương mại điện tử",
-              tech: ["Java", "Spring Boot", "JWT", "MySQL"],
-              status: "Hoàn thành",
-              year: "2023"
-            },
-            {
-              title: "Docker Containerization",
-              description: "Container hóa các ứng dụng Java với Docker",
-              tech: ["Docker", "Docker Compose", "Java", "Nginx"],
-              status: "Hoàn thành",
-              year: "2023"
-            }
-          ].map(project => (
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-shadow p-6">
-              <div class="flex items-center justify-between mb-4">
-                <span class={`px-3 py-1 rounded-full text-sm font-semibold ${
-                  project.status === 'Hoàn thành' 
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                    : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                }`}>
-                  {project.status}
-                </span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{project.year}</span>
-              </div>
-              
-              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                {project.title}
-              </h3>
-              
-              <p class="text-gray-600 dark:text-gray-300 mb-4">
-                {project.description}
-              </p>
-              
-              <div class="flex flex-wrap gap-2">
-                {project.tech.map(tech => (
-                  <span class="px-2 py-1 bg-primary/10 text-primary text-sm rounded-md">
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+
+          <!-- 🧠 E-Learning tích hợp ERP Odoo -->
+          <ProjectCard
+            title="E-Learning tích hợp ERP Odoo"
+            description="Hệ thống học trực tuyến E-Learning tích hợp ERP Odoo cho phép học viên đăng ký khóa học, học bài giảng, làm bài kiểm tra và thanh toán MoMo. Tích hợp BigBlueButton để tổ chức lớp học trực tiếp và ERP Odoo để quản lý tài chính, học viên và nội dung."
+            techStack={["C#", "ASP.NET Core MVC", "SQL Server", "Odoo 17", "PostgreSQL", "Bootstrap 5", "MoMo API"]}
+            githubUrl="https://github.com/KhoiNguyendes23/DA_Web_HocOnline"
+            imageUrl="/projects/elearning.png"
+          />
+
+          <!-- 📊 Quản lý bán vé máy bay -->
+          <ProjectCard
+            title="Quản lý bán vé máy bay"
+            description="Phần mềm desktop quản lý toàn bộ quy trình đặt vé máy bay, chuyến bay, nhân viên, tài khoản và doanh thu. Hỗ trợ xác thực OTP qua email, lập lịch chuyến bay, xuất báo cáo doanh thu tháng/năm và biểu đồ thống kê trực quan."
+            techStack={["C#", ".NET Framework 4.6.2", "WinForms", "SQL Server", "MVVM"]}
+            githubUrl="https://github.com/KhoiNguyendes23/QLMB"
+            imageUrl="/projects/maybay.png"
+          />
+
+          <!-- ⚽ MiniClub – Ứng dụng tổ chức sự kiện thể thao -->
+          <ProjectCard
+            title="MiniClub – Ứng dụng tổ chức sự kiện thể thao"
+            description="Ứng dụng di động đa nền tảng giúp người dùng tạo, quản lý và tham gia các sự kiện thể thao trong cộng đồng. Phát triển bằng Flutter, kết nối Firebase và Cloudinary, hỗ trợ thông báo sự kiện, chia sẻ hình ảnh và định vị địa điểm bằng Google Maps."
+            techStack={["Dart", "Flutter", "Firebase", "Cloudinary", "Google Maps API"]}
+            githubUrl="https://gitlab.com/khoinguyendes23-group/miniclub"
+            imageUrl="/projects/miniclub.png"
+          />
+
         </div>
       </div>
     </section>
