@@ -2,16 +2,16 @@
 // This component will be enhanced with client-side functionality
 ---
 
-<nav class="sticky top-0 z-50 bg-white/80 dark:bg-bgDark/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 pt-2 pb-2">
+<nav class="sticky top-0 z-50 glass shadow-lg border-b border-white/20 dark:border-white/10">
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <a href="/Kant_Nguyen_Astro_Blog/" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform">
+      <a href="/Kant_Nguyen_Astro_Blog/" class="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300">
         Kant Nguyễn
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="hidden md:flex items-center space-x-1">
         <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link">Trang chủ</a>
         <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link">Giới thiệu</a>
         <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link">Dự án</a>
@@ -20,20 +20,20 @@
       </div>
 
       <!-- Controls -->
-      <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-3">
         <!-- Dark Mode Toggle -->
-        <button id="themeToggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-          <svg id="sunIcon" class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+        <button id="themeToggle" class="p-2.5 rounded-xl glass-strong hover:glow-hover-indigo transition-all duration-300 group">
+          <svg id="sunIcon" class="w-5 h-5 hidden dark:block text-yellow-300 group-hover:rotate-180 transition-transform duration-500" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
           </svg>
-          <svg id="moonIcon" class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+          <svg id="moonIcon" class="w-5 h-5 block dark:hidden text-indigo-600 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
           </svg>
         </button>
 
         <!-- Mobile Menu Button -->
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="mobileMenuBtn" class="md:hidden p-2.5 rounded-xl glass-strong hover:glow-hover-purple transition-all duration-300">
+          <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
@@ -41,8 +41,8 @@
     </div>
 
     <!-- Mobile Navigation -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-gray-200 dark:border-gray-700 py-4">
-      <div class="flex flex-col space-y-2">
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/20 dark:border-white/10 py-4 mt-2">
+      <div class="flex flex-col space-y-1">
         <a href="/Kant_Nguyen_Astro_Blog/" class="nav-link-mobile">Trang chủ</a>
         <a href="/Kant_Nguyen_Astro_Blog/about" class="nav-link-mobile">Giới thiệu</a>
         <a href="/Kant_Nguyen_Astro_Blog/projects" class="nav-link-mobile">Dự án</a>
@@ -55,11 +55,33 @@
 
 <style>
   .nav-link {
-    @apply text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-accent transition-colors duration-200 font-medium cursor-pointer;
+    @apply relative px-4 py-2 text-gray-700 dark:text-gray-300 font-medium cursor-pointer transition-all duration-300 rounded-lg hover:bg-white/30 dark:hover:bg-white/5;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #6366f1, #a855f7);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .nav-link:hover::after {
+    width: 70%;
+  }
+  
+  .nav-link:hover {
+    @apply text-indigo-600 dark:text-indigo-300;
   }
   
   .nav-link-mobile {
-    @apply block px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-accent hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 font-medium rounded-lg cursor-pointer;
+    @apply block px-4 py-3 text-gray-700 dark:text-gray-300 font-medium rounded-xl cursor-pointer transition-all duration-300;
+    @apply hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20;
+    @apply hover:text-indigo-600 dark:hover:text-indigo-300 hover:pl-6;
   }
   
   #themeToggle, #mobileMenuBtn {

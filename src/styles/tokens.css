@@ -1,0 +1,182 @@
+/* ========================================
+   🎨 Design Tokens - Gradient Glass Theme
+   ======================================== */
+
+:root {
+  /* Primary Colors - Indigo-Purple Gradient */
+  --color-primary: #6366f1;
+  --color-primary-light: #818cf8;
+  --color-primary-dark: #4f46e5;
+  
+  --color-accent: #a855f7;
+  --color-accent-light: #c084fc;
+  --color-accent-dark: #9333ea;
+  
+  /* Background Gradients */
+  --color-bg-light: linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%);
+  --color-bg-dark: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  
+  /* Text Colors */
+  --color-text: #111827;
+  --color-text-light: #6b7280;
+  --color-text-dark: #e5e7eb;
+  --color-text-muted-dark: #9ca3af;
+  
+  /* Glass Effect */
+  --glass-bg-light: rgba(255, 255, 255, 0.4);
+  --glass-bg-dark: rgba(15, 23, 42, 0.4);
+  --glass-border-light: rgba(255, 255, 255, 0.18);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+  
+  /* Blur */
+  --blur-sm: 10px;
+  --blur-md: 16px;
+  --blur-lg: 24px;
+}
+
+/* Dark Mode Overrides */
+html[class~="dark"] {
+  --color-primary: #818cf8;
+  --color-accent: #c084fc;
+  --shadow-glow: 0 0 30px rgba(129, 140, 248, 0.4);
+}
+
+/* ========================================
+   🌈 Utility Classes
+   ======================================== */
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.gradient-text-hover {
+  background: linear-gradient(90deg, var(--color-primary-light), var(--color-accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.glass {
+  background: var(--glass-bg-light);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  border: 1px solid var(--glass-border-light);
+  box-shadow: var(--shadow-lg);
+}
+
+.dark .glass {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(var(--blur-lg));
+  -webkit-backdrop-filter: blur(var(--blur-lg));
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-strong {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-light {
+  background: linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
+
+.bg-gradient-radial-light {
+  background: radial-gradient(circle at top left, #eef2ff 0%, #faf5ff 50%, #ede9fe 100%);
+}
+
+.bg-gradient-radial-dark {
+  background: radial-gradient(circle at top left, #0f172a 0%, #1e1b4b 50%, #1e293b 100%);
+}
+
+/* Glow Effects */
+.glow-indigo {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4), 0 0 40px rgba(99, 102, 241, 0.2);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(168, 85, 247, 0.2);
+}
+
+.glow-hover-indigo:hover {
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.6), 0 0 60px rgba(99, 102, 241, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-hover-purple:hover {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6), 0 0 60px rgba(168, 85, 247, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Gradient Borders */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  padding: 2px;
+  border-radius: 1rem;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: white;
+  border-radius: calc(1rem - 2px);
+  z-index: -1;
+}
+
+.dark .gradient-border::before {
+  background: #1e293b;
+}
+
+/* Floating Gradient Lights */
+.floating-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  pointer-events: none;
+  animation: float-gentle 8s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.floating-light-indigo {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.8) 0%, rgba(99, 102, 241, 0) 70%);
+}
+
+.floating-light-purple {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0) 70%);
+}
+
