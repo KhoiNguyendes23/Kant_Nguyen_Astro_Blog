@@ -6,17 +6,17 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#6366f1',
-          light: '#818cf8',
-          dark: '#4f46e5',
+          DEFAULT: "#6366f1",
+          light: "#818cf8",
+          dark: "#4f46e5",
         },
         accent: {
-          DEFAULT: '#a855f7',
-          light: '#c084fc',
-          dark: '#9333ea',
+          DEFAULT: "#a855f7",
+          light: "#c084fc",
+          dark: "#9333ea",
         },
-        bgLight: '#f8fafc',
-        bgDark: '#0f172a',
+        bgLight: "#f8fafc",
+        bgDark: "#0f172a",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
@@ -24,10 +24,12 @@ module.exports = {
         mono: ["JetBrains Mono", "monospace"],
       },
       backgroundImage: {
-        'gradient-light': 'linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%)',
-        'gradient-dark': 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)',
-        'gradient-radial-light': 'radial-gradient(circle at top left, #eef2ff 0%, #faf5ff 50%, #ede9fe 100%)',
-        'gradient-radial-dark': 'radial-gradient(circle at top left, #0f172a 0%, #1e1b4b 50%, #1e293b 100%)',
+        "gradient-light": "linear-gradient(135deg, #eef2ff 0%, #faf5ff 100%)",
+        "gradient-dark": "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)",
+        "gradient-radial-light":
+          "radial-gradient(circle at top left, #eef2ff 0%, #faf5ff 50%, #ede9fe 100%)",
+        "gradient-radial-dark":
+          "radial-gradient(circle at top left, #0f172a 0%, #1e1b4b 50%, #1e293b 100%)",
       },
       animation: {
         "fade-up": "fadeUp 0.6s ease-out",
