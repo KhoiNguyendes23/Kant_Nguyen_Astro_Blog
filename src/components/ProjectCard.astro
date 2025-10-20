@@ -89,28 +89,7 @@ const { title, description, techStack, githubUrl, imageUrl, featured = false } =
       </svg>
     </a>
   </div>
-
-  <!-- Modal xem ảnh lớn -->
-  <div id="imgModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-    <img id="modalImg" class="max-w-3xl rounded-lg shadow-lg" />
-  </div>
 </div>
-
-<script>
-  function openImage(src) {
-    const modal = document.getElementById("imgModal");
-    const img = document.getElementById("modalImg");
-    img.src = src;
-    modal.classList.remove("hidden");
-    modal.addEventListener("click", () => modal.classList.add("hidden"));
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('img[data-preview]').forEach(img => {
-      img.addEventListener('click', () => openImage(img.src));
-    });
-  });
-</script>
 
 <style>
   .line-clamp-3 {

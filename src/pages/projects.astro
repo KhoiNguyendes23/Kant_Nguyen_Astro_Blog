@@ -58,5 +58,44 @@ import ProjectCard from '../components/ProjectCard.astro';
     </section>
   </main>
 
+  <!-- Modal xem ảnh lớn -->
+  <div id="imgModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 cursor-pointer">
+    <img id="modalImg" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-2xl object-contain" alt="Project preview" />
+  </div>
+
   <Footer />
 </BaseLayout>
+
+<script>
+  function openImage(src: string) {
+    const modal = document.getElementById("imgModal");
+    const img = document.getElementById("modalImg") as HTMLImageElement;
+    if (modal && img) {
+      img.src = src;
+      modal.classList.remove("hidden");
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById("imgModal");
+    if (modal) {
+      modal.classList.add("hidden");
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Add click handlers to all preview images
+    document.querySelectorAll('img[data-preview]').forEach(img => {
+      img.addEventListener('click', () => {
+        const imgElement = img as HTMLImageElement;
+        openImage(imgElement.src);
+      });
+    });
+
+    // Close modal when clicking on it
+    const modal = document.getElementById("imgModal");
+    if (modal) {
+      modal.addEventListener("click", closeModal);
+    }
+  });
+</script>
