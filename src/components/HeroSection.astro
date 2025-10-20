@@ -1,5 +1,6 @@
 ---
 // Hero section with avatar and typing animation
+const base = import.meta.env.BASE_URL || '/Kant_Nguyen_Astro_Blog';
 ---
 
 <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20 relative overflow-hidden">
@@ -27,7 +28,7 @@
           <div class="w-80 h-80 rounded-full bg-gradient-to-br from-primary to-purple-600 p-1 shadow-2xl group-hover:shadow-3xl transition-all duration-500">
             <div class="w-full h-full rounded-full bg-white dark:bg-gray-800 flex items-center justify-center overflow-hidden group-hover:scale-105 transition-transform duration-500">
               <img 
-                src="/Kant_Nguyen_Astro_Blog/avatar-new.png" 
+                src={`${base}/avatar-new.png`} 
                 alt="Kant Nguyễn" 
                 class="w-full h-full object-cover rounded-full group-hover:rotate-3 transition-transform duration-500"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
